@@ -1,6 +1,5 @@
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
-from sqlalchemy import orm, event
 from flask_validator import Validator, IntegerConstraint, StringConstraint
 
 app = Flask(__name__)

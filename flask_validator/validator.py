@@ -2,7 +2,6 @@ from sqlalchemy import event
 
 __version__ = '0.1'
 
-
 class Validator:
     field = None
     constrain = None
@@ -14,10 +13,8 @@ class Validator:
 
     def validate(self, target, value, oldvalue, initiator):
         if self.constraint.check(value):
-            print "valid"
             return value
         else:
-            print "invalid - revert"
             return oldvalue
 
     def create_event(self):
