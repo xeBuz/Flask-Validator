@@ -9,4 +9,4 @@ install:
   - pip install coveralls
 
 # command to run tests
-script: nosetest
+script: nosetests
