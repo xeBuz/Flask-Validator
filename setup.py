@@ -2,11 +2,6 @@ import re
 from setuptools import setup
 
 
-# def run_tests():
-#     from tests import suite
-#     return suite()
-
-
 setup(
     name='Flask-Validator',
     version='0.2',
