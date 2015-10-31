@@ -22,7 +22,7 @@ class User(db.Model):
     @classmethod
     def __declare_last__(cls):
         Validator(User.integer, IntegerConstraint())
-        Validator(User.string, StringConstraint())
+        Validator(User.string, StringConstraint(), True)
 
 db.create_all()
 u = User("user", 1)

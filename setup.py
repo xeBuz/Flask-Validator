@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name='Flask-Validator',
-    version='0.1',
+    version='0.2',
     license='Mozilla Public License',
     author='Jesus Roldan',
     author_email='jesus.roldan@gmail.com',
@@ -21,7 +21,6 @@ setup(
     zip_safe=False,
     platforms='any',
     install_requires=[
-        'Flask>=0.10',
         'SQLAlchemy>=1.0',
     ],
 
