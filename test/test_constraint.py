@@ -11,6 +11,15 @@ class ConstraintTest(unittest.TestCase):
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/tes1t.db'
         db = SQLAlchemy(app)
 
+        db.create_all()
+
+        self.DummyModel = self.create_model(db)
+        self.dummy = self.DummyModel(1, "aaa", 42)
+
+        self.app = app
+        self.db = db
+
+    def create_model(self, db):
         class DummyModel(db.Model):
             __tablename__ = 'dummy'
             id = db.Column(db.Integer, primary_key=True)
@@ -29,13 +38,7 @@ class ConstraintTest(unittest.TestCase):
                 Validator(DummyModel.string, StringConstraint())
                 Validator(DummyModel.int_exception, IntegerConstraint(), True)
 
-        db.create_all()
-
-        self.DummyModel = DummyModel
-        self.dummy = self.DummyModel(1, "aaa", 42)
-
-        self.app = app
-        self.db = db
+        return DummyModel
 
     def test_creation(self):
 
