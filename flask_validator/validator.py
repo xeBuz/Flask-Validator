@@ -1,24 +1,24 @@
 from sqlalchemy import event
 
-__version__ = '0.2'
+__version__ = '0.3'
 
 
 class Validator:
     field = None
-    constrain = None
-    raise_exception = False
+    constraint = None
+    exception = False
 
-    def __init__(self, field, constraint, raise_exception=False):
+    def __init__(self, field, constraint, exception=False):
         """
         Initialize a Validator object
 
         :param field: Model.field | Column to listen
         :param constraint:  A valid contraint to validate
-        :param raise_exception: Throw an expection or fails silently
+        :param exception: Throw a ValidError exception
         """
         self.field = field
         self.constraint = constraint
-        self.raise_exception = raise_exception
+        self.exception = exception
 
         self.create_event()
 
@@ -36,10 +36,10 @@ class Validator:
         if self.constraint.check(value):
             return value
         else:
-            if self.raise_exception:
+            if self.exception:
                 raise ValueError('Value %s from column %s is not valid' % (value, initiator.key))
-            else:
-                return oldvalue
+
+            return oldvalue
 
     def create_event(self):
         """

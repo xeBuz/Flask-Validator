@@ -7,7 +7,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
 
 
-
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -15,7 +14,6 @@ class User(db.Model):
     integer = db.Column(db.Integer())
 
     def __init__(self, string, integer):
-        print 'User init'
         self.string = string
         self.integer = integer
 

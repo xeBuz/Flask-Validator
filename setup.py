@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='Flask-Validator',
-    version='0.2',
+    version='0.3',
     license='Mozilla Public License',
     author='Jesus Roldan',
     author_email='jesus.roldan@gmail.com',
