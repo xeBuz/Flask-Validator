@@ -14,7 +14,7 @@ Data validator for Flask using SQL-Alchemy, working at Model component with even
 ## Instalation
 
 ```bash
-pip install flask_validator
+pip install flask-validator
 ```
 
 
@@ -26,7 +26,6 @@ For the online documentation, follow [this link](http://flask-validator.readthed
 ## Basic usage
 
 ```pyhton
-
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -42,7 +41,6 @@ class User(db.Model):
         Validator(User.integer, IntegerConstraint())
         # The third parameter throw a ValidError exception
         Validator(User.string, StringConstraint(), True)
-
 ```
 
 
