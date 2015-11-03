@@ -1,16 +1,19 @@
-==== Constraints availables
+Constraints availables
+==========================
+
 
 At the moment, the library support this validations:
-- IntegerConstraint_
-- StringConstraint_
+
+* IntegerConstraint
+* StringConstraint
 
 
 +--------------------+------------------------+-------------+
 | Constraint         | Usage                  | Parameters  |
 +====================+========================+=============+
-| _IntegerConstraint |  Allow integer values  |             |
+|  IntegerConstraint |  Allow integer values  |             |
 +--------------------+------------------------+-------------+
-| _StringConstraint_ |  Allow string values   |             |
+|  StringConstraint  |  Allow string values   |             |
 +--------------------+------------------------+-------------+
 |                    |                        |             |
 +--------------------+------------------------+-------------+

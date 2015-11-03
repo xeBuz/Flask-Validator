@@ -11,6 +11,10 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   instalation
+   usage
+   constraints
+
 
 
 Indices and tables
