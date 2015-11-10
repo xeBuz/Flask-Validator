@@ -13,7 +13,7 @@ Contents:
 
    instalation
    usage
-   constraints
+   validators
 
 
 

@@ -2,9 +2,13 @@ Basic Usage
 ====================
 
 
-Basic usage. I strongly recommend the validation
+Basic usage. I strongly recommend the validation using the SQLAlchemy special  directive_ ``__declare_last__``, it occurs after mappings are assumed to be completed and the ‘configure’ step has finished.
+The only required argument is the Column to validate.
 
 
+.. code-block:: python
+
+    # import ...
     from flask_validator import ValidateInteger, ValidateString
 
     class User(db.Model):
@@ -22,3 +26,8 @@ Basic usage. I strongly recommend the validation
          ValidateInteger(User.integer)
          ValidateString(User.string, throw_exception=True)
 
+
+With that code, the Validator will execute an ORM event_ listening each field modification
+
+.. _directive: http://docs.sqlalchemy.org/en/latest/orm/extensions/declarative/api.html#declare-last
+.. _event: http://docs.sqlalchemy.org/en/latest/orm/events.html
