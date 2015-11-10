@@ -1,4 +1,4 @@
-from flask_validator import Validator, ValidateString, ValidateInteger
+from flask_validator import ValidateString, ValidateInteger, ValidateBoolean
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -16,22 +16,25 @@ class ConstraintTest(unittest.TestCase):
             integer = db.Column(db.Integer())
             string = db.Column(db.String(80))
             int_exception = db.Column(db.Integer())
+            boolean = db.Column(db.Boolean())
 
-            def __init__(self, integer, string, int_exception):
+            def __init__(self, integer, string, int_exception, boolean):
                 self.integer = integer
                 self.string = string
                 self.int_exception = int_exception
+                self.boolean = boolean
 
             @classmethod
             def __declare_last__(cls):
                 ValidateInteger(DummyModel.integer)
                 ValidateString(DummyModel.string)
                 ValidateInteger(DummyModel.int_exception, throw_exception=True)
+                ValidateBoolean(DummyModel.boolean)
 
         db.create_all()
 
         self.DummyModel = DummyModel
-        self.dummy = self.DummyModel(1, "aaa", 42)
+        self.dummy = self.DummyModel(1, "aaa", 42, True)
         self.app = app
         self.db = db
 
@@ -41,8 +44,6 @@ class ConstraintTest(unittest.TestCase):
         Basic test to validate Flask app
 
         """
-        self.dummy = self.DummyModel(1, "aaa", 42)
-
         # Test the values
         assert self.dummy.integer == 1
         assert self.dummy.string == "aaa"
@@ -97,10 +98,32 @@ class ConstraintTest(unittest.TestCase):
         Testing IntegerConstraint() with exceptions
 
         """
+
         default_value = self.dummy.int_exception
         with self.assertRaises(ValueError):
             self.dummy.int_exception = "Doctor"
             self.assertEqual(self.dummy.int_exception, default_value)
+
+    def test_boolean(self):
+
+        """
+        Testing BooleanValidator
+
+        """
+
+        default_value = self.dummy.boolean
+        new_value = False
+
+        self.dummy.boolean = new_value
+        self.assertEqual(self.dummy.boolean, new_value)
+
+        self.dummy.boolean = "Not-a-Bool"
+        self.assertNotEquals(self.dummy.boolean, "Not-a-Bool")
+        self.assertEquals(self.dummy.boolean, new_value)
+
+        self.dummy.boolean = default_value
+        self.assertNotEquals(self.dummy.boolean, new_value)
+
 
 
 def suite():

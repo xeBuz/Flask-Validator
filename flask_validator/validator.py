@@ -1,6 +1,6 @@
 from sqlalchemy import event
 
-__version__ = '0.3'
+__version__ = '0.4'
 
 
 class FlaskValidator:

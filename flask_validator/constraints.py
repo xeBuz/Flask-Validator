@@ -26,19 +26,6 @@ class Validator(FlaskValidator):
         pass
 
 
-class ValidateType(FlaskValidator):
-    type = None
-
-    def check(self, value):
-        pass
-
-
-class ValidateBoolean(Validator):
-    # TODO
-    def check(self, value):
-        pass
-
-
 class ValidateInteger(Validator):
     """ Validate Integer type.
 
@@ -80,6 +67,27 @@ class ValidateString(Validator):
             return True
 
         return isinstance(value, str)
+
+
+class ValidateBoolean(Validator):
+    """ Validate Boolean type.
+
+    Check if the new value is a boolean
+
+    Args:
+        value: new value
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+    def check_value(self, value):
+        return isinstance(value, bool)
+
+
+class ValidateType(FlaskValidator):
+    type = None
+
+    def check(self, value):
+        pass
 
 
 class NotNullConstraint(Validator):
