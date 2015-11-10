@@ -1,196 +1,232 @@
+from flask_validator import FlaskValidator
 
-class Constraint:
-    params = {
-        'allow_null': True
-    }
 
-    def __init__(self, params=None):
+class Validator(FlaskValidator):
+    throw_exception = False
+
+    def __init__(self, field, **kwargs):
         """
-        Create a base Constraint Object
+        Validator Interface initialization
 
-        :param params: Extra options / payload
+        :param field:  Flask Column to validate
+        :param kwargs: Valiable Parameter list
         """
-        if params:
-            self.params = self._merge_params(params)
 
-    def _merge_params(self, params):
-        temp = self.params.copy()
-        temp.update(params)
-        return temp
+        for key, value in kwargs.items():
+            setattr(self, key, value)
+
+        FlaskValidator.__init__(self, field, self.throw_exception)
+
+    def check_value(self, value):
+        """
+        Validate the new value
+
+        :param value:
+        """
+        pass
+
+
+class ValidateType(FlaskValidator):
+    type = None
 
     def check(self, value):
         pass
 
 
-class TypeConstraint(Constraint):
+class ValidateBoolean(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class BooleanConstraint(Constraint):
-    # TODO
-    def check(self, value):
-        pass
+class ValidateInteger(Validator):
+    """ Validate Integer type.
 
+    Check if the new value is a integer or a long integer
 
-class IntegerConstraint(Constraint):
+    Args:
+        value: new value
+        allow_null: (bool) Allow null values
+        throw_exception: (bool) Throw a ValueError if the validation fails
 
-    def check(self, value):
+    """
+
+    allow_null = True
+
+    def check_value(self, value):
+
+        if self.allow_null and value is None:
+            return True
+
         return isinstance(value, (int, long))
 
 
-class StringConstraint(Constraint):
+class ValidateString(Validator):
+    """ Validate String type.
 
-    def check(self, value):
+    Check if the new value is a string
+
+    Args:
+        value: new value
+        allow_null: (bool) Allow null values
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+
+    allow_null = True
+
+    def check_value(self, value):
+        if self.allow_null and value is None:
+            return True
+
         return isinstance(value, str)
 
 
-class NotNullConstraint(Constraint):
+class NotNullConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class NullConstraint(Constraint):
+class NullConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class EmailConstraint(Constraint):
+class EmailConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class LengthConstraint(Constraint):
+class LengthConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class URLConstraint(Constraint):
+class URLConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class RegexConstraint(Constraint):
+class RegexConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class IPConstraint(Constraint):
+class IPConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class UUIDConstraint(Constraint):
+class UUIDConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class LessThanConstraint(Constraint):
+class LessThanConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class LessThanOrEqualConstraint(Constraint):
+class LessThanOrEqualConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class GreaterThanConstraint(Constraint):
+class GreaterThanConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class GreaterThanOrEqualConstraint(Constraint):
+class GreaterThanOrEqualConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class RangeConstraint(Constraint):
+class RangeConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class DateConstraint(Constraint):
+class DateConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class TimeConstraint(Constraint):
+class TimeConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class DateTimeConstraint(Constraint):
+class DateTimeConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class LenguageConstraint(Constraint):
+class LenguageConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class LocaleConstraint(Constraint):
+class LocaleConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class CountryConstraint(Constraint):
+class CountryConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class CardConstraint(Constraint):
+class CardConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class CurrencyConstraint(Constraint):
+class CurrencyConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class LuhnConstraint(Constraint):
+class LuhnConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class IbanConstraint(Constraint):
+class IbanConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class IsbnConstraint(Constraint):
+class IsbnConstraint(Validator):
     # TODO
     def check(self, value):
         pass
 
 
-class IssnConstraint(Constraint):
+class IssnConstraint(Validator):
     # TODO
     def check(self, value):
         pass

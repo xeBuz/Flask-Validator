@@ -20,7 +20,7 @@ setup(
     ],
 
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 2 - Pre-Alpha',
         'Environment :: Plugins',
         'Framework :: Flask',
         'Intended Audience :: Developers',
@@ -28,6 +28,6 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Topic :: Database',
-        'Topic :: Software Development :: Libraries :: Python Modules'
+        'Topic :: Software Development :: Libraries :: Python Modules',
     ]
 )

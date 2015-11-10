@@ -3,28 +3,23 @@ from sqlalchemy import event
 __version__ = '0.3'
 
 
-class Validator:
+class FlaskValidator:
     field = None
-    constraint = None
-    exception = False
+    throw_exception = False
 
-    def __init__(self, field, constraint, exception=False):
-        """
-        Initialize a Validator object
+    def __init__(self, field, throw_exception=False):
+        """ Initialize a Validator object.
 
+        :type throw_exception: Throw a ValueError exception
         :param field: Model.field | Column to listen
-        :param constraint:  A valid contraint to validate
-        :param exception: Throw a ValidError exception
         """
         self.field = field
-        self.constraint = constraint
-        self.exception = exception
+        self.throw_exception = throw_exception
 
-        self.create_event()
+        self.__create_event()
 
-    def validate(self, target, value, oldvalue, initiator):
-        """
-        Method executed when the event 'set' is triggered
+    def __validate(self, target, value, oldvalue, initiator):
+        """ Method executed when the event 'set' is triggered.
 
         :param target: Object triggered
         :param value: New value
@@ -33,19 +28,29 @@ class Validator:
 
         :return: :raise ValueError:
         """
-        if self.constraint.check(value):
+        if self.check_value(value):
             return value
         else:
-            if self.exception:
+            if self.throw_exception:
                 raise ValueError('Value %s from column %s is not valid' % (value, initiator.key))
 
             return oldvalue
 
-    def create_event(self):
-        """
-        Create an SQLAlchemy event listening the 'set' in a particular column
+    def __create_event(self):
+        """ Create an SQLAlchemy event listening the 'set' in a particular column.
 
         :rtype : object
         """
-        if not event.contains(self.field, 'set', self.validate):
-            event.listen(self.field, 'set', self.validate, retval=True)
+        if not event.contains(self.field, 'set', self.__validate):
+            event.listen(self.field, 'set', self.__validate, retval=True)
+
+    def _merge_params(self, allowed_params):
+        """ Merge default parameters with the specific parameter validator.
+
+        :param allowed_params: array with valid parameters
+        :return:  array with a merge without duplicated values
+        """
+        return list(set(self.default_params + allowed_params))
+
+    def check_value(self, value):
+        pass

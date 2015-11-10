@@ -4,16 +4,17 @@ Constraints availables
 
 At the moment, the library support this validations:
 
-* IntegerConstraint
-* StringConstraint
+* ValidateInteger
+* ValidateString
+
 
 
 +--------------------+------------------------+-------------+
 | Constraint         | Usage                  | Parameters  |
 +====================+========================+=============+
-|  IntegerConstraint |  Allow integer values  |             |
+| ValidaInteger      |  Allow integer values  |             |
 +--------------------+------------------------+-------------+
-|  StringConstraint  |  Allow string values   |             |
+| StringConstraint   |  Allow string values   |             |
 +--------------------+------------------------+-------------+
 |                    |                        |             |
 +--------------------+------------------------+-------------+

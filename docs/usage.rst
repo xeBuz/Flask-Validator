@@ -2,9 +2,10 @@ Basic Usage
 ====================
 
 
-Basic usage. I strongly recomment the validation
+Basic usage. I strongly recommend the validation
 
 
+    from flask_validator import ValidateInteger, ValidateString
 
     class User(db.Model):
       _tablename__ = 'user'
@@ -18,7 +19,6 @@ Basic usage. I strongly recomment the validation
 
       @classmethod
       def __declare_last__(cls):
-         Validator(User.integer, IntegerConstraint())
-         # The third parameter throw a ValidError exception
-         Validator(User.string, StringConstraint(), True)
+         ValidateInteger(User.integer)
+         ValidateString(User.string, throw_exception=True)
 

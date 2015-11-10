@@ -26,6 +26,8 @@ For the online documentation, follow [this link](http://flask-validator.readthed
 ## Basic usage
 
 ```pyhton
+from flask_validator import ValidateInteger, ValidateString
+
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
@@ -38,16 +40,17 @@ class User(db.Model):
 
     @classmethod
     def __declare_last__(cls):
-        Validator(User.integer, IntegerConstraint())
-        # The third parameter throw a ValidError exception
-        Validator(User.string, StringConstraint(), True)
+        ValidateInteger(User.integer)
+        ValidateString(User.string)
+
+
 ```
 
 
 ## Allowed Constraints
 
-- IntegerConstraint
-- StringConstraint
+- ValidateInteger
+- ValidateString
 
 
 

@@ -1,2 +1,2 @@
-from validator import Validator
-from contraints import Constraint, IntegerConstraint, StringConstraint
+from validator import FlaskValidator
+from contraints import Validator, ValidateInteger, ValidateString

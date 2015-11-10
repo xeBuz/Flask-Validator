@@ -1,9 +1,9 @@
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
-from flask_validator import Validator, IntegerConstraint, StringConstraint
+from flask_validator import ValidateInteger, ValidateString
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
 db = SQLAlchemy(app)
 
 
@@ -19,8 +19,8 @@ class User(db.Model):
 
     @classmethod
     def __declare_last__(cls):
-        Validator(User.integer, IntegerConstraint())
-        Validator(User.string, StringConstraint(), True)
+        ValidateInteger(User.integer)
+        ValidateString(User.string)
 
 db.create_all()
 u = User("user", 1)

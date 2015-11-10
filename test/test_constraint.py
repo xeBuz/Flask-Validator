@@ -1,4 +1,4 @@
-from flask_validator import Validator, IntegerConstraint, StringConstraint
+from flask_validator import Validator, ValidateString, ValidateInteger
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -24,9 +24,9 @@ class ConstraintTest(unittest.TestCase):
 
             @classmethod
             def __declare_last__(cls):
-                Validator(DummyModel.integer, IntegerConstraint())
-                Validator(DummyModel.string, StringConstraint())
-                Validator(DummyModel.int_exception, IntegerConstraint(), True)
+                ValidateInteger(DummyModel.integer)
+                ValidateString(DummyModel.string)
+                ValidateInteger(DummyModel.int_exception, throw_exception=True)
 
         db.create_all()
 
