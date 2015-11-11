@@ -1,4 +1,4 @@
-from flask_validator import ValidateString, ValidateInteger, ValidateBoolean, ValidateLength
+from flask_validator import ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, ValidateNumeric
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -14,12 +14,14 @@ class ConstraintTest(unittest.TestCase):
         class DummyModel(db.Model):
             id = db.Column(db.Integer, primary_key=True)
             integer = db.Column(db.Integer())
+            numeric = db.Column(db.Float())
             string = db.Column(db.String(80))
             int_exception = db.Column(db.Integer())
             boolean = db.Column(db.Boolean())
 
-            def __init__(self, integer, string, int_exception, boolean):
+            def __init__(self, integer, numeric, string, int_exception, boolean):
                 self.integer = integer
+                self.numeric = numeric
                 self.string = string
                 self.int_exception = int_exception
                 self.boolean = boolean
@@ -28,6 +30,7 @@ class ConstraintTest(unittest.TestCase):
             def __declare_last__(cls):
                 ValidateInteger(DummyModel.integer)
                 ValidateInteger(DummyModel.int_exception, throw_exception=True)
+                ValidateNumeric(DummyModel.numeric)
                 ValidateString(DummyModel.string)
                 ValidateBoolean(DummyModel.boolean)
                 ValidateLength(DummyModel.string, max_length=10, min_lenght=2)
@@ -35,7 +38,7 @@ class ConstraintTest(unittest.TestCase):
         db.create_all()
 
         self.DummyModel = DummyModel
-        self.dummy = self.DummyModel(1, "aaa", 42, True)
+        self.dummy = self.DummyModel(1, 3.1, "aaa", 42, True)
         self.app = app
         self.db = db
 
@@ -74,6 +77,33 @@ class ConstraintTest(unittest.TestCase):
 
         self.dummy.integer = default_value
         self.assertNotEquals(self.dummy.integer, new_value)
+
+    def test_numeric(self):
+
+        """
+        Testing NumericValidator
+
+        """
+
+        default_value = self.dummy.numeric
+        new_value = 1.1111
+
+        self.dummy.numeric = new_value
+        self.assertEqual(self.dummy.numeric, new_value)
+
+        self.dummy.numeric = "bad_string"
+        self.assertEqual(self.dummy.numeric, new_value)
+
+        new_value = -10
+        self.dummy.numeric = new_value
+        self.assertEqual(self.dummy.numeric, new_value)
+
+        new_value = complex(1,1)-complex(1,1)
+        self.dummy.numeric = new_value
+        self.assertEqual(self.dummy.numeric, new_value)
+
+        self.dummy.numeric = default_value
+        self.assertNotEquals(self.dummy.numeric, new_value)
 
     def test_string(self):
 

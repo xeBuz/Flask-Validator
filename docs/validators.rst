@@ -5,6 +5,7 @@ Validators availables
 At the moment, the library support this validations:
 
 * :ref:`in_integer`
+* :ref:`in_numeric`
 * :ref:`in_string`
 * :ref:`in_boolean`
 * :ref:`in_lenght`
@@ -28,6 +29,27 @@ Optional parametes:
 +-------------------------+----------------------+-----------------------------------------------------------------+
 | allow_null              | True                 | Allow ``null`` values                                           |
 +-------------------------+----------------------+-----------------------------------------------------------------+
+
+
+
+.. _in_numeric:
+
+ValidateNumeric
+---------------
+
+Check if the new value is a valid ``int``, ``long``, ```float``` or ``complex`` type
+
+
+Optional parametes:
+
++-------------------------+----------------------+-----------------------------------------------------------------+
+| Parameter               | Default Value        | Description                                                     |
++=========================+======================+=================================================================+
+| throw_exception         | False                | Throw a ``ValueError`` exception on validation fails            |
++-------------------------+----------------------+-----------------------------------------------------------------+
+| allow_null              | True                 | Allow ``null`` values                                           |
++-------------------------+----------------------+-----------------------------------------------------------------+
+
 
 
 .. _in_string:

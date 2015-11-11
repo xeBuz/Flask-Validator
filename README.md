@@ -48,6 +48,7 @@ class User(db.Model):
 ## Allowed Constraints
 
 - ValidateInteger
+- ValidateNumeric
 - ValidateString
 - ValidateBoolean
 - ValidateMaxLenght

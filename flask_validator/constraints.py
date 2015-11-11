@@ -48,6 +48,28 @@ class ValidateInteger(Validator):
         return isinstance(value, (int, long))
 
 
+class ValidateNumeric(Validator):
+    """ Validate Numeric type.
+
+    Check if the new value is a integer, long, complex or float type
+
+    Args:
+        value: new value
+        allow_null: (bool) Allow null values
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+
+    allow_null = True
+
+    def check_value(self, value):
+
+        if self.allow_null and value is None:
+            return True
+
+        return isinstance(value, (int, long, float, complex))
+
+
 class ValidateString(Validator):
     """ Validate String type.
 
