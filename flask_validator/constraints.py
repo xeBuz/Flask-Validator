@@ -1,4 +1,5 @@
 from flask_validator import FlaskValidator
+import sys
 
 
 class Validator(FlaskValidator):
@@ -45,7 +46,10 @@ class ValidateInteger(Validator):
         if self.allow_null and value is None:
             return True
 
-        return isinstance(value, (int, long))
+        if sys.version_info >= (3, 0):
+            return isinstance(value, int)
+        else:
+            return isinstance(value, (int, long))
 
 
 class ValidateNumeric(Validator):
@@ -67,7 +71,10 @@ class ValidateNumeric(Validator):
         if self.allow_null and value is None:
             return True
 
-        return isinstance(value, (int, long, float, complex))
+        if sys.version_info >= (3, 0):
+            return isinstance(value, (int, float, complex))
+        else:
+            return isinstance(value, (int, long, float, complex))
 
 
 class ValidateString(Validator):
