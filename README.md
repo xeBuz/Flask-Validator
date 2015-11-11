@@ -49,6 +49,9 @@ class User(db.Model):
 
 - ValidateInteger
 - ValidateString
+- ValidateBoolean
+- ValidateMaxLenght
+
 
 
 

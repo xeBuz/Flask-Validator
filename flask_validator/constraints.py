@@ -97,13 +97,14 @@ class ValidateLength(Validator):
     """
 
     max_length = None
+    min_lenght = 0
 
     def check_value(self, value):
 
         if not self.max_length:
             raise Warning("Argument max_length should't be null")
 
-        return len(value) <= int(self.max_length)
+        return len(value) <= int(self.max_length) and len(value) >= int(self.min_lenght)
 
 
 class EmailConstraint(Validator):

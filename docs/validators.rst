@@ -1,5 +1,5 @@
 Validators availables
-==========================
+=====================
 
 
 At the moment, the library support this validations:
@@ -81,6 +81,8 @@ Optional parametes:
 | throw_exception         | False                | Throw a ``ValueError`` exception on validation fails            |
 +-------------------------+----------------------+-----------------------------------------------------------------+
 | max_lenght              | None                 | Maximum value lenght                                            |
++-------------------------+----------------------+-----------------------------------------------------------------+
+| min_lenght              | 0                    | Minumum value lenght                                            |
 +-------------------------+----------------------+-----------------------------------------------------------------+
 
 

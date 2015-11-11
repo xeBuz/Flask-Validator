@@ -30,7 +30,7 @@ class ConstraintTest(unittest.TestCase):
                 ValidateInteger(DummyModel.int_exception, throw_exception=True)
                 ValidateString(DummyModel.string)
                 ValidateBoolean(DummyModel.boolean)
-                ValidateLength(DummyModel.string, max_length=10)
+                ValidateLength(DummyModel.string, max_length=10, min_lenght=2)
 
         db.create_all()
 
@@ -141,6 +141,9 @@ class ConstraintTest(unittest.TestCase):
 
         self.dummy.string = default_value
         self.assertNotEquals(self.dummy.string, new_value)
+
+        self.dummy.string = '-'  # min 2
+        self.assertEquals(self.dummy.string, default_value)
 
 
 
