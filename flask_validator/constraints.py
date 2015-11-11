@@ -79,36 +79,34 @@ class ValidateBoolean(Validator):
         throw_exception: (bool) Throw a ValueError if the validation fails
 
     """
+
     def check_value(self, value):
         return isinstance(value, bool)
 
 
-class ValidateType(FlaskValidator):
-    type = None
+class ValidateLength(Validator):
+    """ Validate String type.
 
-    def check(self, value):
-        pass
+    Check if the new value is a string
 
+    Args:
+        value: new value
+        max_length: (bool) Maximum value Length
+        throw_exception: (bool) Throw a ValueError if the validation fails
 
-class NotNullConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
+    """
 
+    max_length = None
 
-class NullConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
+    def check_value(self, value):
+
+        if not self.max_length:
+            raise Warning("Argument max_length should't be null")
+
+        return len(value) <= int(self.max_length)
 
 
 class EmailConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
-
-
-class LengthConstraint(Validator):
     # TODO
     def check(self, value):
         pass

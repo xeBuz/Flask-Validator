@@ -1,11 +1,11 @@
 - 0.4
-  Added Boolean
+  Added Boolean and Max Length Validators
 
 - 0.3
   Added Test, Documentation, and a huge code refactor
 
 - 0.2
-  Added Integer and String Validator
+  Added Integer and String Validators
 
 - 0.1
   Basic Structure

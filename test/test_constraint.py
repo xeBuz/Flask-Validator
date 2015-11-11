@@ -1,4 +1,4 @@
-from flask_validator import ValidateString, ValidateInteger, ValidateBoolean
+from flask_validator import ValidateString, ValidateInteger, ValidateBoolean, ValidateLength
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -27,9 +27,10 @@ class ConstraintTest(unittest.TestCase):
             @classmethod
             def __declare_last__(cls):
                 ValidateInteger(DummyModel.integer)
-                ValidateString(DummyModel.string)
                 ValidateInteger(DummyModel.int_exception, throw_exception=True)
+                ValidateString(DummyModel.string)
                 ValidateBoolean(DummyModel.boolean)
+                ValidateLength(DummyModel.string, max_length=10)
 
         db.create_all()
 
@@ -123,6 +124,23 @@ class ConstraintTest(unittest.TestCase):
 
         self.dummy.boolean = default_value
         self.assertNotEquals(self.dummy.boolean, new_value)
+
+    def test_length(self):
+
+        """
+        Testing Max Length Validator
+        """
+        default_value = self.dummy.string
+        new_value = "Magnolia"
+
+        self.dummy.string = new_value
+        self.assertEqual(self.dummy.string, new_value)
+
+        self.dummy.string = new_value*10
+        self.assertEqual(self.dummy.string, new_value)
+
+        self.dummy.string = default_value
+        self.assertNotEquals(self.dummy.string, new_value)
 
 
 

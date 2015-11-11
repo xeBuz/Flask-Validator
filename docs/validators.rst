@@ -7,7 +7,7 @@ At the moment, the library support this validations:
 * :ref:`in_integer`
 * :ref:`in_string`
 * :ref:`in_boolean`
-
+* :ref:`in_lenght`
 
 
 
@@ -63,6 +63,29 @@ Optional parametes:
 +=========================+======================+=================================================================+
 | throw_exception         | False                | Throw a ``ValueError`` exception on validation fails            |
 +-------------------------+----------------------+-----------------------------------------------------------------+
+
+
+
+.. _in_lenght:
+
+ValidateLenght
+--------------
+
+Check if the new value is a valid ``string`` type.
+
+Optional parametes:
+
++-------------------------+----------------------+-----------------------------------------------------------------+
+| Parameter               | Default Value        | Description                                                     |
++=========================+======================+=================================================================+
+| throw_exception         | False                | Throw a ``ValueError`` exception on validation fails            |
++-------------------------+----------------------+-----------------------------------------------------------------+
+| max_lenght              | None                 | Maxium value lenght                                            |
++-------------------------+----------------------+-----------------------------------------------------------------+
+
+
+
+
 
 
 
