@@ -25,7 +25,7 @@ For the online documentation, follow [this link](http://flask-validator.readthed
 
 ## Basic usage
 
-```pyhton
+```python
 from flask_validator import ValidateInteger, ValidateString
 
 class User(db.Model):
@@ -42,8 +42,6 @@ class User(db.Model):
     def __declare_last__(cls):
         ValidateInteger(User.integer)
         ValidateString(User.string)
-
-
 ```
 
 
