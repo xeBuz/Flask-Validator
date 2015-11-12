@@ -28,6 +28,9 @@ class FlaskValidator:
 
         :return: :raise ValueError:
         """
+        if value == oldvalue:
+            return value
+
         if self.check_value(value):
             return value
         else:

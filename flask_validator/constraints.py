@@ -1,7 +1,6 @@
 from flask_validator import FlaskValidator
 import sys
-import re
-from validate_email import validate_email
+from email_validator import validate_email, EmailNotValidError
 
 
 class Validator(FlaskValidator):
@@ -143,21 +142,36 @@ class ValidateEmail(Validator):
     """ Validate Email type.
 
     Check if the new value is a valid e-mail.
-    Using this library to validate https://github.com/syrusakbary/validate_email
+    Using this library to validate https://github.com/JoshData/python-email-validator
 
     Args:
         value: new value
+        allow_null: (bool) Allow null values
         check_mx: (bool) Check if the host has SMTP Server
         verify: (bool) Check if the host has SMTP Server and the email really exists
         throw_exception: (bool) Throw a ValueError if the validation fails
 
     """
 
-    check_mx = False
-    verify = False
+    allow_null = True
+    allow_smtputf8 = True
+    check_deliverability = True
+    allow_empty_local = False
 
     def check_value(self, value):
-        return validate_email(value, check_mx=self.check_mx, verify=self.verify)
+
+        if self.allow_null and value is None:
+            return True
+
+        try:
+            validate_email(value,
+                           allow_smtputf8=self.allow_smtputf8,
+                           check_deliverability=self.check_deliverability,
+                           allow_empty_local=self.allow_empty_local
+                           )
+            return True
+        except EmailNotValidError:
+            return False
 
 
 class URLConstraint(Validator):
