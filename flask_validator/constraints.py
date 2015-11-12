@@ -1,5 +1,7 @@
 from flask_validator import FlaskValidator
 import sys
+import re
+from validate_email import validate_email
 
 
 class Validator(FlaskValidator):
@@ -114,13 +116,14 @@ class ValidateBoolean(Validator):
 
 
 class ValidateLength(Validator):
-    """ Validate String type.
+    """ Validate Length type.
 
-    Check if the new value is a string
+    Check if the new value has a proper length
 
     Args:
         value: new value
-        max_length: (bool) Maximum value Length
+        max_length: (int) Maximum value length
+        min_lenght: (int) Minimum value length
         throw_exception: (bool) Throw a ValueError if the validation fails
 
     """
@@ -136,10 +139,25 @@ class ValidateLength(Validator):
         return int(self.max_length) >= len(value) >= int(self.min_lenght)
 
 
-class EmailConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
+class ValidateEmail(Validator):
+    """ Validate Email type.
+
+    Check if the new value is a valid e-mail.
+    Using this library to validate https://github.com/syrusakbary/validate_email
+
+    Args:
+        value: new value
+        check_mx: (bool) Check if the host has SMTP Server
+        verify: (bool) Check if the host has SMTP Server and the email really exists
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+
+    check_mx = False
+    verify = False
+
+    def check_value(self, value):
+        return validate_email(value, check_mx=self.check_mx, verify=self.verify)
 
 
 class URLConstraint(Validator):

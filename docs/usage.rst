@@ -2,7 +2,9 @@ Basic Usage
 ====================
 
 
-Basic usage. I strongly recommend the validation using the SQLAlchemy special  directive_ ``__declare_last__``, it occurs after mappings are assumed to be completed and the ‘configure’ step has finished.
+The most performant way to set up your validations is uring the SQLAlchemy special  directive_ ``__declare_last__``, it occurs after mappings are assumed to be completed and the ‘configure’ step has finished.
+With this method, you will create the event one tine, just before the class creation.
+
 The only required argument is the Column to validate.
 
 

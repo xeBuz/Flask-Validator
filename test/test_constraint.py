@@ -1,4 +1,5 @@
-from flask_validator import ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, ValidateNumeric
+from flask_validator import ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, ValidateNumeric, \
+    ValidateEmail
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -18,13 +19,16 @@ class ConstraintTest(unittest.TestCase):
             string = db.Column(db.String(80))
             int_exception = db.Column(db.Integer())
             boolean = db.Column(db.Boolean())
+            email = db.Column(db.String(80))
+            email_valid = db.Column(db.String(80))
 
-            def __init__(self, integer, numeric, string, int_exception, boolean):
+            def __init__(self, integer, numeric, string, int_exception, boolean, email):
                 self.integer = integer
                 self.numeric = numeric
                 self.string = string
                 self.int_exception = int_exception
                 self.boolean = boolean
+                self.email = email
 
             @classmethod
             def __declare_last__(cls):
@@ -34,11 +38,12 @@ class ConstraintTest(unittest.TestCase):
                 ValidateString(DummyModel.string)
                 ValidateBoolean(DummyModel.boolean)
                 ValidateLength(DummyModel.string, max_length=10, min_lenght=2)
+                ValidateEmail(DummyModel.email)
 
         db.create_all()
 
         self.DummyModel = DummyModel
-        self.dummy = self.DummyModel(1, 3.1, "aaa", 42, True)
+        self.dummy = self.DummyModel(1, 3.1, "aaa", 42, True, "this@email.com")
         self.app = app
         self.db = db
 
@@ -98,7 +103,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.numeric = new_value
         self.assertEqual(self.dummy.numeric, new_value)
 
-        new_value = complex(1,1)-complex(1,1)
+        new_value = complex(1, 1)-complex(1, 1)
         self.dummy.numeric = new_value
         self.assertEqual(self.dummy.numeric, new_value)
 
@@ -174,6 +179,24 @@ class ConstraintTest(unittest.TestCase):
 
         self.dummy.string = '-'  # min 2
         self.assertEquals(self.dummy.string, default_value)
+
+    def test_email(self):
+
+        """
+        Testing EmailConstraint()
+
+        """
+        default_value = self.dummy.email
+        new_value = "test@gmail.com"
+
+        self.dummy.email = new_value
+        self.assertEqual(self.dummy.email, new_value)
+
+        self.dummy.email = "not@"
+        self.assertEqual(self.dummy.email, new_value)
+
+        self.dummy.email = default_value
+        self.assertNotEquals(self.dummy.email, new_value)
 
 
 

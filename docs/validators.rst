@@ -9,6 +9,7 @@ At the moment, the library support this validations:
 * :ref:`in_string`
 * :ref:`in_boolean`
 * :ref:`in_lenght`
+* :ref:`in_email`
 
 
 
@@ -30,6 +31,7 @@ Optional parametes:
 | allow_null              | True                 | Allow ``null`` values                                           |
 +-------------------------+----------------------+-----------------------------------------------------------------+
 
+.. note:: ``long`` type is only available i  Python 2.7
 
 
 .. _in_numeric:
@@ -37,7 +39,7 @@ Optional parametes:
 ValidateNumeric
 ---------------
 
-Check if the new value is a valid ``int``, ``long``, ```float``` or ``complex`` type
+Check if the new value is a valid ``int``, ``long``, ``float`` or ``complex`` type
 
 
 Optional parametes:
@@ -49,6 +51,9 @@ Optional parametes:
 +-------------------------+----------------------+-----------------------------------------------------------------+
 | allow_null              | True                 | Allow ``null`` values                                           |
 +-------------------------+----------------------+-----------------------------------------------------------------+
+
+
+.. note:: ``long`` type is only available i  Python 2.7
 
 
 
@@ -109,6 +114,25 @@ Optional parametes:
 
 
 
+.. _in_email:
+
+ValidateEmail
+-------------
+
+Check if the new value is a valid e-mail, using validate_email_ library.
+
+Optional parametes:
+
++-------------------------+----------------------+-----------------------------------------------------------------+
+| Parameter               | Default Value        | Description                                                     |
++=========================+======================+=================================================================+
+| throw_exception         | False                | Throw a ``ValueError`` exception on validation fails            |
++-------------------------+----------------------+-----------------------------------------------------------------+
+| check_mx                | False                | Check if the host has SMTP Server                               |
++-------------------------+----------------------+-----------------------------------------------------------------+
+| verify                  | False                | Check if the host has SMTP Server and the email really exists   |
++-------------------------+----------------------+-----------------------------------------------------------------+
+
 
 
 
@@ -125,3 +149,6 @@ Example
 +-------------------------+----------------------+-----------------------------------------------------------------+
 |                         |                      |                                                                 |
 +-------------------------+----------------------+-----------------------------------------------------------------+
+
+
+.. _validate_email: https://github.com/syrusakbary/validate_email
