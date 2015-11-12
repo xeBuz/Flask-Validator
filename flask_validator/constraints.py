@@ -147,8 +147,10 @@ class ValidateEmail(Validator):
     Args:
         value: new value
         allow_null: (bool) Allow null values
-        check_mx: (bool) Check if the host has SMTP Server
-        verify: (bool) Check if the host has SMTP Server and the email really exists
+        allow_smtputf8: (bool) Set to False to prohibit internationalized addresses that would require the SMTPUTF8.
+        check_deliverability: (bool) Set to False to skip the domain name resolution check.
+        allow_empty_local (bool) Set to True to allow an empty local part (i.e. @example.com),
+            e.g. for validating Postfix aliases.
         throw_exception: (bool) Throw a ValueError if the validation fails
 
     """
