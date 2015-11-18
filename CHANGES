@@ -1,5 +1,8 @@
+- 0.6
+  Added Regex Validators
+
 - 0.5
-  Added Numeric, Email, LessThan, LessThanOrEqual, GreaterThan, GreaterThanOrEqual
+  Added Numeric, Email, LessThan, LessThanOrEqual, GreaterThan, GreaterThanOrEqual Validators
   __init__ refactor
 
 - 0.4

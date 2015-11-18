@@ -14,6 +14,7 @@ At the moment, the library support this validations:
 * :ref:`greater`
 * :ref:`greater_equal`
 * :ref:`in_email`
+* :ref:`regex`
 
 
 
@@ -233,6 +234,25 @@ Parametes:
 | throw_exception         | False    | Throw a ``ValueError`` exception on validation fails                           |
 +-------------------------+----------+--------------------------------------------------------------------------------+
 
+
+
+
+.. _regex:
+
+ValidateRegex
+-------------
+
+Compare a value against a regular expresion
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
++-------------------------+-----------+-----------------------------------------------------------------+
 
 
 

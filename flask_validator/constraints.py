@@ -1,5 +1,6 @@
-from flask_validator import FlaskValidator
 import sys
+import re
+from flask_validator import FlaskValidator
 from email_validator import validate_email, EmailNotValidError
 
 THROW_EXCEPTION = False
@@ -307,10 +308,34 @@ class URLConstraint(Validator):
         pass
 
 
-class RegexConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
+class ValidateRegex(Validator):
+    """ Validate Regex
+
+    Compare a value against a regular expresion
+
+    Args:
+        field: SQLAlchemy column to validate
+        regex: Regular expresion
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+
+    regex = None
+
+    def __init__(self, field, regex, throw_exception=THROW_EXCEPTION):
+        try:
+            self.regex = regex
+            re.compile(regex)
+        except re.error:
+            raise AttributeError('Invalid Regex')
+
+        Validator.__init__(self, field, throw_exception)
+
+    def check_value(self, value):
+        if re.match(self.regex, value):
+            return True
+        else:
+            return False
 
 
 class IPConstraint(Validator):

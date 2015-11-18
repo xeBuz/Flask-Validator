@@ -1,3 +1,4 @@
 from .validator import FlaskValidator
 from .constraints import Validator, ValidateInteger, ValidateNumeric, ValidateString, ValidateBoolean, ValidateLength, \
-    ValidateEmail
+    ValidateEmail, ValidateLessThan, ValidateLessThanOrEqual, ValidateGreaterThan, ValidateGreaterThanOrEqual, \
+    ValidateRegex

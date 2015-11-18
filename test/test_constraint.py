@@ -1,5 +1,5 @@
 from flask_validator import ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, ValidateNumeric, \
-    ValidateEmail
+    ValidateEmail, ValidateRegex
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -21,14 +21,16 @@ class ConstraintTest(unittest.TestCase):
             boolean = db.Column(db.Boolean())
             email = db.Column(db.String(80))
             email_valid = db.Column(db.String(80))
+            regex = db.Column(db.String(10))
 
-            def __init__(self, integer, numeric, string, int_exception, boolean, email):
+            def __init__(self, integer, numeric, string, int_exception, boolean, email, regex):
                 self.integer = integer
                 self.numeric = numeric
                 self.string = string
                 self.int_exception = int_exception
                 self.boolean = boolean
                 self.email = email
+                self.regex = regex
 
             @classmethod
             def __declare_last__(cls):
@@ -39,11 +41,12 @@ class ConstraintTest(unittest.TestCase):
                 ValidateBoolean(DummyModel.boolean)
                 ValidateLength(DummyModel.string, 10, 2)
                 ValidateEmail(DummyModel.email)
+                ValidateRegex(DummyModel.regex, "[A-Z][a-z]+")
 
         db.create_all()
 
         self.DummyModel = DummyModel
-        self.dummy = self.DummyModel(1, 3.1, "aaa", 42, True, "this@email.com")
+        self.dummy = self.DummyModel(1, 3.1, "aaa", 42, True, "this@email.com", "Hello")
         self.app = app
         self.db = db
 
@@ -198,6 +201,22 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.email = default_value
         self.assertNotEquals(self.dummy.email, new_value)
 
+    def test_regex(self):
+
+        """
+        Testing Regex Validator
+        """
+        default_value = self.dummy.regex
+        new_value = "Testing"
+
+        self.dummy.regex = new_value
+        self.assertEqual(self.dummy.regex, new_value)
+
+        self.dummy.regex = "  "
+        self.assertEqual(self.dummy.regex, new_value)
+
+        self.dummy.regex = default_value
+        self.assertNotEquals(self.dummy.regex, new_value)
 
 
 def suite():
