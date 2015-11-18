@@ -2,22 +2,19 @@ from flask_validator import FlaskValidator
 import sys
 from email_validator import validate_email, EmailNotValidError
 
+THROW_EXCEPTION = False
+
 
 class Validator(FlaskValidator):
-    throw_exception = False
 
-    def __init__(self, field, **kwargs):
+    def __init__(self, field, throw_exception):
         """
         Validator Interface initialization
 
         :param field:  Flask Column to validate
-        :param kwargs: Valiable Parameter list
         """
 
-        for key, value in kwargs.items():
-            setattr(self, key, value)
-
-        FlaskValidator.__init__(self, field, self.throw_exception)
+        FlaskValidator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         """
@@ -34,13 +31,17 @@ class ValidateInteger(Validator):
     Check if the new value is a integer or a long integer
 
     Args:
-        value: new value
-        allow_null: (bool) Allow null values
+        field: SQLAlchemy column to validate
+        allow_null: (bool) Allow null values. Default True
         throw_exception: (bool) Throw a ValueError if the validation fails
 
     """
-
     allow_null = True
+
+    def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
+        self.allow_null = allow_null
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
 
@@ -59,13 +60,18 @@ class ValidateNumeric(Validator):
     Check if the new value is a integer, long, complex or float type
 
     Args:
-        value: new value
+        field: SQLAlchemy column to validate
         allow_null: (bool) Allow null values
         throw_exception: (bool) Throw a ValueError if the validation fails
 
     """
 
     allow_null = True
+
+    def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
+        self.allow_null = allow_null
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
 
@@ -84,13 +90,18 @@ class ValidateString(Validator):
     Check if the new value is a string
 
     Args:
-        value: new value
+        field: SQLAlchemy column to validate
         allow_null: (bool) Allow null values
         throw_exception: (bool) Throw a ValueError if the validation fails
 
     """
 
     allow_null = True
+
+    def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
+        self.allow_null = allow_null
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         if self.allow_null and value is None:
@@ -105,10 +116,15 @@ class ValidateBoolean(Validator):
     Check if the new value is a boolean
 
     Args:
-        value: new value
+        field: SQLAlchemy column to validate
         throw_exception: (bool) Throw a ValueError if the validation fails
 
     """
+
+    def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
+        self.allow_null = allow_null
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         return isinstance(value, bool)
@@ -120,7 +136,7 @@ class ValidateLength(Validator):
     Check if the new value has a proper length
 
     Args:
-        value: new value
+        field: SQLAlchemy column to validate
         max_length: (int) Maximum value length
         min_lenght: (int) Minimum value length
         throw_exception: (bool) Throw a ValueError if the validation fails
@@ -130,12 +146,42 @@ class ValidateLength(Validator):
     max_length = None
     min_lenght = 0
 
+    def __init__(self, field, max_length=None, min_length=0, throw_exception=THROW_EXCEPTION):
+        self.max_length = max_length
+        self.min_lenght = min_length
+
+        Validator.__init__(self, field, throw_exception)
+
     def check_value(self, value):
 
         if not self.max_length:
             raise Warning("Argument max_length should't be null")
 
         return int(self.max_length) >= len(value) >= int(self.min_lenght)
+
+
+class ValidateLessThan(Validator):
+
+    def check_value(self, value):
+        return value < self.va
+
+
+class LessThanOrEqualConstraint(Validator):
+    # TODO
+    def check(self, value):
+        pass
+
+
+class GreaterThanConstraint(Validator):
+    # TODO
+    def check(self, value):
+        pass
+
+
+class GreaterThanOrEqualConstraint(Validator):
+    # TODO
+    def check(self, value):
+        pass
 
 
 class ValidateEmail(Validator):
@@ -145,7 +191,7 @@ class ValidateEmail(Validator):
     Using this library to validate https://github.com/JoshData/python-email-validator
 
     Args:
-        value: new value
+        field: SQLAlchemy column to validate
         allow_null: (bool) Allow null values
         allow_smtputf8: (bool) Set to False to prohibit internationalized addresses that would require the SMTPUTF8.
         check_deliverability: (bool) Set to False to skip the domain name resolution check.
@@ -155,10 +201,20 @@ class ValidateEmail(Validator):
 
     """
 
-    allow_null = True
     allow_smtputf8 = True
     check_deliverability = True
     allow_empty_local = False
+    allow_null = True
+
+    def __init__(self, field, allow_smtputf8=True,check_deliverability=True, allow_empty_local=False,
+                 allow_null=True, throw_exception=THROW_EXCEPTION):
+
+        self.allow_smtputf8 = allow_smtputf8
+        self.check_deliverability = check_deliverability
+        self.allow_empty_local = allow_empty_local
+        self.allow_null = allow_null
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
 
@@ -195,30 +251,6 @@ class IPConstraint(Validator):
 
 
 class UUIDConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
-
-
-class LessThanConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
-
-
-class LessThanOrEqualConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
-
-
-class GreaterThanConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
-
-
-class GreaterThanOrEqualConstraint(Validator):
     # TODO
     def check(self, value):
         pass

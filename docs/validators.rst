@@ -20,16 +20,18 @@ ValidateInteger
 
 Check if the new value is a valid ``int`` or ``long`` type
 
-
-Optional parametes:
+Parametes:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
 +=========================+===========+=================================================================+
-| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
+| field                   |           | SQLAlchemy column to validate                                   |
 +-------------------------+-----------+-----------------------------------------------------------------+
 | allow_null              | True      | Allow ``null`` values                                           |
 +-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
++-------------------------+-----------+-----------------------------------------------------------------+
+
 
 .. note:: ``long`` type is only available i  Python 2.7
 
@@ -42,14 +44,16 @@ ValidateNumeric
 Check if the new value is a valid ``int``, ``long``, ``float`` or ``complex`` type
 
 
-Optional parametes:
+Parametes:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
 +=========================+==========+=================================================================+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| field                   |          | SQLAlchemy column to validate                                   |
 +-------------------------+----------+-----------------------------------------------------------------+
 | allow_null              | True     | Allow ``null`` values                                           |
++-------------------------+----------+-----------------------------------------------------------------+
+| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
@@ -64,14 +68,16 @@ ValidateString
 
 Check if the new value is a valid ``string`` type.
 
-Optional parametes:
+Parametes:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
 +=========================+==========+=================================================================+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| field                   |          | SQLAlchemy column to validate                                   |
 +-------------------------+----------+-----------------------------------------------------------------+
 | allow_null              | True     | Allow ``null`` values                                           |
++-------------------------+----------+-----------------------------------------------------------------+
+| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
@@ -83,11 +89,13 @@ ValidateBoolean
 
 Check if the new value is a valid ``bool`` type.
 
-Optional parametes:
+Parametes:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
 +=========================+==========+=================================================================+
+| field                   |          | SQLAlchemy column to validate                                   |
++-------------------------+----------+-----------------------------------------------------------------+
 | throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
 +-------------------------+----------+-----------------------------------------------------------------+
 
@@ -100,16 +108,18 @@ ValidateLenght
 
 Check if the new value is a valid ``string`` type.
 
-Optional parametes:
+Parametes:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
 +=========================+==========+=================================================================+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| field                   |          | SQLAlchemy column to validate                                   |
 +-------------------------+----------+-----------------------------------------------------------------+
 | max_lenght              | None     | Maximum value lenght                                            |
 +-------------------------+----------+-----------------------------------------------------------------+
 | min_lenght              | 0        | Minumum value lenght                                            |
++-------------------------+----------+-----------------------------------------------------------------+
+| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
@@ -121,20 +131,22 @@ ValidateEmail
 
 Check if the new value is a valid e-mail, using email_validator_ library.
 
-Optional parametes:
+Parametes:
 
 +-------------------------+----------+--------------------------------------------------------------------------------+
 | Parameter               | Default  | Description                                                                    |
 +=========================+==========+================================================================================+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails                           |
-+-------------------------+----------+--------------------------------------------------------------------------------+
-| allow_null              | True     | Allow ``null`` values                                                          |
+| field                   |          | SQLAlchemy column to validate                                                  |
 +-------------------------+----------+--------------------------------------------------------------------------------+
 | allow_smtputf8          | True     | Allow internationalized addresses that would require the SMTPUTF8_ extension.  |
 +-------------------------+----------+--------------------------------------------------------------------------------+
 | check_deliverability    | True     | Check domain name resolution.                                                  |
 +-------------------------+----------+--------------------------------------------------------------------------------+
 | allow_empty_local       | False    | Allow an empty local part for validating Postfix aliases.                      |
++-------------------------+----------+--------------------------------------------------------------------------------+
+| allow_null              | True     | Allow ``null`` values                                                          |
++-------------------------+----------+--------------------------------------------------------------------------------+
+| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails                           |
 +-------------------------+----------+--------------------------------------------------------------------------------+
 
 
@@ -144,9 +156,13 @@ Optional parametes:
 Example
 -------
 
+Parametes:
+
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
 +=========================+==========+=================================================================+
+| field                   |          | SQLAlchemy column to validate                                   |
++-------------------------+----------+-----------------------------------------------------------------+
 | throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
 +-------------------------+----------+-----------------------------------------------------------------+
 |                         |          |                                                                 |

@@ -33,11 +33,11 @@ class ConstraintTest(unittest.TestCase):
             @classmethod
             def __declare_last__(cls):
                 ValidateInteger(DummyModel.integer)
-                ValidateInteger(DummyModel.int_exception, throw_exception=True)
+                ValidateInteger(DummyModel.int_exception, True, True)
                 ValidateNumeric(DummyModel.numeric)
                 ValidateString(DummyModel.string)
                 ValidateBoolean(DummyModel.boolean)
-                ValidateLength(DummyModel.string, max_length=10, min_lenght=2)
+                ValidateLength(DummyModel.string, 10, 2)
                 ValidateEmail(DummyModel.email)
 
         db.create_all()

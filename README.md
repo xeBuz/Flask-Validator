@@ -51,7 +51,7 @@ class User(db.Model):
 - ValidateNumeric
 - ValidateString
 - ValidateBoolean
-- ValidateMaxLenght
+- ValidateLenght
 - ValidateEmail
 
 
