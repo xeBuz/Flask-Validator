@@ -1,5 +1,5 @@
 from flask_validator import ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, ValidateNumeric, \
-    ValidateEmail, ValidateRegex, ValidateIP
+    ValidateEmail, ValidateRegex, ValidateIP, ValidateURL
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -23,8 +23,9 @@ class ConstraintTest(unittest.TestCase):
             email_valid = db.Column(db.String(80))
             regex = db.Column(db.String(10))
             ip = db.Column(db.String(16))
+            url = db.Column(db.String(255))
 
-            def __init__(self, integer, numeric, string, int_exception, boolean, email, regex, ip):
+            def __init__(self, integer, numeric, string, int_exception, boolean, email, regex, ip, url):
                 self.integer = integer
                 self.numeric = numeric
                 self.string = string
@@ -45,11 +46,13 @@ class ConstraintTest(unittest.TestCase):
                 ValidateEmail(DummyModel.email)
                 ValidateRegex(DummyModel.regex, "[A-Z][a-z]+")
                 ValidateIP(DummyModel.ip)
+                ValidateURL(DummyModel.url)
 
         db.create_all()
 
         self.DummyModel = DummyModel
-        self.dummy = self.DummyModel(1, 3.1, "aaa", 42, True, "this@email.com", "Hello", "127.0.0.1")
+        self.dummy = self.DummyModel(1, 3.1, "aaa", 42, True, "this@email.com", "Hello", "127.0.0.1",
+                                     "http://google.com")
         self.app = app
         self.db = db
 
@@ -237,6 +240,25 @@ class ConstraintTest(unittest.TestCase):
 
         self.dummy.ip = default_value
         self.assertNotEquals(self.dummy.ip, new_value)
+
+
+    def test_ip(self):
+
+        """
+        Testing URL Validator
+        """
+        default_value = self.dummy.ip
+        new_value = "https://yahoo.com.ar"
+
+        self.dummy.ip = new_value
+        self.assertEqual(self.dummy.ip, new_value)
+
+        self.dummy.ip = "google"
+        self.assertEqual(self.dummy.ip, new_value)
+
+        self.dummy.ip = default_value
+        self.assertNotEquals(self.dummy.ip, new_value)
+
 
 def suite():
     suite = unittest.TestSuite()

@@ -119,8 +119,8 @@ class ValidateBoolean(Validator):
 
     Args:
         field: SQLAlchemy column to validate
+        allow_null: (bool) Allow null values
         throw_exception: (bool) Throw a ValueError if the validation fails
-
     """
 
     def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
@@ -129,6 +129,9 @@ class ValidateBoolean(Validator):
         Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
+        if self.allow_null and value is None:
+            return True
+
         return isinstance(value, bool)
 
 
@@ -303,12 +306,6 @@ class ValidateEmail(Validator):
             return False
 
 
-class URLConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
-
-
 class ValidateRegex(Validator):
     """ Validate Regex
 
@@ -331,7 +328,7 @@ class ValidateRegex(Validator):
             raise AttributeError('Invalid Regex')
 
         Validator.__init__(self, field, throw_exception)
-
+    
     def check_value(self, value):
         if re.match(self.regex, value):
             return True
@@ -367,6 +364,36 @@ class ValidateIP(Validator):
         except socket.error:
             return False
 
+
+class ValidateURL(Validator):
+    """ Validate URL
+
+    Check if the values is a valid URL
+
+    Args:
+        field: SQLAlchemy column to validate
+         allow_null: (bool) Allow null values. Default True
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+
+    regex = r'^[a-z]+://(?P<host>[^/:]+)(?P<port>:[0-9]+)?(?P<path>\/.*)?$'
+    allow_null = True
+
+    def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
+        self.allow_null = allow_null
+
+        Validator.__init__(self, field, throw_exception)
+
+    def check_value(self, value):
+
+        if self.allow_null and value is None:
+            return True
+
+        if re.match(self.regex, value):
+            return True
+        else:
+            return False
 
 class UUIDConstraint(Validator):
     # TODO
