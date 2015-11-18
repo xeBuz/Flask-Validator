@@ -1,5 +1,5 @@
 - 0.6
-  Added Regex, IP Validators
+  Added Regex, IP, URL Validators
 
 - 0.5
   Added Numeric, Email, LessThan, LessThanOrEqual, GreaterThan, GreaterThanOrEqual Validators

@@ -9,12 +9,14 @@ At the moment, the library support this validations:
 * :ref:`in_string`
 * :ref:`in_boolean`
 * :ref:`in_lenght`
-* :ref:`lesser`
-* :ref:`lesser_equal`
-* :ref:`greater`
-* :ref:`greater_equal`
+* :ref:`in_lesser`
+* :ref:`in_lesser_equal`
+* :ref:`in_greater`
+* :ref:`in_greater_equal`
 * :ref:`in_email`
-* :ref:`regex`
+* :ref:`in_regex`
+* :ref:`in_ip`
+* :ref:`in_url`
 
 
 
@@ -129,7 +131,7 @@ Parametes:
 
 
 
-.. _lesser:
+.. in_lesser:
 
 ValidateLessThan
 ----------------
@@ -149,7 +151,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
-.. _lesser_equal:
+.. in_lesser_equal:
 
 ValidateLessThanOrEqual
 -----------------------
@@ -168,7 +170,7 @@ Parametes:
 | throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
 +-------------------------+----------+-----------------------------------------------------------------+
 
-.. _greater:
+.. in_greater:
 
 ValidateGreaterThan
 -------------------
@@ -188,7 +190,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
-.. _greater_equal:
+.. in_greater_equal:
 
 ValidateGreaterThanOrEqual
 --------------------------
@@ -209,7 +211,7 @@ Parametes:
 
 
 
-.. _in_email:
+.. in_in_email:
 
 ValidateEmail
 -------------
@@ -237,7 +239,7 @@ Parametes:
 
 
 
-.. _regex:
+.. in_regex:
 
 ValidateRegex
 -------------
@@ -256,7 +258,7 @@ Parametes:
 
 
 
-.. _ip:
+.. in_ip:
 
 ValidateIP
 ----------
@@ -276,23 +278,25 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
+.. in_url:
 
-Example
--------
+ValidateURL
+-----------
+
+Check if the value is a valid URL
 
 Parametes:
 
-+-------------------------+----------+-----------------------------------------------------------------+
-| Parameter               | Default  | Description                                                     |
-+=========================+==========+=================================================================+
-| field                   |          | SQLAlchemy column to validate                                   |
-+-------------------------+----------+-----------------------------------------------------------------+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
-+-------------------------+----------+-----------------------------------------------------------------+
-|                         |          |                                                                 |
-+-------------------------+----------+-----------------------------------------------------------------+
-|                         |          |                                                                 |
-+-------------------------+----------+-----------------------------------------------------------------+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
++-------------------------+-----------+-----------------------------------------------------------------+
+
 
 
 .. _email_validator: https://github.com/JoshData/python-email-validator

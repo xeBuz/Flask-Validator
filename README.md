@@ -45,7 +45,7 @@ class User(db.Model):
 ```
 
 
-## Allowed Constraints
+## Available Constraints
 
 - ValidateInteger
 - ValidateNumeric
@@ -59,6 +59,7 @@ class User(db.Model):
 - ValidateEmail
 - ValidateRegex
 - ValidateIP
+- ValidateURL
 
 
 
