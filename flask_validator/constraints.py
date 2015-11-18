@@ -162,26 +162,95 @@ class ValidateLength(Validator):
 
 class ValidateLessThan(Validator):
 
+    """ Validate Less Than X
+
+    Check if the new value has a value less than x
+
+    Args:
+        field: SQLAlchemy column to validate
+        value: Value to check
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+
+    value = None
+
+    def __init__(self, field, value, throw_exception=THROW_EXCEPTION):
+        self.value = value
+
+        Validator.__init__(self, field, throw_exception)
+
     def check_value(self, value):
-        return value < self.va
+        return value < self.value
 
 
-class LessThanOrEqualConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
+class ValidateLessThanOrEqual(Validator):
+    """ Validate Less Than X Or Equal
+
+    Check if the new value has a value less than x or equal
+
+    Args:
+        field: SQLAlchemy column to validate
+        value: Value to check
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+
+    value = None
+
+    def __init__(self, field, value, throw_exception=THROW_EXCEPTION):
+        self.value = value
+
+        Validator.__init__(self, field, throw_exception)
+
+    def check_value(self, value):
+        return value <= self.value
 
 
-class GreaterThanConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
+class ValidateGreaterThan(Validator):
+    """ Validate Greater Than X
+
+    Check if the new value has a value greater than x
+
+    Args:
+        field: SQLAlchemy column to validate
+        value: Value to check
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+
+    value = None
+
+    def __init__(self, field, value, throw_exception=THROW_EXCEPTION):
+        self.value = value
+
+        Validator.__init__(self, field, throw_exception)
+
+    def check_value(self, value):
+        return value > self.value
 
 
-class GreaterThanOrEqualConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
+class ValidateGreaterThanOrEqual(Validator):
+    """ Validate Greater Than X Or Equal
+
+    Check if the new value has a value greater than x
+
+    Args:
+        field: SQLAlchemy column to validate
+        value: Value to check
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+
+    value = None
+
+    def __init__(self, field, value, throw_exception=THROW_EXCEPTION):
+        self.value = value
+
+        Validator.__init__(self, field, throw_exception)
+
+    def check_value(self, value):
+        return value >= self.value
 
 
 class ValidateEmail(Validator):
@@ -251,12 +320,6 @@ class IPConstraint(Validator):
 
 
 class UUIDConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
-
-
-class RangeConstraint(Validator):
     # TODO
     def check(self, value):
         pass

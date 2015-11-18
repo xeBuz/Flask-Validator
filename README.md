@@ -52,6 +52,10 @@ class User(db.Model):
 - ValidateString
 - ValidateBoolean
 - ValidateLenght
+- ValidateLessThan
+- ValidateLessThanOrEqual
+- ValidateGreaterThan
+- ValidateGreaterThanOrEqual
 - ValidateEmail
 
 

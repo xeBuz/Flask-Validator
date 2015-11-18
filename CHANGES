@@ -1,5 +1,6 @@
 - 0.5
-  Added Numeric, Email
+  Added Numeric, Email, LessThan, LessThanOrEqual, GreaterThan, GreaterThanOrEqual
+  __init__ refactor
 
 - 0.4
   Added Boolean and Max Length Validators
