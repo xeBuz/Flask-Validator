@@ -242,22 +242,22 @@ class ConstraintTest(unittest.TestCase):
         self.assertNotEquals(self.dummy.ip, new_value)
 
 
-    def test_ip(self):
+    def test_url(self):
 
         """
         Testing URL Validator
         """
-        default_value = self.dummy.ip
+        default_value = self.dummy.url
         new_value = "https://yahoo.com.ar"
 
-        self.dummy.ip = new_value
-        self.assertEqual(self.dummy.ip, new_value)
+        self.dummy.url = new_value
+        self.assertEqual(self.dummy.url, new_value)
 
-        self.dummy.ip = "google"
-        self.assertEqual(self.dummy.ip, new_value)
+        self.dummy.url = "google"
+        self.assertEqual(self.dummy.url, new_value)
 
-        self.dummy.ip = default_value
-        self.assertNotEquals(self.dummy.ip, new_value)
+        self.dummy.url = default_value
+        self.assertNotEquals(self.dummy.url, new_value)
 
 
 def suite():
