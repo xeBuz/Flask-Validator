@@ -58,7 +58,7 @@ class User(db.Model):
 - ValidateGreaterThanOrEqual
 - ValidateEmail
 - ValidateRegex
-
+- ValidateIP
 
 
 

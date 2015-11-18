@@ -1,5 +1,6 @@
 import sys
 import re
+import socket
 from flask_validator import FlaskValidator
 from email_validator import validate_email, EmailNotValidError
 
@@ -338,10 +339,33 @@ class ValidateRegex(Validator):
             return False
 
 
-class IPConstraint(Validator):
-    # TODO
-    def check(self, value):
-        pass
+class ValidateIP(Validator):
+    """ Validate Regex
+
+    Compare a value against a regular expresion
+
+    Args:
+        field: SQLAlchemy column to validate
+        ipv6: Match against IPV6
+        throw_exception: (bool) Throw a ValueError if the validation fails
+    """
+    ipv6 = None
+
+    def __init__(self, field, ipv6=False, throw_exception=THROW_EXCEPTION):
+        self.ipv6 = ipv6
+
+        Validator.__init__(self, field, throw_exception)
+
+    def check_value(self, value):
+        try:
+            if not self.ipv6:
+                socket.inet_pton(socket.AF_INET, value)
+            else:
+                socket.inet_pton(socket.AF_INET6, value)
+
+            return True
+        except socket.error:
+            return False
 
 
 class UUIDConstraint(Validator):
