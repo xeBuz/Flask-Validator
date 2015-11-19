@@ -56,4 +56,29 @@ class FlaskValidator:
         return list(set(self.default_params + allowed_params))
 
     def check_value(self, value):
+        """ Realize the proper validation, int the new value as parameter
+
+        :rtype: Boolean
+        :param value:
+        """
+        pass
+
+
+class Validator(FlaskValidator):
+
+    def __init__(self, field, throw_exception):
+        """
+        Validator Interface initialization
+
+        :param field:  Flask Column to validate
+        """
+
+        FlaskValidator.__init__(self, field, throw_exception)
+
+    def check_value(self, value):
+        """
+        Validate the new value
+
+        :param value:
+        """
         pass

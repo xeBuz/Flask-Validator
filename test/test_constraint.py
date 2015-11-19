@@ -1,5 +1,5 @@
-from flask_validator import ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, ValidateNumeric, \
-    ValidateEmail, ValidateRegex, ValidateIP, ValidateURL
+from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
+    ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
