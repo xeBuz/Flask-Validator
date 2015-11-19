@@ -26,9 +26,6 @@ class Validator(FlaskValidator):
         """
         pass
 
-    def call_parent(self, field, throw_exception):
-        Validator.__init__(self, field, throw_exception)
-
 
 class ValidateInteger(Validator):
     """ Validate Integer type.
@@ -45,7 +42,8 @@ class ValidateInteger(Validator):
 
     def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
         self.allow_null = allow_null
-        self.call_parent(field, throw_exception)
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
 
@@ -74,7 +72,8 @@ class ValidateNumeric(Validator):
 
     def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
         self.allow_null = allow_null
-        self.call_parent(field, throw_exception)
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
 
@@ -103,7 +102,8 @@ class ValidateString(Validator):
 
     def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
         self.allow_null = allow_null
-        self.call_parent(field, throw_exception)
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         if self.allow_null and value is None:
@@ -125,7 +125,8 @@ class ValidateBoolean(Validator):
 
     def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
         self.allow_null = allow_null
-        self.call_parent(field, throw_exception)
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         if self.allow_null and value is None:
@@ -153,7 +154,8 @@ class ValidateLength(Validator):
     def __init__(self, field, max_length=None, min_length=0, throw_exception=THROW_EXCEPTION):
         self.max_length = max_length
         self.min_lenght = min_length
-        self.call_parent(field, throw_exception)
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
 
@@ -180,7 +182,8 @@ class ValidateLessThan(Validator):
 
     def __init__(self, field, value, throw_exception=THROW_EXCEPTION):
         self.value = value
-        self.call_parent(field, throw_exception)
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         return value < self.value
@@ -202,7 +205,8 @@ class ValidateLessThanOrEqual(Validator):
 
     def __init__(self, field, value, throw_exception=THROW_EXCEPTION):
         self.value = value
-        self.call_parent(field, throw_exception)
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         return value <= self.value
@@ -224,7 +228,8 @@ class ValidateGreaterThan(Validator):
 
     def __init__(self, field, value, throw_exception=THROW_EXCEPTION):
         self.value = value
-        self.call_parent(field, throw_exception)
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         return value > self.value
@@ -246,7 +251,8 @@ class ValidateGreaterThanOrEqual(Validator):
 
     def __init__(self, field, value, throw_exception=THROW_EXCEPTION):
         self.value = value
-        self.call_parent(field, throw_exception)
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         return value >= self.value
@@ -281,7 +287,8 @@ class ValidateEmail(Validator):
         self.check_deliverability = check_deliverability
         self.allow_empty_local = allow_empty_local
         self.allow_null = allow_null
-        self.call_parent(field, throw_exception)
+
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
 
@@ -320,7 +327,7 @@ class ValidateRegex(Validator):
         except re.error:
             raise AttributeError('Invalid Regex')
 
-        self.call_parent(field, throw_exception)
+        Validator.__init__(self, field, throw_exception)
     
     def check_value(self, value):
         if re.match(self.regex, value):
@@ -344,7 +351,7 @@ class ValidateIP(Validator):
     def __init__(self, field, ipv6=False, throw_exception=THROW_EXCEPTION):
         self.ipv6 = ipv6
 
-        self.call_parent(field, throw_exception)
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         try:
@@ -376,7 +383,7 @@ class ValidateURL(Validator):
     def __init__(self, field, allow_null=True, throw_exception=THROW_EXCEPTION):
         self.allow_null = allow_null
 
-        self.call_parent(field, throw_exception)
+        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
 
