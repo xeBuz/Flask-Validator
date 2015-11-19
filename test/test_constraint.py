@@ -56,6 +56,23 @@ class ConstraintTest(unittest.TestCase):
         self.app = app
         self.db = db
 
+    def simple_validate(self, field, new_value, bad_value):
+
+        """
+        Simple Validation
+
+        """
+        default_value = getattr(self.dummy, field)
+        setattr(self.dummy, field, new_value)
+
+        self.assertEqual(getattr(self.dummy, field), new_value)
+
+        setattr(self.dummy, field, bad_value)
+        self.assertEqual(getattr(self.dummy, field), new_value)
+
+        setattr(self.dummy, field, default_value)
+        self.assertNotEquals(getattr(self.dummy, field), new_value)
+
     def test_creation(self):
 
         """
@@ -80,17 +97,7 @@ class ConstraintTest(unittest.TestCase):
         Testing IntegerConstraint()
 
         """
-        default_value = self.dummy.integer
-        new_value = 42
-
-        self.dummy.integer = new_value
-        self.assertEqual(self.dummy.integer, new_value)
-
-        self.dummy.integer = "bad_string"
-        self.assertEqual(self.dummy.integer, new_value)
-
-        self.dummy.integer = default_value
-        self.assertNotEquals(self.dummy.integer, new_value)
+        self.simple_validate('integer', 42, 'bad wolf')
 
     def test_numeric(self):
 
@@ -98,16 +105,9 @@ class ConstraintTest(unittest.TestCase):
         Testing NumericValidator
 
         """
+        self.simple_validate('numeric', 1.111, 'bad wolf')
 
         default_value = self.dummy.numeric
-        new_value = 1.1111
-
-        self.dummy.numeric = new_value
-        self.assertEqual(self.dummy.numeric, new_value)
-
-        self.dummy.numeric = "bad_string"
-        self.assertEqual(self.dummy.numeric, new_value)
-
         new_value = -10
         self.dummy.numeric = new_value
         self.assertEqual(self.dummy.numeric, new_value)
@@ -125,17 +125,8 @@ class ConstraintTest(unittest.TestCase):
         Testing StringConstraint()
 
         """
-        default_value = self.dummy.string
-        new_value = "Magnolia"
 
-        self.dummy.string = new_value
-        self.assertEqual(self.dummy.string, new_value)
-
-        self.dummy.string = 3.141592
-        self.assertEqual(self.dummy.string, new_value)
-
-        self.dummy.string = default_value
-        self.assertNotEquals(self.dummy.string, new_value)
+        self.simple_validate('string', "Magnolia", 3.141592)
 
     def test_exception(self):
 
@@ -156,38 +147,16 @@ class ConstraintTest(unittest.TestCase):
 
         """
 
-        default_value = self.dummy.boolean
-        new_value = False
-
-        self.dummy.boolean = new_value
-        self.assertEqual(self.dummy.boolean, new_value)
-
-        self.dummy.boolean = "Not-a-Bool"
-        self.assertNotEquals(self.dummy.boolean, "Not-a-Bool")
-        self.assertEquals(self.dummy.boolean, new_value)
-
-        self.dummy.boolean = default_value
-        self.assertNotEquals(self.dummy.boolean, new_value)
+        self.simple_validate('boolean', False, "Not-A-Boolean")
 
     def test_length(self):
 
         """
         Testing Max Length Validator
         """
-        default_value = self.dummy.string
-        new_value = "Magnolia"
 
-        self.dummy.string = new_value
-        self.assertEqual(self.dummy.string, new_value)
-
-        self.dummy.string = new_value*10
-        self.assertEqual(self.dummy.string, new_value)
-
-        self.dummy.string = default_value
-        self.assertNotEquals(self.dummy.string, new_value)
-
-        self.dummy.string = '-'  # min 2
-        self.assertEquals(self.dummy.string, default_value)
+        self.simple_validate('string', "Magnolia", "Magnolia"*100)
+        self.simple_validate('string', "Magnolia", "-")
 
     def test_email(self):
 
@@ -195,69 +164,31 @@ class ConstraintTest(unittest.TestCase):
         Testing EmailConstraint()
 
         """
-        default_value = self.dummy.email
-        new_value = "test@gmail.com"
-
-        self.dummy.email = new_value
-        self.assertEqual(self.dummy.email, new_value)
-
-        self.dummy.email = "not@"
-        self.assertEqual(self.dummy.email, new_value)
-
-        self.dummy.email = default_value
-        self.assertNotEquals(self.dummy.email, new_value)
+        self.simple_validate('email', "test@gmail.com", "not@")
 
     def test_regex(self):
 
         """
         Testing Regex Validator
         """
-        default_value = self.dummy.regex
-        new_value = "Testing"
 
-        self.dummy.regex = new_value
-        self.assertEqual(self.dummy.regex, new_value)
-
-        self.dummy.regex = "  "
-        self.assertEqual(self.dummy.regex, new_value)
-
-        self.dummy.regex = default_value
-        self.assertNotEquals(self.dummy.regex, new_value)
+        self.simple_validate('regex', "Testing", " ")
 
     def test_ip(self):
 
         """
         Testing Regex Validator
         """
-        default_value = self.dummy.ip
-        new_value = "255.255.255.0"
 
-        self.dummy.ip = new_value
-        self.assertEqual(self.dummy.ip, new_value)
-
-        self.dummy.ip = "  "
-        self.assertEqual(self.dummy.ip, new_value)
-
-        self.dummy.ip = default_value
-        self.assertNotEquals(self.dummy.ip, new_value)
-
+        self.simple_validate('ip', "255.255.255.0", " ")
 
     def test_url(self):
 
         """
         Testing URL Validator
         """
-        default_value = self.dummy.url
-        new_value = "https://yahoo.com.ar"
 
-        self.dummy.url = new_value
-        self.assertEqual(self.dummy.url, new_value)
-
-        self.dummy.url = "google"
-        self.assertEqual(self.dummy.url, new_value)
-
-        self.dummy.url = default_value
-        self.assertNotEquals(self.dummy.url, new_value)
+        self.simple_validate('url', "https://yahoo.com.ar", "Google")
 
 
 def suite():
