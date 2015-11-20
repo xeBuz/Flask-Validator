@@ -6,7 +6,6 @@ from flask.ext.sqlalchemy import SQLAlchemy
 
 
 class ConstraintTest(unittest.TestCase):
-
     def setUp(self):
         app = Flask(__name__)
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
@@ -20,44 +19,22 @@ class ConstraintTest(unittest.TestCase):
             int_exception = db.Column(db.Integer())
             boolean = db.Column(db.Boolean())
             email = db.Column(db.String(80))
-            email_valid = db.Column(db.String(80))
             regex = db.Column(db.String(10))
             ip = db.Column(db.String(16))
             url = db.Column(db.String(255))
 
-            def __init__(self, integer, numeric, string, int_exception, boolean, email, regex, ip, url):
-                self.integer = integer
-                self.numeric = numeric
-                self.string = string
-                self.int_exception = int_exception
-                self.boolean = boolean
-                self.email = email
-                self.regex = regex
-                self.ip = ip
-
-            @classmethod
-            def __declare_last__(cls):
-                ValidateInteger(DummyModel.integer)
-                ValidateInteger(DummyModel.int_exception, True, True)
-                ValidateNumeric(DummyModel.numeric)
-                ValidateString(DummyModel.string)
-                ValidateBoolean(DummyModel.boolean)
-                ValidateLength(DummyModel.string, 10, 2)
-                ValidateEmail(DummyModel.email)
-                ValidateRegex(DummyModel.regex, "[A-Z][a-z]+")
-                ValidateIP(DummyModel.ip)
-                ValidateURL(DummyModel.url)
-
         db.create_all()
 
         self.DummyModel = DummyModel
-        self.dummy = self.DummyModel(1, 3.1, "aaa", 42, True, "this@email.com", "Hello", "127.0.0.1",
-                                     "http://google.com")
+        self.define_validators()
+
+        self.dummy = DummyModel()
+        self.set_default_values()
+
         self.app = app
         self.db = db
 
     def simple_validate(self, field, new_value, bad_value):
-
         """
         Simple Validation
 
@@ -73,26 +50,40 @@ class ConstraintTest(unittest.TestCase):
         setattr(self.dummy, field, default_value)
         self.assertNotEquals(getattr(self.dummy, field), new_value)
 
-    def test_creation(self):
+    def set_default_values(self):
+        """
+        Instanciate basic values
 
         """
-        Basic test to validate Flask app
+        self.dummy.integer = 1
+        self.dummy.numeric = 3.1
+        self.dummy.string = "Test"
+        self.dummy.int_exception = 42
+        self.dummy.boolean = True
+        self.dummy.email = "test@gmail.com"
+        self.dummy.regex = "Aa"
+        self.dummy.ip = "127.0.0.1"
+        self.dummy.url = "http://yahoo.com"
+
+        print self.dummy.string
+
+    def define_validators(self):
+        """
+        Define Validators
 
         """
-        # Test the values
-        assert self.dummy.integer == 1
-        assert self.dummy.string == "aaa"
-
-        # Persist
-        self.db.session.add(self.dummy)
-        self.db.session.commit()
-
-        # Validate Again
-        assert self.dummy.integer == 1
-        assert self.dummy.string == "aaa"
+        ValidateInteger(self.DummyModel.integer)
+        ValidateInteger(self.DummyModel.int_exception, True, True)
+        ValidateNumeric(self.DummyModel.numeric)
+        ValidateString(self.DummyModel.string)
+        ValidateBoolean(self.DummyModel.boolean)
+        ValidateLength(self.DummyModel.string, 10, 2)
+        ValidateEmail(self.DummyModel.email)
+        ValidateRegex(self.DummyModel.regex, "[A-Z][a-z]+")
+        ValidateIP(self.DummyModel.ip)
+        ValidateURL(self.DummyModel.url)
 
     def test_integer(self):
-
         """
         Testing IntegerConstraint()
 
@@ -100,7 +91,6 @@ class ConstraintTest(unittest.TestCase):
         self.simple_validate('integer', 42, 'bad wolf')
 
     def test_numeric(self):
-
         """
         Testing NumericValidator
 
@@ -112,7 +102,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.numeric = new_value
         self.assertEqual(self.dummy.numeric, new_value)
 
-        new_value = complex(1, 1)-complex(1, 1)
+        new_value = complex(1, 1) - complex(1, 1)
         self.dummy.numeric = new_value
         self.assertEqual(self.dummy.numeric, new_value)
 
@@ -120,16 +110,14 @@ class ConstraintTest(unittest.TestCase):
         self.assertNotEquals(self.dummy.numeric, new_value)
 
     def test_string(self):
-
         """
         Testing StringConstraint()
 
         """
-
+        print self.dummy.string
         self.simple_validate('string', "Magnolia", 3.141592)
 
     def test_exception(self):
-
         """
         Testing IntegerConstraint() with exceptions
 
@@ -141,7 +129,6 @@ class ConstraintTest(unittest.TestCase):
             self.assertEqual(self.dummy.int_exception, default_value)
 
     def test_boolean(self):
-
         """
         Testing BooleanValidator
 
@@ -150,24 +137,21 @@ class ConstraintTest(unittest.TestCase):
         self.simple_validate('boolean', False, "Not-A-Boolean")
 
     def test_length(self):
-
         """
         Testing Max Length Validator
         """
 
-        self.simple_validate('string', "Magnolia", "Magnolia"*100)
+        self.simple_validate('string', "Magnolia", "Magnolia" * 100)
         self.simple_validate('string', "Magnolia", "-")
 
     def test_email(self):
-
         """
         Testing EmailConstraint()
 
         """
-        self.simple_validate('email', "test@gmail.com", "not@")
+        self.simple_validate('email', "test2@gmail.com", "not@")
 
     def test_regex(self):
-
         """
         Testing Regex Validator
         """
@@ -175,15 +159,13 @@ class ConstraintTest(unittest.TestCase):
         self.simple_validate('regex', "Testing", " ")
 
     def test_ip(self):
-
         """
-        Testing Regex Validator
+        Testing IP Validator
         """
 
-        self.simple_validate('ip', "255.255.255.0", " ")
+        self.simple_validate('ip', "255.255.255.0", "12.2.1")
 
     def test_url(self):
-
         """
         Testing URL Validator
         """
@@ -195,6 +177,7 @@ def suite():
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ConstraintTest))
     return suite
+
 
 if __name__ == '__main__':
     unittest.main(defaultTest='suite')
