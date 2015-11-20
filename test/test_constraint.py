@@ -65,8 +65,6 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.ip = "127.0.0.1"
         self.dummy.url = "http://yahoo.com"
 
-        print self.dummy.string
-
     def define_validators(self):
         """
         Define Validators
