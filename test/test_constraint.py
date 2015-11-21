@@ -112,7 +112,6 @@ class ConstraintTest(unittest.TestCase):
         Testing StringConstraint()
 
         """
-        print self.dummy.string
         self.simple_validate('string', "Magnolia", 3.141592)
 
     def test_exception(self):
