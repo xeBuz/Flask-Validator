@@ -1,4 +1,5 @@
 import re
+from uuid import UUID
 from flask_validator import Validator
 
 
@@ -33,6 +34,29 @@ class ValidateRegex(Validator):
 
 
 class ValidateUUID(Validator):
-    # TODO
+    """ Validate UUID
+
+    Validate if the value is a valida UUID
+
+    Args:
+        field: SQLAlchemy column to validate
+        version: UUUID version. Default 4
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+    varsion = 4
+
+    def __init__(self, field, version=4, throw_exception=False):
+        self.version = version
+
+        Validator.__init__(self, field, throw_exception)
+
     def check_value(self, value):
-        pass
+        try:
+            val = UUID(value, version=self.version)
+            if val:
+                return True
+            else:
+                return False
+        except (ValueError, TypeError):
+            return False
