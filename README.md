@@ -60,6 +60,8 @@ class User(db.Model):
 - ValidateRegex
 - ValidateIP
 - ValidateURL
+- ValidateUUID
+
 
 
 

@@ -2,4 +2,4 @@ from .types import ValidateInteger, ValidateNumeric, ValidateString, ValidateBoo
 from .numbers import ValidateLength
 from .comparison import ValidateLessThan, ValidateLessThanOrEqual, ValidateGreaterThan, ValidateGreaterThanOrEqual
 from .internet import ValidateEmail, ValidateIP, ValidateURL
-from .others import ValidateRegex
+from .others import ValidateRegex, ValidateUUID

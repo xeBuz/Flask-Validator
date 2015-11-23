@@ -1,5 +1,5 @@
 from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
-    ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL
+    ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -22,6 +22,7 @@ class ConstraintTest(unittest.TestCase):
             regex = db.Column(db.String(10))
             ip = db.Column(db.String(16))
             url = db.Column(db.String(255))
+            uuid = db.Column(db.String(255))
 
         db.create_all()
 
@@ -64,6 +65,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.regex = "Aa"
         self.dummy.ip = "127.0.0.1"
         self.dummy.url = "http://yahoo.com"
+        self.dummy.uuid = "19eb35868a8247a4a911758a62601cf2"
 
     def define_validators(self):
         """
@@ -80,6 +82,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateRegex(self.DummyModel.regex, "[A-Z][a-z]+")
         ValidateIP(self.DummyModel.ip)
         ValidateURL(self.DummyModel.url)
+        ValidateUUID(self.DummyModel.uuid)
 
     def test_integer(self):
         """
@@ -168,6 +171,13 @@ class ConstraintTest(unittest.TestCase):
         """
 
         self.simple_validate('url', "https://yahoo.com.ar", "Google")
+
+    def test_uuid(self):
+        """
+        Testing UUID
+        """
+
+        self.simple_validate('uuid', '12eb35868a8247a4a911758a62601cf2', "notavalidauuid")
 
 
 def suite():
