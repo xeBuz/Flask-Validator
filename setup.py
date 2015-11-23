@@ -1,5 +1,12 @@
 import re
+import os
 from distutils.core import setup
+
+try:
+    import pypandoc
+    long_description = pypandoc.convert('README.md', 'rst')
+except (IOError, ImportError):
+    long_description = ''
 
 setup(
     name='Flask-Validator',
@@ -7,6 +14,8 @@ setup(
     license='Mozilla Public License',
     author='Jesus Roldan',
     author_email='jesus.roldan@gmail.com',
+    description="Data validator for Flask using SQL-Alchemy, working at Model component with events",
+    long_description=long_description,
 
     url='https://github.com/xeBuz/Flask-Validator',
 
@@ -16,6 +25,7 @@ setup(
     platforms='any',
     install_requires=[
         'SQLAlchemy>=1.0',
+        'email_validator==1.0'
     ],
 
     classifiers=[
