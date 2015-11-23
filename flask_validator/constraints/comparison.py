@@ -1,7 +1,9 @@
 from flask_validator import Validator
 
-class BaseComparision(Validator):
 
+class BaseComparision(Validator):
+    """ Base Comparision Class
+    """
     value = None
 
     def __init__(self, field, value, throw_exception=False):
