@@ -1,0 +1,12 @@
+engines:
+  fixme:
+    enable: true
+  pep8:
+    enable: true
+  radon:
+    enable: true
+ratings:
+  paths:
+  - "**.py"
+excluded_paths:
+  - test/**/*
