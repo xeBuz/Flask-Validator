@@ -1,7 +1,16 @@
 from flask_validator import Validator
 
+class BaseComparision(Validator):
 
-class ValidateLessThan(Validator):
+    value = None
+
+    def __init__(self, field, value, throw_exception=False):
+        self.value = value
+
+        Validator.__init__(self, field, throw_exception)
+
+
+class ValidateLessThan(BaseComparision):
 
     """ Validate Less Than X
 
@@ -14,18 +23,11 @@ class ValidateLessThan(Validator):
 
     """
 
-    value = None
-
-    def __init__(self, field, value, throw_exception=False):
-        self.value = value
-
-        Validator.__init__(self, field, throw_exception)
-
     def check_value(self, value):
         return value < self.value
 
 
-class ValidateLessThanOrEqual(Validator):
+class ValidateLessThanOrEqual(BaseComparision):
     """ Validate Less Than X Or Equal
 
     Check if the new value has a value less than x or equal
@@ -37,18 +39,11 @@ class ValidateLessThanOrEqual(Validator):
 
     """
 
-    value = None
-
-    def __init__(self, field, value, throw_exception=False):
-        self.value = value
-
-        Validator.__init__(self, field, throw_exception)
-
     def check_value(self, value):
         return value <= self.value
 
 
-class ValidateGreaterThan(Validator):
+class ValidateGreaterThan(BaseComparision):
     """ Validate Greater Than X
 
     Check if the new value has a value greater than x
@@ -60,18 +55,11 @@ class ValidateGreaterThan(Validator):
 
     """
 
-    value = None
-
-    def __init__(self, field, value, throw_exception=False):
-        self.value = value
-
-        Validator.__init__(self, field, throw_exception)
-
     def check_value(self, value):
         return value > self.value
 
 
-class ValidateGreaterThanOrEqual(Validator):
+class ValidateGreaterThanOrEqual(BaseComparision):
     """ Validate Greater Than X Or Equal
 
     Check if the new value has a value greater than x
@@ -82,13 +70,6 @@ class ValidateGreaterThanOrEqual(Validator):
         throw_exception: (bool) Throw a ValueError if the validation fails
 
     """
-
-    value = None
-
-    def __init__(self, field, value, throw_exception=False):
-        self.value = value
-
-        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
         return value >= self.value
