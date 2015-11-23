@@ -41,7 +41,6 @@ class ConstraintTest(unittest.TestCase):
 
         """
         default_value = getattr(self.dummy, field)
-        print default_value
         setattr(self.dummy, field, new_value)
 
         self.assertEqual(getattr(self.dummy, field), new_value)
