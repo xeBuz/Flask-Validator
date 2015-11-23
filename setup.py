@@ -1,10 +1,9 @@
 import re
-from setuptools import setup
-
+from distutils.core import setup
 
 setup(
     name='Flask-Validator',
-    version='0.4',
+    version='0.5',
     license='Mozilla Public License',
     author='Jesus Roldan',
     author_email='jesus.roldan@gmail.com',
@@ -20,7 +19,7 @@ setup(
     ],
 
     classifiers=[
-        'Development Status :: 2 - Pre-Alpha',
+        'Development Status :: 4 - Beta',
         'Environment :: Plugins',
         'Framework :: Flask',
         'Intended Audience :: Developers',
