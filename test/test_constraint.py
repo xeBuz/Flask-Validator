@@ -1,5 +1,5 @@
 from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
-    ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID
+    ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID, ValidateLessThan
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -73,6 +73,7 @@ class ConstraintTest(unittest.TestCase):
 
         """
         ValidateInteger(self.DummyModel.integer)
+        ValidateLessThan(self.DummyModel.integer, 100000)
         ValidateInteger(self.DummyModel.int_exception, True, True)
         ValidateNumeric(self.DummyModel.numeric)
         ValidateString(self.DummyModel.string)
@@ -86,10 +87,17 @@ class ConstraintTest(unittest.TestCase):
 
     def test_integer(self):
         """
-        Testing IntegerConstraint()
+        Testing IntegerConstraint
 
         """
         self.simple_validate('integer', 42, 'bad wolf')
+
+    def test_comparision(self):
+        """
+        Testing ValidateLesserThan
+
+        """
+        self.simple_validate('integer', 42, 1000000000)
 
     def test_numeric(self):
         """
