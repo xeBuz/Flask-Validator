@@ -347,8 +347,29 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
+.. _in_timezone:
+
+ValidateTimezone
+----------------
+
+Check if the value is a valid Timezone. Validation provided by pytz_
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
++-------------------------+-----------+-----------------------------------------------------------------+
+
 
 
 .. _email_validator: https://github.com/JoshData/python-email-validator
 .. _SMTPUTF8: https://tools.ietf.org/html/rfc6531
 .. _iso3166: https://pypi.python.org/pypi/iso3166
+.. _pytz: http://pytz.sourceforge.net/

@@ -1,6 +1,6 @@
 from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
     ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID, ValidateLessThan, \
-    ValidateCountry
+    ValidateCountry, ValidateTimezone
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -25,6 +25,7 @@ class ConstraintTest(unittest.TestCase):
             url = db.Column(db.String(255))
             uuid = db.Column(db.String(255))
             country = db.Column(db.String(255))
+            timezone = db.Column(db.String(20))
 
         db.create_all()
 
@@ -69,6 +70,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.url = "http://yahoo.com"
         self.dummy.uuid = "19eb35868a8247a4a911758a62601cf2"
         self.dummy.country = 'Argentina'
+        self.dummy.timezone = 'UTC'
 
     def define_validators(self):
         """
@@ -88,6 +90,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateURL(self.DummyModel.url)
         ValidateUUID(self.DummyModel.uuid)
         ValidateCountry(self.DummyModel.country)
+        ValidateTimezone(self.DummyModel.timezone)
 
     def test_integer(self):
         """
@@ -198,6 +201,12 @@ class ConstraintTest(unittest.TestCase):
 
         self.simple_validate('country', 'Finland', "Murrica")
 
+    def test_timezone(self):
+        """
+        Testing Timezone
+        """
+
+        self.simple_validate('timezone', 'US/Pacific-New', "NotTZ")
 
 def suite():
     suite = unittest.TestSuite()

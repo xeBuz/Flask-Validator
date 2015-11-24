@@ -1,4 +1,5 @@
 from iso3166 import countries
+from pytz import all_timezones
 from flask_validator import Validator
 
 
@@ -49,3 +50,31 @@ class ValidateCountry(Validator):
             return True
         except KeyError:
             return False
+
+
+class ValidateTimezone(Validator):
+
+    """ Validate Country
+
+    Validate if the new value is a valid Timezone
+
+    Args:
+        field: SQLAlchemy column to validate
+        value: Value to check
+        throw_exception: (bool) Throw a ValueError if the validation fails
+
+    """
+
+    allow_null = True
+
+    def __init__(self, field, allow_null=True, throw_exception=False):
+        self.allow_null = allow_null
+
+        Validator.__init__(self, field, throw_exception)
+
+    def check_value(self, value):
+        return value in all_timezones
+        #     return True
+        # else:
+        #     return False
+

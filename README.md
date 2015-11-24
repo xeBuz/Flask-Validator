@@ -62,6 +62,9 @@ class User(db.Model):
 - ValidateIP
 - ValidateURL
 - ValidateUUID
+- ValidateCountry
+- ValidateTimezone
+
 
 
 
