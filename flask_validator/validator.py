@@ -1,5 +1,5 @@
 from sqlalchemy import event
-from exceptions import ValidateError
+from .exceptions import ValidateError
 
 __version__ = '0.7'
 
