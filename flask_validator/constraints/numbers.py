@@ -10,7 +10,7 @@ class ValidateLength(Validator):
         field: SQLAlchemy column to validate
         max_length: (int) Maximum value length
         min_lenght: (int) Minimum value length
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
 

@@ -1,3 +1,6 @@
+- 0.7
+  Custome Exception: ValidateError
+
 - 0.6
   Added Regex, IP, URL, Locale, County and Timezone Validators
   Added to pypi

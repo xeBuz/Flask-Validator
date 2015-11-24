@@ -12,7 +12,7 @@ class ValidateLocale(Validator):
     Args:
         field: SQLAlchemy column to validate
         value: Value to check
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
 
@@ -46,7 +46,7 @@ class ValidateCountry(Validator):
     Args:
         field: SQLAlchemy column to validate
         value: Value to check
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
 
@@ -77,7 +77,7 @@ class ValidateTimezone(Validator):
     Args:
         field: SQLAlchemy column to validate
         value: Value to check
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
 

@@ -17,7 +17,7 @@ class ValidateEmail(Validator):
         check_deliverability: (bool) Set to False to skip the domain name resolution check.
         allow_empty_local (bool) Set to True to allow an empty local part (i.e. @example.com),
             e.g. for validating Postfix aliases.
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
 
@@ -60,7 +60,7 @@ class ValidateIP(Validator):
     Args:
         field: SQLAlchemy column to validate
         ipv6: Match against IPV6
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
     """
     ipv6 = None
 
@@ -89,7 +89,7 @@ class ValidateURL(Validator):
     Args:
         field: SQLAlchemy column to validate
          allow_null: (bool) Allow null values. Default True
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
 

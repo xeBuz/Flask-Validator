@@ -11,7 +11,7 @@ class ValidateRegex(Validator):
     Args:
         field: SQLAlchemy column to validate
         regex: Regular expresion
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
 
@@ -41,7 +41,7 @@ class ValidateUUID(Validator):
     Args:
         field: SQLAlchemy column to validate
         version: UUUID version. Default 4
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
     varsion = 4

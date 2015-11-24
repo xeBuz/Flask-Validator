@@ -1,6 +1,6 @@
 from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
     ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID, ValidateLessThan, \
-    ValidateCountry, ValidateTimezone, ValidateLocale
+    ValidateCountry, ValidateTimezone, ValidateLocale, ValidateError
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -142,7 +142,7 @@ class ConstraintTest(unittest.TestCase):
         """
 
         default_value = self.dummy.int_exception
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ValidateError):
             self.dummy.int_exception = "Doctor"
             self.assertEqual(self.dummy.int_exception, default_value)
 
