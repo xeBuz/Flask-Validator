@@ -24,7 +24,7 @@ setup(
         'SQLAlchemy>=1.0',
         'email_validator==1.0',
         'iso3166==0.7',
-        'pytz==p2015.7'
+        'pytz==2015.7'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
