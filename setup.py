@@ -1,6 +1,6 @@
 import re
 import os
-from distutils.core import setup
+from setuptools import setup
 
 try:
     import pypandoc
@@ -16,18 +16,16 @@ setup(
     author_email='jesus.roldan@gmail.com',
     description="Data validator for Flask using SQL-Alchemy, working at Model component with events",
     long_description=long_description,
-
     url='https://github.com/xeBuz/Flask-Validator',
-
     packages=['flask_validator'],
-
-    zip_safe=False,
     platforms='any',
+    test_suite='nose.collector',
     install_requires=[
         'SQLAlchemy>=1.0',
-        'email_validator==1.0'
+        'email_validator==1.0',
+        'iso3166==0.7',
+        'pytz==2015.7'
     ],
-
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Plugins',
