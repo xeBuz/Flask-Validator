@@ -10,7 +10,7 @@ class ValidateInteger(Validator):
     Args:
         field: SQLAlchemy column to validate
         allow_null: (bool) Allow null values. Default True
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
     allow_null = True
@@ -39,7 +39,7 @@ class ValidateNumeric(Validator):
     Args:
         field: SQLAlchemy column to validate
         allow_null: (bool) Allow null values
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
 
@@ -69,7 +69,7 @@ class ValidateString(Validator):
     Args:
         field: SQLAlchemy column to validate
         allow_null: (bool) Allow null values
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
 
@@ -95,7 +95,7 @@ class ValidateBoolean(Validator):
     Args:
         field: SQLAlchemy column to validate
         allow_null: (bool) Allow null values
-        throw_exception: (bool) Throw a ValueError if the validation fails
+        throw_exception: (bool) Throw a ValidateError if the validation fails
     """
 
     def __init__(self, field, allow_null=True, throw_exception=False):

@@ -48,23 +48,29 @@ class User(db.Model):
 
 ## Available Constraints
 
-- ValidateInteger
-- ValidateNumeric
-- ValidateString
-- ValidateBoolean
-- ValidateLenght
-- ValidateLessThan
-- ValidateLessThanOrEqual
-- ValidateGreaterThan
-- ValidateGreaterThanOrEqual
-- ValidateEmail
-- ValidateRegex
-- ValidateIP
-- ValidateURL
-- ValidateUUID
-- ValidateCountry
-- ValidateTimezone
-- ValidateLocale
+- Types
+  - ValidateInteger
+  - ValidateNumeric
+  - ValidateString
+  - ValidateBoolean
+- Numeric
+  - ValidateLenght
+- Comparision
+  - ValidateLessThan
+  - ValidateLessThanOrEqual
+  - ValidateGreaterThan
+  - ValidateGreaterThanOrEqual
+- Internet
+  - ValidateEmail
+  - ValidateRegex
+  - ValidateIP
+  - ValidateURL
+- Location
+  - ValidateCountry
+  - ValidateTimezone
+  - ValidateLocale
+- Others 
+  - ValidateUUID
 
 
 

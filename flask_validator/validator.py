@@ -1,6 +1,7 @@
 from sqlalchemy import event
+from .exceptions import ValidateError
 
-__version__ = '0.6'
+__version__ = '0.7'
 
 
 class FlaskValidator:
@@ -10,7 +11,7 @@ class FlaskValidator:
     def __init__(self, field, throw_exception=False):
         """ Initialize a Validator object.
 
-        :type throw_exception: Throw a ValueError exception
+        :type throw_exception: Throw a ValidateError exception
         :param field: Model.field | Column to listen
         """
         self.field = field
@@ -26,7 +27,7 @@ class FlaskValidator:
         :param oldvalue: Previous value
         :param initiator: Column modified
 
-        :return: :raise ValueError:
+        :return: :raise ValidateError:
         """
         if value == oldvalue:
             return value
@@ -35,7 +36,7 @@ class FlaskValidator:
             return value
         else:
             if self.throw_exception:
-                raise ValueError('Value %s from column %s is not valid' % (value, initiator.key))
+                raise ValidateError('Value %s from column %s is not valid' % (value, initiator.key))
 
             return oldvalue
 

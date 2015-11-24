@@ -40,7 +40,7 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 | allow_null              | True      | Allow ``null`` values                                           |
 +-------------------------+-----------+-----------------------------------------------------------------+
-| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
@@ -64,7 +64,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 | allow_null              | True     | Allow ``null`` values                                           |
 +-------------------------+----------+-----------------------------------------------------------------+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
@@ -88,7 +88,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 | allow_null              | True     | Allow ``null`` values                                           |
 +-------------------------+----------+-----------------------------------------------------------------+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
@@ -107,7 +107,7 @@ Parametes:
 +=========================+==========+=================================================================+
 | field                   |          | SQLAlchemy column to validate                                   |
 +-------------------------+----------+-----------------------------------------------------------------+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
@@ -130,7 +130,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 | min_lenght              | 0        | Minumum value lenght                                            |
 +-------------------------+----------+-----------------------------------------------------------------+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
@@ -151,7 +151,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 | value                   |          | Value to check                                                  |
 +-------------------------+----------+-----------------------------------------------------------------+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
@@ -171,7 +171,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 | value                   |          | Value to check                                                  |
 +-------------------------+----------+-----------------------------------------------------------------+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 .. _in_greater:
@@ -190,7 +190,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 | value                   |          | Value to check                                                  |
 +-------------------------+----------+-----------------------------------------------------------------+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
@@ -210,7 +210,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 | value                   |          | Value to check                                                  |
 +-------------------------+----------+-----------------------------------------------------------------+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
@@ -237,7 +237,7 @@ Parametes:
 +-------------------------+----------+--------------------------------------------------------------------------------+
 | allow_null              | True     | Allow ``null`` values                                                          |
 +-------------------------+----------+--------------------------------------------------------------------------------+
-| throw_exception         | False    | Throw a ``ValueError`` exception on validation fails                           |
+| throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails                        |
 +-------------------------+----------+--------------------------------------------------------------------------------+
 
 
@@ -257,7 +257,7 @@ Parametes:
 +=========================+===========+=================================================================+
 | field                   |           | SQLAlchemy column to validate                                   |
 +-------------------------+-----------+-----------------------------------------------------------------+
-| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
@@ -278,7 +278,7 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 | ipv6                    | False     | Check IPv6 Address instread of IPv4                             |
 +-------------------------+-----------+-----------------------------------------------------------------+
-| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
@@ -298,7 +298,7 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 | allow_null              | True      | Allow ``null`` values                                           |
 +-------------------------+-----------+-----------------------------------------------------------------+
-| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
@@ -319,7 +319,7 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 | version                 | 3         | UUID version                                                    |
 +-------------------------+-----------+-----------------------------------------------------------------+
-| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
@@ -329,13 +329,13 @@ Parametes:
 ValidateCountry
 ---------------
 
-Check if the value is a valid Country. Validation provided by iso3166_
-Allowed names:
-   - Name
-   - Alpha2
-   - Alpha3
-   - Numeric
-   - Apolitic Name
+Check if the value is a valid Country. Validation provided by iso3166_. Allowed names:
+
+* Name
+* Alpha2
+* Alpha3
+* Numeric
+* Apolitic Name
 
 Parametes:
 
@@ -346,7 +346,7 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 | allow_null              | True      | Allow ``null`` values                                           |
 +-------------------------+-----------+-----------------------------------------------------------------+
-| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
@@ -367,7 +367,7 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 | allow_null              | True      | Allow ``null`` values                                           |
 +-------------------------+-----------+-----------------------------------------------------------------+
-| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
@@ -389,7 +389,7 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 | allow_null              | True      | Allow ``null`` values                                           |
 +-------------------------+-----------+-----------------------------------------------------------------+
-| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
