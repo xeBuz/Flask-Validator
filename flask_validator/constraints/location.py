@@ -4,12 +4,6 @@ from pytz import all_timezones
 from flask_validator import Validator
 
 
-class LenguageConstraint(Validator):
-    # TODO
-    def check_value(self, value):
-        pass
-
-
 class ValidateLocale(Validator):
     """ Validate Country
 
@@ -96,7 +90,4 @@ class ValidateTimezone(Validator):
 
     def check_value(self, value):
         return value in all_timezones
-        #     return True
-        # else:
-        #     return False
 
