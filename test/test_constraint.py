@@ -1,6 +1,7 @@
 from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
     ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID, ValidateLessThan, \
-    ValidateCountry, ValidateTimezone, ValidateLocale, ValidateError
+    ValidateGreaterThan, ValidateLessThanOrEqual, ValidateGreaterThanOrEqual, ValidateCountry, ValidateTimezone, \
+    ValidateLocale, ValidateError
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -15,6 +16,7 @@ class ConstraintTest(unittest.TestCase):
         class DummyModel(db.Model):
             id = db.Column(db.Integer, primary_key=True)
             integer = db.Column(db.Integer())
+            large = db.Column(db.Integer())
             numeric = db.Column(db.Float())
             string = db.Column(db.String(80))
             int_exception = db.Column(db.Integer())
@@ -61,6 +63,7 @@ class ConstraintTest(unittest.TestCase):
 
         """
         self.dummy.integer = 100
+        self.dummy.large = 1000
         self.dummy.numeric = 3.1
         self.dummy.string = "Test"
         self.dummy.int_exception = 42
@@ -81,6 +84,7 @@ class ConstraintTest(unittest.TestCase):
         """
         ValidateInteger(self.DummyModel.integer)
         ValidateLessThan(self.DummyModel.integer, 100000)
+        ValidateLessThanOrEqual(self.DummyModel.integer, 99999)
         ValidateInteger(self.DummyModel.int_exception, True, True)
         ValidateNumeric(self.DummyModel.numeric)
         ValidateString(self.DummyModel.string)
@@ -94,6 +98,8 @@ class ConstraintTest(unittest.TestCase):
         ValidateCountry(self.DummyModel.country)
         ValidateTimezone(self.DummyModel.timezone)
         ValidateLocale(self.DummyModel.locale)
+        ValidateGreaterThan(self.DummyModel.large, 100)
+        ValidateGreaterThanOrEqual(self.DummyModel.large, 101)
 
     def test_integer(self):
         """
@@ -102,12 +108,19 @@ class ConstraintTest(unittest.TestCase):
         """
         self.simple_validate('integer', 42, 'bad wolf')
 
-    def test_comparision(self):
+    def test_comparision_lesser(self):
         """
-        Testing ValidateLesserThan
+        Testing ValidateLesserThan and ValidateLesserThanOrEqual
 
         """
         self.simple_validate('integer', 42, 1000000000)
+
+    def test_comparision_greater(self):
+        """
+        Testing ValidateGreaterThan and ValidateGreaterThanOrEqual
+
+        """
+        self.simple_validate('large', 101, 10)
 
     def test_numeric(self):
         """
