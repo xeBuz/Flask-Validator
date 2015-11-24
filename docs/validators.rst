@@ -329,13 +329,13 @@ Parametes:
 ValidateCountry
 ---------------
 
-Check if the value is a valid Country. Validation provided by iso3166_
-Allowed names:
-   - Name
-   - Alpha2
-   - Alpha3
-   - Numeric
-   - Apolitic Name
+Check if the value is a valid Country. Validation provided by iso3166_. Allowed names:
+
+* Name
+* Alpha2
+* Alpha3
+* Numeric
+* Apolitic Name
 
 Parametes:
 
