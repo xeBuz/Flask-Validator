@@ -18,6 +18,9 @@ At the moment, the library support this validations:
 * :ref:`in_ip`
 * :ref:`in_url`
 * :ref:`in_uuid`
+* :ref:`in_country`
+* :ref:`in_timezone`
+* :ref:`in_locale`
 
 
 
@@ -367,6 +370,27 @@ Parametes:
 | throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
+
+
+.. _in_locale:
+
+ValidateLocale
+--------------
+
+Check if the value is a valid Locale.
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
++-------------------------+-----------+-----------------------------------------------------------------+
 
 
 .. _email_validator: https://github.com/JoshData/python-email-validator

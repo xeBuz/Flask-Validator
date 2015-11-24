@@ -64,7 +64,7 @@ class User(db.Model):
 - ValidateUUID
 - ValidateCountry
 - ValidateTimezone
-
+- ValidateLocale
 
 
 

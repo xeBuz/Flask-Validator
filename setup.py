@@ -1,6 +1,6 @@
 import re
 import os
-from distutils.core import setup
+from setuptools import setup
 
 try:
     import pypandoc
@@ -18,8 +18,8 @@ setup(
     long_description=long_description,
     url='https://github.com/xeBuz/Flask-Validator',
     packages=['flask_validator'],
-    zip_safe=False,
     platforms='any',
+    test_suite='nose.collector',
     install_requires=[
         'SQLAlchemy>=1.0',
         'email_validator==1.0',
