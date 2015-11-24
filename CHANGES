@@ -1,5 +1,6 @@
 - 0.6
-  Added Regex, IP, URL Validators
+  Added Regex, IP, URL, Locale, County and Timezone Validators
+  Added to pypi
 
 - 0.5
   Added Numeric, Email, LessThan, LessThanOrEqual, GreaterThan, GreaterThanOrEqual Validators
