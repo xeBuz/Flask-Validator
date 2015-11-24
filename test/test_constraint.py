@@ -24,8 +24,8 @@ class ConstraintTest(unittest.TestCase):
             ip = db.Column(db.String(16))
             url = db.Column(db.String(255))
             uuid = db.Column(db.String(255))
-            country = db.Column(db.String(255))
-            timezone = db.Column(db.String(20))
+            country = db.Column(db.String(50))
+            timezone = db.Column(db.String(100))
             locale = db.Column(db.String(20))
 
         db.create_all()
@@ -60,7 +60,7 @@ class ConstraintTest(unittest.TestCase):
         Instanciate basic values
 
         """
-        self.dummy.integer = 1
+        self.dummy.integer = 100
         self.dummy.numeric = 3.1
         self.dummy.string = "Test"
         self.dummy.int_exception = 42
