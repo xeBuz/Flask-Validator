@@ -25,7 +25,8 @@ setup(
     platforms='any',
     install_requires=[
         'SQLAlchemy>=1.0',
-        'email_validator==1.0'
+        'email_validator==1.0',
+        'iso3166==0.7'
     ],
 
     classifiers=[

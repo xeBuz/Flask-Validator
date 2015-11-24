@@ -132,7 +132,7 @@ Parametes:
 
 
 
-.. in_lesser:
+.. _in_lesser:
 
 ValidateLessThan
 ----------------
@@ -152,7 +152,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
-.. in_lesser_equal:
+.. _in_lesser_equal:
 
 ValidateLessThanOrEqual
 -----------------------
@@ -171,7 +171,7 @@ Parametes:
 | throw_exception         | False    | Throw a ``ValueError`` exception on validation fails            |
 +-------------------------+----------+-----------------------------------------------------------------+
 
-.. in_greater:
+.. _in_greater:
 
 ValidateGreaterThan
 -------------------
@@ -191,7 +191,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 
 
-.. in_greater_equal:
+.. _in_greater_equal:
 
 ValidateGreaterThanOrEqual
 --------------------------
@@ -212,7 +212,7 @@ Parametes:
 
 
 
-.. in_in_email:
+.. _in_email:
 
 ValidateEmail
 -------------
@@ -240,7 +240,7 @@ Parametes:
 
 
 
-.. in_regex:
+.. _in_regex:
 
 ValidateRegex
 -------------
@@ -259,7 +259,7 @@ Parametes:
 
 
 
-.. in_ip:
+.. _in_ip:
 
 ValidateIP
 ----------
@@ -279,7 +279,7 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
-.. in_url:
+.. _in_url:
 
 ValidateURL
 -----------
@@ -300,7 +300,7 @@ Parametes:
 
 
 
-.. in_uuid:
+.. _in_uuid:
 
 ValidateUUID
 ------------
@@ -321,5 +321,34 @@ Parametes:
 
 
 
+.. _in_country:
+
+ValidateCountry
+---------------
+
+Check if the value is a valid Country. Validation provided by iso3166_
+Allowed names:
+   - Name
+   - Alpha2
+   - Alpha3
+   - Numeric
+   - Apolitic Name
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValueError`` exception on validation fails            |
++-------------------------+-----------+-----------------------------------------------------------------+
+
+
+
+
 .. _email_validator: https://github.com/JoshData/python-email-validator
 .. _SMTPUTF8: https://tools.ietf.org/html/rfc6531
+.. _iso3166: https://pypi.python.org/pypi/iso3166
