@@ -1,5 +1,6 @@
 import re
 from uuid import UUID
+from isbnlib import is_isbn10, is_isbn13
 from flask_validator import Validator
 
 
@@ -37,7 +38,7 @@ class ValidateRegex(Validator):
 class ValidateUUID(Validator):
     """ Validate UUID
 
-    Validate if the value is a valida UUID
+    Validate if the value is a valid UUID
 
     Args:
         field: SQLAlchemy column to validate
@@ -62,3 +63,18 @@ class ValidateUUID(Validator):
                 return False
         except (ValueError, TypeError):
             return False
+
+
+class ValidateISBN(Validator):
+    """ Validate ISBN
+
+    Validate if the value is a valid ISBN10 or ISB13
+
+    Args:
+        field: SQLAlchemy column to validate
+        allow_null: (bool) Allow null values
+        throw_exception: (bool) Throw a ValidateError if the validation fails
+
+    """
+    def check_value(self, value):
+        return is_isbn10(value) or is_isbn13(value)

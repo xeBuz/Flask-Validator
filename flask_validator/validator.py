@@ -1,7 +1,7 @@
 from sqlalchemy import event
 from .exceptions import ValidateError
 
-__version__ = '0.7'
+__version__ = '0.8'
 
 
 class FlaskValidator:

@@ -404,7 +404,7 @@ Parametes:
 ValidateCreditCard
 ------------------
 
-Check if the new value is valida credit card number.
+Check if the new value is valid credit card number.
 
 Allowed formats:
 * XXXXYYYYWWWWZZZ
@@ -472,7 +472,34 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
+
+.. _in_isbn:
+
+ValidateISBN
+------------
+
+Check if the new value is valid ISBN (International Standard Book Number). Allows ISBN10 or ISBN13
+
+Validation provided by: isbnlib_
+More reference: https://en.wikipedia.org/wiki/International_Standard_Book_Number
+
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+-----------+-----------------------------------------------------------------+
+
+
 .. _email_validator: https://github.com/JoshData/python-email-validator
 .. _SMTPUTF8: https://tools.ietf.org/html/rfc6531
 .. _iso3166: https://pypi.python.org/pypi/iso3166
 .. _pytz: http://pytz.sourceforge.net/
+.. _isbnlib: https://pypi.python.org/pypi/isbnlib/3.5.6

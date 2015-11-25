@@ -1,7 +1,7 @@
 from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
     ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID, ValidateLessThan, \
     ValidateGreaterThan, ValidateLessThanOrEqual, ValidateGreaterThanOrEqual, ValidateCountry, ValidateTimezone, \
-    ValidateLocale, ValidateError, ValidateCreditCard, ValidateCurrency, ValidateIBAN
+    ValidateLocale, ValidateError, ValidateCreditCard, ValidateCurrency, ValidateIBAN, ValidateISBN
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -32,6 +32,7 @@ class ConstraintTest(unittest.TestCase):
             creditcard = db.Column(db.String(20))
             currency = db.Column(db.String(3))
             iban = db.Column(db.String(100))
+            isbn = db.Column(db.String(100))
 
         db.create_all()
 
@@ -82,6 +83,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.creditcard = 378282246310005  # PayPal Example
         self.dummy.currency = 'USD'
         self.dummy.iban = 'GB82 WEST 1234 5698 7654 32'
+        self.dummy.isbn = '1-56619-909-3'
 
     def define_validators(self):
         """
@@ -109,6 +111,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateCreditCard(self.DummyModel.creditcard)
         ValidateCurrency(self.DummyModel.currency)
         ValidateIBAN(self.DummyModel.iban)
+        ValidateISBN(self.DummyModel.isbn)
 
     def test_integer(self):
         """
@@ -249,17 +252,24 @@ class ConstraintTest(unittest.TestCase):
 
     def test_currency(self):
         """
-        Testing CreditCard
+        Testing Currency
         """
 
         self.simple_validate('currency', 'EGP', "$$$")
 
     def test_iban(self):
         """
-        Testing CreditCard
+        Testing IBAN
         """
 
         self.simple_validate('iban', 'GB82WEST12345698765432', "GB82 WEST 1243 5698 7654 32")
+
+    def test_isbn(self):
+        """
+        Testing ISBN
+        """
+
+        self.simple_validate('isbn', '978-3-16-148410-0', "111112")
 
 
 def suite():

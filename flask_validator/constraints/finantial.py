@@ -196,15 +196,3 @@ class ValidateIBAN(Validator):
         iban = iban[4:] + iban[:4]
         digits = int(''.join(str(int(ch, 36)) for ch in iban))  # BASE 36: 0..9,A..Z -> 0..35
         return digits % 97 == 1
-
-
-class IsbnConstraint(Validator):
-    # TODO
-    def check_value(self, value):
-        pass
-
-
-class IssnConstraint(Validator):
-    # TODO
-    def check_value(self, value):
-        pass
