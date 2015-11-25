@@ -4,15 +4,12 @@ from .exceptions import ValidateError
 __version__ = '0.7'
 
 
-ALLOW_NULL = True
-THROW_EXCEPTION = False
-
 class FlaskValidator:
     field = None
     allow_null = True
     throw_exception = False
 
-    def __init__(self, field, allow_null=ALLOW_NULL, throw_exception=THROW_EXCEPTION):
+    def __init__(self, field, allow_null, throw_exception):
         """ Initialize a Validator object.
 
         :type throw_exception: Throw a ValidateError exception
@@ -75,7 +72,7 @@ class FlaskValidator:
 
 class Validator(FlaskValidator):
 
-    def __init__(self, field, allow_null=ALLOW_NULL, throw_exception=THROW_EXCEPTION):
+    def __init__(self, field, allow_null=True, throw_exception=False):
         """
         Validator Interface initialization
 
