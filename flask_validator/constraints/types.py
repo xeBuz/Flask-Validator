@@ -13,18 +13,8 @@ class ValidateInteger(Validator):
         throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
-    allow_null = True
-
-    def __init__(self, field, allow_null=True, throw_exception=False):
-        self.allow_null = allow_null
-
-        Validator.__init__(self, field, throw_exception)
 
     def check_value(self, value):
-
-        if self.allow_null and value is None:
-            return True
-
         if sys.version_info >= (3, 0):
             return isinstance(value, int)
         else:
@@ -43,18 +33,7 @@ class ValidateNumeric(Validator):
 
     """
 
-    allow_null = True
-
-    def __init__(self, field, allow_null=True, throw_exception=False):
-        self.allow_null = allow_null
-
-        Validator.__init__(self, field, throw_exception)
-
     def check_value(self, value):
-
-        if self.allow_null and value is None:
-            return True
-
         if sys.version_info >= (3, 0):
             return isinstance(value, (int, float, complex))
         else:
@@ -73,17 +52,7 @@ class ValidateString(Validator):
 
     """
 
-    allow_null = True
-
-    def __init__(self, field, allow_null=True, throw_exception=False):
-        self.allow_null = allow_null
-
-        Validator.__init__(self, field, throw_exception)
-
     def check_value(self, value):
-        if self.allow_null and value is None:
-            return True
-
         return isinstance(value, str)
 
 
@@ -94,17 +63,10 @@ class ValidateBoolean(Validator):
 
     Args:
         field: SQLAlchemy column to validate
-        allow_null: (bool) Allow null values
         throw_exception: (bool) Throw a ValidateError if the validation fails
     """
-
-    def __init__(self, field, allow_null=True, throw_exception=False):
-        self.allow_null = allow_null
-
-        Validator.__init__(self, field, throw_exception)
+    def __init__(self, field):
+        Validator.__init__(self, field, False)
 
     def check_value(self, value):
-        if self.allow_null and value is None:
-            return True
-
         return isinstance(value, bool)

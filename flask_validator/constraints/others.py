@@ -11,20 +11,21 @@ class ValidateRegex(Validator):
     Args:
         field: SQLAlchemy column to validate
         regex: Regular expresion
+        allow_null: (bool) Allow null values
         throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
 
     regex = None
 
-    def __init__(self, field, regex, throw_exception=False):
+    def __init__(self, field, regex, allow_null=False, throw_exception=False):
         try:
             self.regex = regex
             re.compile(regex)
         except re.error:
             raise AttributeError('Invalid Regex')
 
-        Validator.__init__(self, field, throw_exception)
+        Validator.__init__(self, field, allow_null, throw_exception)
 
     def check_value(self, value):
         if re.match(self.regex, value):
@@ -41,15 +42,16 @@ class ValidateUUID(Validator):
     Args:
         field: SQLAlchemy column to validate
         version: UUUID version. Default 4
+        allow_null: (bool) Allow null values
         throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
     varsion = 4
 
-    def __init__(self, field, version=4, throw_exception=False):
+    def __init__(self, field, version=4, allow_null=True, throw_exception=False):
         self.version = version
 
-        Validator.__init__(self, field, throw_exception)
+        Validator.__init__(self, field, allow_null, throw_exception)
 
     def check_value(self, value):
         try:

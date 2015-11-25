@@ -21,7 +21,7 @@ class ValidateLength(Validator):
         self.max_length = max_length
         self.min_lenght = min_length
 
-        Validator.__init__(self, field, throw_exception)
+        Validator.__init__(self, field, False, throw_exception)
 
     def check_value(self, value):
 
