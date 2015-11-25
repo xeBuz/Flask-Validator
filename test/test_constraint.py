@@ -1,7 +1,7 @@
 from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
     ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID, ValidateLessThan, \
     ValidateGreaterThan, ValidateLessThanOrEqual, ValidateGreaterThanOrEqual, ValidateCountry, ValidateTimezone, \
-    ValidateLocale, ValidateError
+    ValidateLocale, ValidateError, ValidateCreditCard, ValidateCurrency, ValidateIBAN, ValidateISBN
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -29,6 +29,10 @@ class ConstraintTest(unittest.TestCase):
             country = db.Column(db.String(50))
             timezone = db.Column(db.String(100))
             locale = db.Column(db.String(20))
+            creditcard = db.Column(db.String(20))
+            currency = db.Column(db.String(3))
+            iban = db.Column(db.String(100))
+            isbn = db.Column(db.String(100))
 
         db.create_all()
 
@@ -76,6 +80,10 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.country = 'Argentina'
         self.dummy.timezone = 'UTC'
         self.dummy.locale = 'en_us'
+        self.dummy.creditcard = 378282246310005  # PayPal Example
+        self.dummy.currency = 'USD'
+        self.dummy.iban = 'GB82 WEST 1234 5698 7654 32'
+        self.dummy.isbn = '1-56619-909-3'
 
     def define_validators(self):
         """
@@ -100,6 +108,10 @@ class ConstraintTest(unittest.TestCase):
         ValidateLocale(self.DummyModel.locale)
         ValidateGreaterThan(self.DummyModel.large, 100)
         ValidateGreaterThanOrEqual(self.DummyModel.large, 101)
+        ValidateCreditCard(self.DummyModel.creditcard)
+        ValidateCurrency(self.DummyModel.currency)
+        ValidateIBAN(self.DummyModel.iban)
+        ValidateISBN(self.DummyModel.isbn)
 
     def test_integer(self):
         """
@@ -230,6 +242,35 @@ class ConstraintTest(unittest.TestCase):
         """
 
         self.simple_validate('locale', 'ES_AR', "BRITISH")
+
+    def test_creditcard(self):
+        """
+        Testing CreditCard
+        """
+
+        self.simple_validate('creditcard', '4111 1111 1111 1111', "202")
+
+    def test_currency(self):
+        """
+        Testing Currency
+        """
+
+        self.simple_validate('currency', 'EGP', "$$$")
+
+    def test_iban(self):
+        """
+        Testing IBAN
+        """
+
+        self.simple_validate('iban', 'GB82WEST12345698765432', "GB82 WEST 1243 5698 7654 32")
+
+    def test_isbn(self):
+        """
+        Testing ISBN
+        """
+
+        self.simple_validate('isbn', '978-3-16-148410-0', "111112")
+
 
 def suite():
     suite = unittest.TestSuite()

@@ -69,8 +69,14 @@ class User(db.Model):
   - ValidateCountry
   - ValidateTimezone
   - ValidateLocale
+- Finantial
+  - ValidateCreditCard
+  - ValidateCurrency
+  - ValidateIBAN
 - Others 
   - ValidateUUID
+  - ValidateISBN
+  - ValidateRegex
 
 
 

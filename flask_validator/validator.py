@@ -1,20 +1,22 @@
 from sqlalchemy import event
 from .exceptions import ValidateError
 
-__version__ = '0.7'
+__version__ = '0.8'
 
 
 class FlaskValidator:
     field = None
+    allow_null = True
     throw_exception = False
 
-    def __init__(self, field, throw_exception=False):
+    def __init__(self, field, allow_null, throw_exception):
         """ Initialize a Validator object.
 
         :type throw_exception: Throw a ValidateError exception
         :param field: Model.field | Column to listen
         """
         self.field = field
+        self.allow_null = allow_null
         self.throw_exception = throw_exception
 
         self.__create_event()
@@ -35,6 +37,9 @@ class FlaskValidator:
         if self.check_value(value):
             return value
         else:
+            if self.allow_null and value is None:
+                return True
+
             if self.throw_exception:
                 raise ValidateError('Value %s from column %s is not valid' % (value, initiator.key))
 
@@ -67,14 +72,14 @@ class FlaskValidator:
 
 class Validator(FlaskValidator):
 
-    def __init__(self, field, throw_exception):
+    def __init__(self, field, allow_null=True, throw_exception=False):
         """
         Validator Interface initialization
 
         :param field:  Flask Column to validate
         """
 
-        FlaskValidator.__init__(self, field, throw_exception)
+        FlaskValidator.__init__(self, field, allow_null, throw_exception)
 
     def check_value(self, value):
         """

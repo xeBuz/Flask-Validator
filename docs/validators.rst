@@ -21,7 +21,9 @@ At the moment, the library support this validations:
 * :ref:`in_country`
 * :ref:`in_timezone`
 * :ref:`in_locale`
-
+* :ref:`_in_creditcard`
+* :ref:`_in_currency`
+* :ref:`_in_iban`
 
 
 .. _in_integer:
@@ -117,7 +119,7 @@ Parametes:
 ValidateLenght
 --------------
 
-Check if the new value is a valid ``string`` type.
+Check if the new value has a lenght with a maximun and a minimun
 
 Parametes:
 
@@ -278,6 +280,8 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 | ipv6                    | False     | Check IPv6 Address instread of IPv4                             |
 +-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
 | throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
@@ -317,7 +321,9 @@ Parametes:
 +=========================+===========+=================================================================+
 | field                   |           | SQLAlchemy column to validate                                   |
 +-------------------------+-----------+-----------------------------------------------------------------+
-| version                 | 3         | UUID version                                                    |
+| version                 | 4         | UUID version                                                    |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
 +-------------------------+-----------+-----------------------------------------------------------------+
 | throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+-----------+-----------------------------------------------------------------+
@@ -393,7 +399,107 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 
 
+.. _in_creditcard:
+
+ValidateCreditCard
+------------------
+
+Check if the new value is valid credit card number.
+
+Allowed formats:
+* XXXXYYYYWWWWZZZ
+* "XXXXYYYYWWWWZZZ"
+* "XXXX YYYY WWWW ZZZ"
+* "XXXX-YYYY-WWWW-ZZZ"
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+-----------+-----------------------------------------------------------------+
+
+.. _in_currency:
+
+ValidateCurrency
+----------------
+
+Check if the new value is a valid Currency
+
+List provided by: https://github.com/iktw/python-currency-list/blob/master/python_currency_dict.py
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+-----------+-----------------------------------------------------------------+
+
+
+.. _in_iban:
+
+ValidateIBAN
+------------
+
+Check if the new value is valid IBAN (International Bank Account Number)
+
+More reference: https://en.wikipedia.org/wiki/International_Bank_Account_Number
+
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+-----------+-----------------------------------------------------------------+
+
+
+
+.. _in_isbn:
+
+ValidateISBN
+------------
+
+Check if the new value is valid ISBN (International Standard Book Number). Allows ISBN10 or ISBN13
+
+Validation provided by: isbnlib_
+More reference: https://en.wikipedia.org/wiki/International_Standard_Book_Number
+
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+-----------+-----------------------------------------------------------------+
+
+
 .. _email_validator: https://github.com/JoshData/python-email-validator
 .. _SMTPUTF8: https://tools.ietf.org/html/rfc6531
 .. _iso3166: https://pypi.python.org/pypi/iso3166
 .. _pytz: http://pytz.sourceforge.net/
+.. _isbnlib: https://pypi.python.org/pypi/isbnlib/3.5.6

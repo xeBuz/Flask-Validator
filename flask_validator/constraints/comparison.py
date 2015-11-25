@@ -9,7 +9,7 @@ class BaseComparision(Validator):
     def __init__(self, field, value, throw_exception=False):
         self.value = value
 
-        Validator.__init__(self, field, throw_exception)
+        Validator.__init__(self, field, False, throw_exception)
 
 
 class ValidateLessThan(BaseComparision):
