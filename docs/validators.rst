@@ -21,6 +21,7 @@ At the moment, the library support this validations:
 * :ref:`in_country`
 * :ref:`in_timezone`
 * :ref:`in_locale`
+* :ref:`_in_creditcard`
 
 
 
@@ -382,6 +383,33 @@ ValidateLocale
 --------------
 
 Check if the value is a valid Locale.
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+-----------+-----------------------------------------------------------------+
+
+
+.. _in_creditcard:
+
+ValidateCreditCard
+------------------
+
+Check if the new value is valida credit card number.
+
+Allowed formats:
+* XXXXYYYYWWWWZZZ
+* "XXXXYYYYWWWWZZZ"
+* "XXXX YYYY WWWW ZZZ"
+* "XXXX-YYYY-WWWW-ZZZ"
 
 
 Parametes:

@@ -69,6 +69,8 @@ class User(db.Model):
   - ValidateCountry
   - ValidateTimezone
   - ValidateLocale
+- Finantial
+  - ValidateCreditCard
 - Others 
   - ValidateUUID
 

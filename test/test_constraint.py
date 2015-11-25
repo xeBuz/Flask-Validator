@@ -1,7 +1,7 @@
 from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
     ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID, ValidateLessThan, \
     ValidateGreaterThan, ValidateLessThanOrEqual, ValidateGreaterThanOrEqual, ValidateCountry, ValidateTimezone, \
-    ValidateLocale, ValidateError
+    ValidateLocale, ValidateError, ValidateCreditCard
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -29,6 +29,7 @@ class ConstraintTest(unittest.TestCase):
             country = db.Column(db.String(50))
             timezone = db.Column(db.String(100))
             locale = db.Column(db.String(20))
+            creditcard = db.Column(db.String(20))
 
         db.create_all()
 
@@ -76,6 +77,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.country = 'Argentina'
         self.dummy.timezone = 'UTC'
         self.dummy.locale = 'en_us'
+        self.dummy.creditcard = 378282246310005 # PayPal Example
 
     def define_validators(self):
         """
@@ -100,6 +102,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateLocale(self.DummyModel.locale)
         ValidateGreaterThan(self.DummyModel.large, 100)
         ValidateGreaterThanOrEqual(self.DummyModel.large, 101)
+        ValidateCreditCard(self.DummyModel.creditcard)
 
     def test_integer(self):
         """
@@ -230,6 +233,14 @@ class ConstraintTest(unittest.TestCase):
         """
 
         self.simple_validate('locale', 'ES_AR', "BRITISH")
+
+
+    def test_creditcard(self):
+        """
+        Testing CreditCard
+        """
+
+        self.simple_validate('creditcard', '4111 1111 1111 1111', "202")
 
 def suite():
     suite = unittest.TestSuite()
