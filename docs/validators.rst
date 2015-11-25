@@ -22,7 +22,8 @@ At the moment, the library support this validations:
 * :ref:`in_timezone`
 * :ref:`in_locale`
 * :ref:`_in_creditcard`
-
+* :ref:`_in_currency`
+* :ref:`_in_iban`
 
 
 .. _in_integer:
@@ -410,6 +411,52 @@ Allowed formats:
 * "XXXXYYYYWWWWZZZ"
 * "XXXX YYYY WWWW ZZZ"
 * "XXXX-YYYY-WWWW-ZZZ"
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+-----------+-----------------------------------------------------------------+
+
+.. _in_currency:
+
+ValidateCurrency
+----------------
+
+Check if the new value is a valid Currency
+
+List provided by: https://github.com/iktw/python-currency-list/blob/master/python_currency_dict.py
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+-----------+-----------------------------------------------------------------+
+
+
+.. _in_iban:
+
+ValidateIBAN
+------------
+
+Check if the new value is valid IBAN (International Bank Account Number)
+
+More reference: https://en.wikipedia.org/wiki/International_Bank_Account_Number
+
 
 
 Parametes:

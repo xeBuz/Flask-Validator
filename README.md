@@ -71,6 +71,8 @@ class User(db.Model):
   - ValidateLocale
 - Finantial
   - ValidateCreditCard
+  - ValidateCurrency
+  - ValidateIBAN
 - Others 
   - ValidateUUID
 
