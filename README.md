@@ -75,6 +75,8 @@ class User(db.Model):
   - ValidateIBAN
 - Others 
   - ValidateUUID
+  - ValidateISBN
+  - ValidateRegex
 
 
 

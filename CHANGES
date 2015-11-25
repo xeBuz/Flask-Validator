@@ -1,5 +1,5 @@
 - 0.8
-  Finanital Validations: Currency, IBAN, CreditCard
+  Finanital Validations: Currency, IBAN, CreditCard, ISBN
   allow_null now is a Validator property
 
 - 0.7
