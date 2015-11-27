@@ -4,27 +4,72 @@ Validators availables
 
 At the moment, the library support this validations:
 
-* :ref:`in_integer`
-* :ref:`in_numeric`
-* :ref:`in_string`
-* :ref:`in_boolean`
-* :ref:`in_lenght`
-* :ref:`in_lesser`
-* :ref:`in_lesser_equal`
-* :ref:`in_greater`
-* :ref:`in_greater_equal`
-* :ref:`in_email`
-* :ref:`in_regex`
-* :ref:`in_ip`
-* :ref:`in_url`
-* :ref:`in_uuid`
-* :ref:`in_country`
-* :ref:`in_timezone`
-* :ref:`in_locale`
-* :ref:`_in_creditcard`
-* :ref:`_in_currency`
-* :ref:`_in_iban`
+* Types
 
+  * :ref:`in_integer`
+  * :ref:`in_numeric`
+  * :ref:`in_string`
+  * :ref:`in_boolean`
+
+* Numeric
+
+  * :ref:`in_lenght`
+
+* Comparision
+
+  * :ref:`in_lesser`
+  * :ref:`in_lesser_equal`
+  * :ref:`in_greater`
+  * :ref:`in_greater_equal`
+
+* Internet
+
+  * :ref:`in_email`
+  * :ref:`in_ip`
+  * :ref:`in_url`
+
+* Location
+
+  * :ref:`in_country`
+  * :ref:`in_timezone`
+  * :ref:`in_locale`
+
+* Finantial
+
+  * :ref:`in_creditcard`
+  * :ref:`in_currency`
+  * :ref:`in_iban`
+
+* Others
+
+  * :ref:`in_isbn`
+  * :ref:`in_uuid`
+  * :ref:`in_regex`
+
+
+- Numeric
+  - ValidateLenght
+- Comparision
+  - ValidateLessThan
+  - ValidateLessThanOrEqual
+  - ValidateGreaterThan
+  - ValidateGreaterThanOrEqual
+- Internet
+  - ValidateEmail
+  - ValidateIP
+  - ValidateURL
+- Location
+  - ValidateCountry
+  - ValidateTimezone
+  - ValidateLocale
+- Finantial
+  - ValidateCreditCard
+  - ValidateCurrency
+  - ValidateIBAN
+- Others
+  - ValidateUUID
+  - ValidateISBN
+  - ValidateRegex
 
 .. _in_integer:
 

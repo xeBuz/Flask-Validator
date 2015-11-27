@@ -63,7 +63,6 @@ class User(db.Model):
   - ValidateGreaterThanOrEqual
 - Internet
   - ValidateEmail
-  - ValidateRegex
   - ValidateIP
   - ValidateURL
 - Location
