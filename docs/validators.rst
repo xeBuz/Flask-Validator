@@ -47,30 +47,6 @@ At the moment, the library support this validations:
   * :ref:`in_regex`
 
 
-- Numeric
-  - ValidateLenght
-- Comparision
-  - ValidateLessThan
-  - ValidateLessThanOrEqual
-  - ValidateGreaterThan
-  - ValidateGreaterThanOrEqual
-- Internet
-  - ValidateEmail
-  - ValidateIP
-  - ValidateURL
-- Location
-  - ValidateCountry
-  - ValidateTimezone
-  - ValidateLocale
-- Finantial
-  - ValidateCreditCard
-  - ValidateCurrency
-  - ValidateIBAN
-- Others
-  - ValidateUUID
-  - ValidateISBN
-  - ValidateRegex
-
 .. _in_integer:
 
 ValidateInteger
