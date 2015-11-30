@@ -18,6 +18,7 @@ class ConstraintTest(unittest.TestCase):
             integer = db.Column(db.Integer())
             large = db.Column(db.Integer())
             numeric = db.Column(db.Float())
+            numeric_raise = db.Column(db.Float())
             string = db.Column(db.String(80))
             int_exception = db.Column(db.Integer())
             boolean = db.Column(db.Boolean())
@@ -70,6 +71,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.integer = 100
         self.dummy.large = 1000
         self.dummy.numeric = 3.1
+        self.dummy.numeric_raise = 1
         self.dummy.string = "Test"
         self.dummy.int_exception = 42
         self.dummy.boolean = True
@@ -158,7 +160,7 @@ class ConstraintTest(unittest.TestCase):
 
     def test_string(self):
         """
-        Testing StringConstraint()
+        Testing StringConstraint
 
         """
         self.simple_validate('string', "Magnolia", 3.141592)
@@ -189,6 +191,15 @@ class ConstraintTest(unittest.TestCase):
 
         self.simple_validate('string', "Magnolia", "Magnolia" * 100)
         self.simple_validate('string', "Magnolia", "-")
+
+    def test_length_raise(self):
+        """
+        Testing Length  - Raise Warning
+
+        """
+        with self.assertRaises(Warning):
+            ValidateLength(self.DummyModel.numeric_raise)
+            self.dummy.numeric_raise = 111
 
     def test_email(self):
         """
