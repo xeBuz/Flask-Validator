@@ -35,6 +35,7 @@ class ConstraintTest(unittest.TestCase):
             currency = db.Column(db.String(3))
             iban = db.Column(db.String(100))
             isbn = db.Column(db.String(100))
+            null = db.Column(db.String(1))
 
         db.create_all()
 
@@ -88,6 +89,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.currency = 'USD'
         self.dummy.iban = 'GB82 WEST 1234 5698 7654 32'
         self.dummy.isbn = '1-56619-909-3'
+        self.dummy.null = 'A'
 
     def define_validators(self):
         """
@@ -117,6 +119,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateCurrency(self.DummyModel.currency)
         ValidateIBAN(self.DummyModel.iban)
         ValidateISBN(self.DummyModel.isbn)
+        ValidateString(self.DummyModel.null, True)
 
     def test_integer(self):
         """
@@ -286,6 +289,13 @@ class ConstraintTest(unittest.TestCase):
         """
 
         self.simple_validate('isbn', '978-3-16-148410-0', "111112")
+
+    def test_null(self):
+        """
+        Testing allow_null
+        """
+
+        self.simple_validate('null', None, 1.1)
 
 
 def suite():
