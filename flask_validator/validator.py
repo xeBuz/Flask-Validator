@@ -38,7 +38,7 @@ class FlaskValidator:
             return value
         else:
             if self.allow_null and value is None:
-                return True
+                return value
 
             if self.throw_exception:
                 raise ValidateError('Value %s from column %s is not valid' % (value, initiator.key))

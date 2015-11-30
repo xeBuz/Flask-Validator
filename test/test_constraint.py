@@ -18,12 +18,14 @@ class ConstraintTest(unittest.TestCase):
             integer = db.Column(db.Integer())
             large = db.Column(db.Integer())
             numeric = db.Column(db.Float())
+            numeric_raise = db.Column(db.Float())
             string = db.Column(db.String(80))
             int_exception = db.Column(db.Integer())
             boolean = db.Column(db.Boolean())
             email = db.Column(db.String(80))
             regex = db.Column(db.String(10))
             ip = db.Column(db.String(16))
+            ipv6 = db.Column(db.String(100))
             url = db.Column(db.String(255))
             uuid = db.Column(db.String(255))
             country = db.Column(db.String(50))
@@ -33,6 +35,7 @@ class ConstraintTest(unittest.TestCase):
             currency = db.Column(db.String(3))
             iban = db.Column(db.String(100))
             isbn = db.Column(db.String(100))
+            null = db.Column(db.String(1))
 
         db.create_all()
 
@@ -69,12 +72,14 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.integer = 100
         self.dummy.large = 1000
         self.dummy.numeric = 3.1
+        self.dummy.numeric_raise = 1
         self.dummy.string = "Test"
         self.dummy.int_exception = 42
         self.dummy.boolean = True
         self.dummy.email = "test@gmail.com"
         self.dummy.regex = "Aa"
         self.dummy.ip = "127.0.0.1"
+        self.dummy.ipv6 = '2001:0db8:0a0b:12f0:0000:0000:0000:0001'
         self.dummy.url = "http://yahoo.com"
         self.dummy.uuid = "19eb35868a8247a4a911758a62601cf2"
         self.dummy.country = 'Argentina'
@@ -84,6 +89,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.currency = 'USD'
         self.dummy.iban = 'GB82 WEST 1234 5698 7654 32'
         self.dummy.isbn = '1-56619-909-3'
+        self.dummy.null = 'A'
 
     def define_validators(self):
         """
@@ -101,6 +107,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateEmail(self.DummyModel.email)
         ValidateRegex(self.DummyModel.regex, "[A-Z][a-z]+")
         ValidateIP(self.DummyModel.ip)
+        ValidateIP(self.DummyModel.ipv6, True)
         ValidateURL(self.DummyModel.url)
         ValidateUUID(self.DummyModel.uuid)
         ValidateCountry(self.DummyModel.country)
@@ -112,6 +119,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateCurrency(self.DummyModel.currency)
         ValidateIBAN(self.DummyModel.iban)
         ValidateISBN(self.DummyModel.isbn)
+        ValidateString(self.DummyModel.null, True)
 
     def test_integer(self):
         """
@@ -155,7 +163,7 @@ class ConstraintTest(unittest.TestCase):
 
     def test_string(self):
         """
-        Testing StringConstraint()
+        Testing StringConstraint
 
         """
         self.simple_validate('string', "Magnolia", 3.141592)
@@ -187,6 +195,15 @@ class ConstraintTest(unittest.TestCase):
         self.simple_validate('string', "Magnolia", "Magnolia" * 100)
         self.simple_validate('string', "Magnolia", "-")
 
+    def test_length_raise(self):
+        """
+        Testing Length  - Raise Warning
+
+        """
+        with self.assertRaises(Warning):
+            ValidateLength(self.DummyModel.numeric_raise)
+            self.dummy.numeric_raise = 111
+
     def test_email(self):
         """
         Testing EmailConstraint()
@@ -201,12 +218,18 @@ class ConstraintTest(unittest.TestCase):
 
         self.simple_validate('regex', "Testing", " ")
 
+        with self.assertRaises(AttributeError):
+            ValidateRegex(self.DummyModel.regex, "aa(aa")
+            self.dummy.regex = 'nope'
+
     def test_ip(self):
         """
         Testing IP Validator
         """
 
         self.simple_validate('ip', "255.255.255.0", "12.2.1")
+
+        self.simple_validate('ipv6', "2001:db8:a0b:12f0::1", "255.255.255.0")
 
     def test_url(self):
         """
@@ -270,6 +293,13 @@ class ConstraintTest(unittest.TestCase):
         """
 
         self.simple_validate('isbn', '978-3-16-148410-0', "111112")
+
+    def test_null(self):
+        """
+        Testing allow_null
+        """
+
+        self.simple_validate('null', None, 1.1)
 
 
 def suite():
