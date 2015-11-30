@@ -218,6 +218,10 @@ class ConstraintTest(unittest.TestCase):
 
         self.simple_validate('regex', "Testing", " ")
 
+        with self.assertRaises(AttributeError):
+            ValidateRegex(self.DummyModel.regex, "aa(aa")
+            self.dummy.regex = 'nope'
+
     def test_ip(self):
         """
         Testing IP Validator
