@@ -24,6 +24,7 @@ class ConstraintTest(unittest.TestCase):
             email = db.Column(db.String(80))
             regex = db.Column(db.String(10))
             ip = db.Column(db.String(16))
+            ipv6 = db.Column(db.String(100))
             url = db.Column(db.String(255))
             uuid = db.Column(db.String(255))
             country = db.Column(db.String(50))
@@ -75,6 +76,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.email = "test@gmail.com"
         self.dummy.regex = "Aa"
         self.dummy.ip = "127.0.0.1"
+        self.dummy.ipv6 = '2001:0db8:0a0b:12f0:0000:0000:0000:0001'
         self.dummy.url = "http://yahoo.com"
         self.dummy.uuid = "19eb35868a8247a4a911758a62601cf2"
         self.dummy.country = 'Argentina'
@@ -101,6 +103,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateEmail(self.DummyModel.email)
         ValidateRegex(self.DummyModel.regex, "[A-Z][a-z]+")
         ValidateIP(self.DummyModel.ip)
+        ValidateIP(self.DummyModel.ipv6, True)
         ValidateURL(self.DummyModel.url)
         ValidateUUID(self.DummyModel.uuid)
         ValidateCountry(self.DummyModel.country)
@@ -207,6 +210,8 @@ class ConstraintTest(unittest.TestCase):
         """
 
         self.simple_validate('ip', "255.255.255.0", "12.2.1")
+
+        self.simple_validate('ipv6', "2001:db8:a0b:12f0::1", "255.255.255.0")
 
     def test_url(self):
         """
