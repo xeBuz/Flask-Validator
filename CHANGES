@@ -1,3 +1,6 @@
+- 0.9
+  Bug fixing
+
 - 0.8
   Finanital Validations: Currency, IBAN, CreditCard, ISBN
   allow_null now is a Validator property

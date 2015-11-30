@@ -10,7 +10,7 @@ except (IOError, ImportError):
 
 setup(
     name='Flask-Validator',
-    version='0.8',
+    version='0.9',
     license='Mozilla Public License',
     author='Jesus Roldan',
     author_email='jesus.roldan@gmail.com',
