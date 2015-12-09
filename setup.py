@@ -1,6 +1,6 @@
 import re
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 try:
     import pypandoc
@@ -10,14 +10,14 @@ except (IOError, ImportError):
 
 setup(
     name='Flask-Validator',
-    version='0.9',
+    version='0.9.1',
     license='Mozilla Public License',
     author='Jesus Roldan',
     author_email='jesus.roldan@gmail.com',
     description="Data validator for Flask using SQL-Alchemy, working at Model component with events",
     long_description=long_description,
     url='https://github.com/xeBuz/Flask-Validator',
-    packages=['flask_validator'],
+    packages=find_packages(),
     platforms='any',
     test_suite='nose.collector',
     install_requires=[
