@@ -1,6 +1,6 @@
 import re
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 try:
     import pypandoc
@@ -17,7 +17,7 @@ setup(
     description="Data validator for Flask using SQL-Alchemy, working at Model component with events",
     long_description=long_description,
     url='https://github.com/xeBuz/Flask-Validator',
-    packages=['flask_validator'],
+    packages=find_packages(),
     platforms='any',
     test_suite='nose.collector',
     install_requires=[
