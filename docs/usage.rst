@@ -11,22 +11,24 @@ The only required argument is the Column to validate.
 .. code-block:: python
 
     # import ...
-    from flask_validator import ValidateInteger, ValidateString
+    from flask_validator import ValidateInteger, ValidateString, ValidateEmail
 
     class User(db.Model):
       _tablename__ = 'user'
       id = db.Column(db.Integer, primary_key=True)
-      string = db.Column(db.String(80))
-      integer = db.Column(db.Integer())
+      name = db.Column(db.String(80))
+      code = db.Column(db.Integer())
+      email = db.Column(db.String(125))
 
       def __init__(self, string, integer):
-         self.string = string
-         self.integer = integer
+          self.string = string
+          self.integer = integer
 
       @classmethod
       def __declare_last__(cls):
-         ValidateInteger(User.integer)
-         ValidateString(User.string, throw_exception=True)
+          ValidateString(User.name)
+          ValidateInteger(User.code)
+          ValidateEmail(User.email, true, true)
 
 
 With that code, the Validator will execute an ORM event_ listening each field modification

@@ -1,7 +1,8 @@
+import weakref
 from sqlalchemy import event
 from .exceptions import ValidateError
 
-__version__ = '0.9'
+__version__ = '1.0'
 
 
 class FlaskValidator:
@@ -9,16 +10,16 @@ class FlaskValidator:
     allow_null = True
     throw_exception = False
 
-    def __init__(self, field, allow_null, throw_exception):
+    def __init__(self, field, allow_null, throw_exception, parent):
         """ Initialize a Validator object.
 
         :type throw_exception: Throw a ValidateError exception
         :param field: Model.field | Column to listen
         """
+        self.parent = weakref.ref(parent)
         self.field = field
         self.allow_null = allow_null
         self.throw_exception = throw_exception
-
         self.__create_event()
 
     def __validate(self, target, value, oldvalue, initiator):
@@ -69,9 +70,20 @@ class FlaskValidator:
         """
         pass
 
+    def stop(self):
+        """ Remove the listener to stop the validation
+        """
+        if event.contains(self.field, 'set', self.__validate):
+            event.remove(self.field, 'set', self.__validate)
+
+    def start(self):
+        """ Restart the listener
+        """
+        if not event.contains(self.field, 'set', self.__validate):
+            self.__create_event()
+
 
 class Validator(FlaskValidator):
-
     def __init__(self, field, allow_null=True, throw_exception=False):
         """
         Validator Interface initialization
@@ -79,7 +91,7 @@ class Validator(FlaskValidator):
         :param field:  Flask Column to validate
         """
 
-        FlaskValidator.__init__(self, field, allow_null, throw_exception)
+        FlaskValidator.__init__(self, field, allow_null, throw_exception, self)
 
     def check_value(self, value):
         """
