@@ -28,13 +28,14 @@ For the online documentation, follow [this link](http://flask-validator.readthed
 ## Basic usage
 
 ```python
-from flask_validator import ValidateInteger, ValidateString
+from flask_validator import ValidateInteger, ValidateString, ValidateEmail
 
 class User(db.Model):
     __tablename__ = 'user'
     id = db.Column(db.Integer, primary_key=True)
-    string = db.Column(db.String(80))
-    integer = db.Column(db.Integer())
+    name = db.Column(db.String(80))
+    code = db.Column(db.Integer())
+    email = db.Column(db.String(125))
 
     def __init__(self, string, integer):
         self.string = string
@@ -42,9 +43,20 @@ class User(db.Model):
 
     @classmethod
     def __declare_last__(cls):
-        ValidateInteger(User.integer)
-        ValidateString(User.string)
+        ValidateString(User.name)
+        ValidateInteger(User.code)
+        ValidateEmail(User.email)
+        
+user = User('Arthur Dent', 42, 'arthur@babelfish.org')
+
+user.name = 666
+print user.name 
+# 'Arthur Dent'
+user.name = 'Zaphod Beeblebrox'
+print user.name
+# 'Zaphod Beeblebrox'
 ```
+
 
 
 ## Available Constraints
