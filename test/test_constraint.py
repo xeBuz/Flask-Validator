@@ -36,6 +36,7 @@ class ConstraintTest(unittest.TestCase):
             iban = db.Column(db.String(100))
             isbn = db.Column(db.String(100))
             null = db.Column(db.String(1))
+            temporal = db.Column(db.String(5))
 
         db.create_all()
 
@@ -90,6 +91,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.iban = 'GB82 WEST 1234 5698 7654 32'
         self.dummy.isbn = '1-56619-909-3'
         self.dummy.null = 'A'
+        self.dummy.temporal = 'abcd'
 
     def define_validators(self):
         """
@@ -301,6 +303,17 @@ class ConstraintTest(unittest.TestCase):
 
         self.simple_validate('null', None, 1.1)
 
+    def test_delete(self):
+        valid = ValidateString(self.DummyModel.temporal)
+        self.simple_validate('temporal', 'bbb', 123)
+
+        valid.stop()
+        self.dummy.temporal = 123
+        self.assertEqual(self.dummy.temporal, 123)
+
+        self.dummy.temporal = "aaa"
+        valid.start()
+        self.simple_validate('temporal', 'bbb', 123)
 
 def suite():
     suite = unittest.TestSuite()
