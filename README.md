@@ -1,7 +1,9 @@
 # Flask-Validator
+![PyPi status](https://img.shields.io/pypi/status/Flask-Validator.svg)
 [![PyPI version](https://badge.fury.io/py/Flask-Validator.svg)](https://badge.fury.io/py/Flask-Validator)
 [![Travis](https://travis-ci.org/xeBuz/Flask-Validator.svg)](https://travis-ci.org/xeBuz/Flask-Validator)
 [![Documentation Status](https://readthedocs.org/projects/flask-validator/badge/?version=latest)](http://flask-validator.readthedocs.org/en/latest/?badge=latest)
+
 [![Code Climate](https://codeclimate.com/github/xeBuz/Flask-Validator/badges/gpa.svg)](https://codeclimate.com/github/xeBuz/Flask-Validator) 
 [![Coverage Status](https://coveralls.io/repos/xeBuz/Flask-Validator/badge.svg?branch=master&service=github)](https://coveralls.io/github/xeBuz/Flask-Validator?branch=master)
 [![Code Health](https://landscape.io/github/xeBuz/Flask-Validator/master/landscape.svg?style=flat)](https://landscape.io/github/xeBuz/Flask-Validator/master)
