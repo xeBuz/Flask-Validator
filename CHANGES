@@ -1,3 +1,10 @@
+- 1.0.1
+  Bug fixing
+
+- 1.0
+  Better Documentation
+  Allow stop() and start() the validation
+
 - 0.9
   Bug fixing
 
