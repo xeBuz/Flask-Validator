@@ -47,7 +47,7 @@ class ValidateUUID(Validator):
         throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
-    varsion = 4
+    version = 4
 
     def __init__(self, field, version=4, allow_null=True, throw_exception=False):
         self.version = version
