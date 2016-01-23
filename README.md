@@ -68,7 +68,7 @@ print user.name
 Every Constraint has a parameter to throw an exception everytime the validation fails, for example:
 
 ```python
-ValidateNumeric(Table.field, false, true)
+ValidateNumeric(Table.field, False, True, "Message")
 ```
 
 The last parameter enables this featur and throw a `ValidateError` exception, otherwise it will fails silently.
@@ -119,10 +119,10 @@ You must define your own method ``check_value()`` and if you are receiving any a
 from flask_validator import Validator
 
 class ValidateAorB(Validator)
-    def __init__(self, field, useless, allow_null=True, throw_exception=False):
+    def __init__(self, field, useless, allow_null=True, throw_exception=False, message=None):
         self.useless = useless
 
-        Validator.__init__(self, field, allow_null, throw_exception):
+        Validator.__init__(self, field, allow_null, throw_exception, message):
 
     def check_value(self, value):
         retunr if value in ['A', 'B']

@@ -28,7 +28,7 @@ The only required argument is the Column to validate.
       def __declare_last__(cls):
           ValidateString(User.name)
           ValidateInteger(User.code)
-          ValidateEmail(User.email, true, true)
+          ValidateEmail(User.email, true, true, "The e-mail is not valid. Please check it")
 
 
 With that code, the Validator will execute an ORM event_ listening each field modification
