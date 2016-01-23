@@ -21,6 +21,7 @@ class ConstraintTest(unittest.TestCase):
             numeric_raise = db.Column(db.Float())
             string = db.Column(db.String(80))
             int_exception = db.Column(db.Integer())
+            str_exception = db.Column(db.String(20))
             boolean = db.Column(db.Boolean())
             email = db.Column(db.String(80))
             regex = db.Column(db.String(10))
@@ -76,6 +77,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.numeric_raise = 1
         self.dummy.string = "Test"
         self.dummy.int_exception = 42
+        self.dummy.str_exception = "Baggings"
         self.dummy.boolean = True
         self.dummy.email = "test@gmail.com"
         self.dummy.regex = "Aa"
@@ -102,6 +104,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateLessThan(self.DummyModel.integer, 100000)
         ValidateLessThanOrEqual(self.DummyModel.integer, 99999)
         ValidateInteger(self.DummyModel.int_exception, True, True)
+        ValidateString(self.DummyModel.str_exception, True, True, "Test Message")
         ValidateNumeric(self.DummyModel.numeric)
         ValidateString(self.DummyModel.string)
         ValidateBoolean(self.DummyModel.boolean)
@@ -175,7 +178,6 @@ class ConstraintTest(unittest.TestCase):
         Testing IntegerConstraint() with exceptions
 
         """
-
         default_value = self.dummy.int_exception
         with self.assertRaises(ValidateError):
             self.dummy.int_exception = "Doctor"
@@ -314,6 +316,18 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.temporal = "aaa"
         valid.start()
         self.simple_validate('temporal', 'bbb', 123)
+
+    def test_exception_with_message(self):
+        """
+        Testing StringValidate() with exceptions and messages
+
+        """
+
+        default_value = self.dummy.str_exception
+        with self.assertRaises(ValidateError):
+            self.dummy.str_exception = 42
+            self.assertEqual(self.dummy.str_exception, default_value)
+
 
 def suite():
     suite = unittest.TestSuite()

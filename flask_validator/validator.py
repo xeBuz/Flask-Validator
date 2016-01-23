@@ -9,8 +9,9 @@ class FlaskValidator:
     field = None
     allow_null = True
     throw_exception = False
+    message = None
 
-    def __init__(self, field, allow_null, throw_exception, parent):
+    def __init__(self, field, allow_null, throw_exception, message, parent):
         """ Initialize a Validator object.
 
         :type throw_exception: Throw a ValidateError exception
@@ -20,6 +21,7 @@ class FlaskValidator:
         self.field = field
         self.allow_null = allow_null
         self.throw_exception = throw_exception
+        self.message = message
         self.__create_event()
 
     def __validate(self, target, value, oldvalue, initiator):
@@ -42,7 +44,10 @@ class FlaskValidator:
                 return value
 
             if self.throw_exception:
-                raise ValidateError('Value %s from column %s is not valid' % (value, initiator.key))
+                if self.message:
+                    raise ValidateError(self.message)
+                else:
+                    raise ValidateError('Value %s from column %s is not valid' % (value, initiator.key))
 
             return oldvalue
 
@@ -84,14 +89,14 @@ class FlaskValidator:
 
 
 class Validator(FlaskValidator):
-    def __init__(self, field, allow_null=True, throw_exception=False):
+    def __init__(self, field, allow_null=True, throw_exception=False, message=None):
         """
         Validator Interface initialization
 
         :param field:  Flask Column to validate
         """
 
-        FlaskValidator.__init__(self, field, allow_null, throw_exception, self)
+        FlaskValidator.__init__(self, field, allow_null, throw_exception, message, self)
 
     def check_value(self, value):
         """
