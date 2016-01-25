@@ -76,7 +76,7 @@ The third parameter enables this feature and throw a `ValidateError` exception, 
 
 ## Message Exception
 
-The fouth parameter allow a custom message exception, with a few variables available
+The fourth parameter allow a custom message exception, with a few variables available
 
 - `old_value`: value previous to the modification
 - `new_value`: value provided (with the error)
