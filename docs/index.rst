@@ -15,6 +15,7 @@ Contents:
    usage
    validators
    custom
+   messages
 
 
 

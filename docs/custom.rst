@@ -21,5 +21,5 @@ You must define your own method ``check_value()`` and if you are receiving any a
             retunr if value in ['A', 'B']
 
 
-    validator = ValidateAorB('yadayada')
+    validator = ValidateAorB(field, True, True, 'yadayada')
 

@@ -2,7 +2,7 @@ import weakref
 from sqlalchemy import event
 from .exceptions import ValidateError
 
-__version__ = '1.1'
+__version__ = '1.1.1'
 
 
 class FlaskValidator:
@@ -45,6 +45,8 @@ class FlaskValidator:
 
             if self.throw_exception:
                 if self.message:
+                    self.message = self.message.format(
+                            field=self.field, new_value=value, old_value=oldvalue, key=initiator.key)
                     raise ValidateError(self.message)
                 else:
                     raise ValidateError('Value %s from column %s is not valid' % (value, initiator.key))

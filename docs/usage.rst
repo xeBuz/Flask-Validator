@@ -1,5 +1,5 @@
 Basic Usage
-====================
+===========
 
 
 The most performant way to set up your validations is uring the SQLAlchemy special  directive_ ``__declare_last__``, it occurs after mappings are assumed to be completed and the ‘configure’ step has finished.

@@ -71,8 +71,17 @@ Every Constraint has a parameter to throw an exception everytime the validation 
 ValidateNumeric(Table.field, False, True, "Message")
 ```
 
-The last parameter enables this featur and throw a `ValidateError` exception, otherwise it will fails silently.
+The third parameter enables this feature and throw a `ValidateError` exception, otherwise it will fails silently.
 
+
+## Message Exception
+
+The fourth parameter allow a custom message exception, with a few variables available
+
+- `old_value`: value previous to the modification
+- `new_value`: value provided (with the error)
+- `key`: the column name
+- `field`: object.column
 
 
 ## Available Constraints
