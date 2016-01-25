@@ -20,7 +20,8 @@ class User(db.Model):
     @classmethod
     def __declare_last__(cls):
         ValidateInteger(User.integer)
-        ValidateString(User.string, False, True, "Custom Message")
+        ValidateString(User.string, False, True, "Custom Message, "
+                                                 "Field {field} - Value {value} - Oldvalue {oldvalue} - Key {key}")
 
 db.create_all()
 u = User("user", 1)
