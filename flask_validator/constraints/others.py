@@ -19,14 +19,14 @@ class ValidateRegex(Validator):
 
     regex = None
 
-    def __init__(self, field, regex, allow_null=False, throw_exception=False):
+    def __init__(self, field, regex, allow_null=False, throw_exception=False, message=None):
         try:
             self.regex = regex
             re.compile(regex)
         except re.error:
             raise AttributeError('Invalid Regex')
 
-        Validator.__init__(self, field, allow_null, throw_exception)
+        Validator.__init__(self, field, allow_null, throw_exception, message)
 
     def check_value(self, value):
         if re.match(self.regex, value):
@@ -49,10 +49,10 @@ class ValidateUUID(Validator):
     """
     version = 4
 
-    def __init__(self, field, version=4, allow_null=True, throw_exception=False):
+    def __init__(self, field, version=4, allow_null=True, throw_exception=False, message=None):
         self.version = version
 
-        Validator.__init__(self, field, allow_null, throw_exception)
+        Validator.__init__(self, field, allow_null, throw_exception, message)
 
     def check_value(self, value):
         try:

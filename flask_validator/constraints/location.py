@@ -17,10 +17,10 @@ class ValidateLocale(Validator):
 
     """
 
-    def __init__(self, field, allow_null=True, throw_exception=False):
+    def __init__(self, field, allow_null=True, throw_exception=False, message=None):
         self.all_locates = locale.locale_alias
 
-        Validator.__init__(self, field, allow_null, throw_exception)
+        Validator.__init__(self, field, allow_null, throw_exception, message)
 
     def check_value(self, value):
         return bool(self.all_locates.get(str(value).lower()))

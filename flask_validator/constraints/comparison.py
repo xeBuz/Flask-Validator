@@ -6,10 +6,10 @@ class BaseComparision(Validator):
     """
     value = None
 
-    def __init__(self, field, value, throw_exception=False):
+    def __init__(self, field, value, throw_exception=False, message=None):
         self.value = value
 
-        Validator.__init__(self, field, False, throw_exception)
+        Validator.__init__(self, field, False, throw_exception, message)
 
 
 class ValidateLessThan(BaseComparision):
@@ -75,4 +75,3 @@ class ValidateGreaterThanOrEqual(BaseComparision):
 
     def check_value(self, value):
         return value >= self.value
-

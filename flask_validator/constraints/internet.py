@@ -27,13 +27,13 @@ class ValidateEmail(Validator):
     allow_empty_local = False
 
     def __init__(self, field, allow_smtputf8=True,check_deliverability=True, allow_empty_local=False,
-                 allow_null=True, throw_exception=False):
+                 allow_null=True, throw_exception=False, message=None):
 
         self.allow_smtputf8 = allow_smtputf8
         self.check_deliverability = check_deliverability
         self.allow_empty_local = allow_empty_local
 
-        Validator.__init__(self, field, allow_null, throw_exception)
+        Validator.__init__(self, field, allow_null, throw_exception, message)
 
     def check_value(self, value):
         try:
@@ -60,10 +60,10 @@ class ValidateIP(Validator):
     """
     ipv6 = None
 
-    def __init__(self, field, ipv6=False, allow_null=True, throw_exception=False):
+    def __init__(self, field, ipv6=False, allow_null=True, throw_exception=False, message=None):
         self.ipv6 = ipv6
 
-        Validator.__init__(self, field, allow_null, throw_exception)
+        Validator.__init__(self, field, allow_null, throw_exception, message)
 
     def check_value(self, value):
         try:
