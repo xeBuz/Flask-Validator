@@ -5,7 +5,6 @@
 [![Documentation Status](https://readthedocs.org/projects/flask-validator/badge/?version=latest)](http://flask-validator.readthedocs.org/en/latest/?badge=latest)
 [![Requirements Status](https://requires.io/github/xeBuz/Flask-Validator/requirements.svg?branch=master)](https://requires.io/github/xeBuz/Flask-Validator/requirements/?branch=master)
 [![Coverage Status](https://coveralls.io/repos/xeBuz/Flask-Validator/badge.svg?branch=master&service=github)](https://coveralls.io/github/xeBuz/Flask-Validator?branch=master)
-[![](https://landscape.io/github/xeBuz/Flask-Validator/master/landscape.svg?style=flat)](https://landscape.io/github/xeBuz/Flask-Validator/master)
 [![Code Climate](https://codeclimate.com/github/xeBuz/Flask-Validator/badges/gpa.svg)](https://codeclimate.com/github/xeBuz/Flask-Validator) 
 
 
