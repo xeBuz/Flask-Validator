@@ -32,6 +32,17 @@ class ValidateCreditCard(Validator):
 
 class ValidateCurrency(Validator):
 
+    """ Validate Currency
+
+    Check if the new value is a valid Currency
+    Validation provided by: https://github.com/limist/py-moneyed
+
+    Args:
+        field: SQLAlchemy column to validate
+        allow_null: (bool) Allow null values
+        throw_exception: (bool) Throw a ValidateError if the validation fails
+    """
+
     def check_value(self, value):
         value = str(value)
         try:

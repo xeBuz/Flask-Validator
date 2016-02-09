@@ -2,7 +2,7 @@ import weakref
 from sqlalchemy import event
 from .exceptions import ValidateError
 
-__version__ = '1.1.2'
+__version__ = '1.1.3'
 
 
 class FlaskValidator:
