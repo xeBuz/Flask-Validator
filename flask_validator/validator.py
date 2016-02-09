@@ -77,7 +77,6 @@ class FlaskValidator:
         :rtype: Boolean
         :param value:
         """
-        return 
 
     def stop(self):
         """ Remove the listener to stop the validation
