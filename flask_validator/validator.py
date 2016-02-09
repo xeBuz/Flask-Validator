@@ -1,4 +1,5 @@
 import weakref
+import abc
 from sqlalchemy import event
 from .exceptions import ValidateError
 
@@ -69,13 +70,14 @@ class FlaskValidator:
         """
         return list(set(self.default_params + allowed_params))
 
+    @abc.abstractmethod
     def check_value(self, value):
         """ Realize the proper validation, int the new value as parameter
 
         :rtype: Boolean
         :param value:
         """
-        pass
+        return 
 
     def stop(self):
         """ Remove the listener to stop the validation
