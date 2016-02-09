@@ -62,14 +62,6 @@ class FlaskValidator:
         if not event.contains(self.field, 'set', self.__validate):
             event.listen(self.field, 'set', self.__validate, retval=True)
 
-    def _merge_params(self, allowed_params):
-        """ Merge default parameters with the specific parameter validator.
-
-        :param allowed_params: array with valid parameters
-        :return:  array with a merge without duplicated values
-        """
-        return list(set(self.default_params + allowed_params))
-
     @abc.abstractmethod
     def check_value(self, value):
         """ Realize the proper validation, int the new value as parameter
@@ -101,10 +93,10 @@ class Validator(FlaskValidator):
 
         FlaskValidator.__init__(self, field, allow_null, throw_exception, message, self)
 
+    @abc.abstractmethod
     def check_value(self, value):
         """
         Validate the new value
 
         :param value:
         """
-        pass
