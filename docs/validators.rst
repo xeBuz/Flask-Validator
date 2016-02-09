@@ -493,7 +493,7 @@ ValidateCurrency
 
 Check if the new value is a valid Currency
 
-List provided by: https://github.com/iktw/python-currency-list/blob/master/python_currency_dict.py
+Validation provided by: moneyed_
 
 
 Parametes:
@@ -572,3 +572,4 @@ Parametes:
 .. _iso3166: https://pypi.python.org/pypi/iso3166
 .. _pytz: http://pytz.sourceforge.net/
 .. _isbnlib: https://pypi.python.org/pypi/isbnlib/3.5.6
+.. _moneyed: https://github.com/limist/py-moneyed/
