@@ -127,7 +127,8 @@ class ConstraintTest(unittest.TestCase):
         ValidateIBAN(self.DummyModel.iban)
         ValidateISBN(self.DummyModel.isbn)
         ValidateString(self.DummyModel.null, True)
-        ValidateRange(self.DummyModel.rangefield, [11, 12, 13])
+        self.rangevalues = [11, 12, 13]
+        ValidateRange(self.DummyModel.rangefield, self.rangevalues)
 
     def test_integer(self):
         """
@@ -332,9 +333,7 @@ class ConstraintTest(unittest.TestCase):
             self.assertEqual(self.dummy.str_exception, default_value)
 
     def test_range(self):
-        # default_value = self.dummy.rangefield
         self.simple_validate('rangefield', 11, 1)
-
 
 def suite():
     suite = unittest.TestSuite()

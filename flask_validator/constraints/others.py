@@ -94,7 +94,7 @@ class ValidateRange(Validator):
     range_valid = None
 
     def __init__(self, field, range_valid, allow_null=True, throw_exception=False, message=None):
-        self.range = range_valid
+        self.range_valid = range_valid
 
         Validator.__init__(self, field, allow_null, throw_exception, message)
 
