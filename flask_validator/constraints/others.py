@@ -78,3 +78,29 @@ class ValidateISBN(Validator):
     """
     def check_value(self, value):
         return is_isbn10(value) or is_isbn13(value)
+
+
+class ValidateRange(Validator):
+    """ Validate Range
+
+    Validate if the value is in a specific value range
+
+    Args:
+        field: SQLAlchemy column to validate
+        allow_null: (bool) Allow null values
+        throw_exception: (bool) Throw a ValidateError if the validation fails
+
+    """
+    range_valid = None
+
+    def __init__(self, field, range_valid, allow_null=True, throw_exception=False, message=None):
+        self.range_valid = range_valid
+
+        Validator.__init__(self, field, allow_null, throw_exception, message)
+
+    def check_value(self, value):
+        try:
+            return value in self.range_valid
+        except TypeError:
+            return False
+

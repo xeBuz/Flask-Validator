@@ -113,6 +113,7 @@ The fourth parameter allow a custom message exception, with a few variables avai
   - ValidateUUID
   - ValidateISBN
   - ValidateRegex
+  - ValidateRange
 
 
 ## Custom Validators

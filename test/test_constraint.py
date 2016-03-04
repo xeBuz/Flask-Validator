@@ -1,7 +1,7 @@
 from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
     ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID, ValidateLessThan, \
     ValidateGreaterThan, ValidateLessThanOrEqual, ValidateGreaterThanOrEqual, ValidateCountry, ValidateTimezone, \
-    ValidateLocale, ValidateError, ValidateCreditCard, ValidateCurrency, ValidateIBAN, ValidateISBN
+    ValidateLocale, ValidateError, ValidateCreditCard, ValidateCurrency, ValidateIBAN, ValidateISBN, ValidateRange
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -38,6 +38,7 @@ class ConstraintTest(unittest.TestCase):
             isbn = db.Column(db.String(100))
             null = db.Column(db.String(1))
             temporal = db.Column(db.String(5))
+            rangefield = db.Column(db.Integer())
 
         db.create_all()
 
@@ -94,6 +95,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.isbn = '1-56619-909-3'
         self.dummy.null = 'A'
         self.dummy.temporal = 'abcd'
+        self.dummy.rangefield = 12
 
     def define_validators(self):
         """
@@ -125,6 +127,8 @@ class ConstraintTest(unittest.TestCase):
         ValidateIBAN(self.DummyModel.iban)
         ValidateISBN(self.DummyModel.isbn)
         ValidateString(self.DummyModel.null, True)
+        self.rangevalues = [11, 12, 13]
+        ValidateRange(self.DummyModel.rangefield, self.rangevalues)
 
     def test_integer(self):
         """
@@ -328,6 +332,8 @@ class ConstraintTest(unittest.TestCase):
             self.dummy.str_exception = 42
             self.assertEqual(self.dummy.str_exception, default_value)
 
+    def test_range(self):
+        self.simple_validate('rangefield', 11, 1)
 
 def suite():
     suite = unittest.TestSuite()
