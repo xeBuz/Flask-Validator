@@ -45,6 +45,7 @@ At the moment, the library support this validations:
   * :ref:`in_isbn`
   * :ref:`in_uuid`
   * :ref:`in_regex`
+  * :ref:`in_range`
 
 
 .. _in_integer:
@@ -306,6 +307,29 @@ Parametes:
 | message                 | None      | Add a custom message to the ``ValidateError`` exception         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
+
+.. _in_range:
+
+ValidateRange
+-------------
+
+Check if the new value is in a range
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| range                   |           | Range values                                                    |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+-----------+-----------------------------------------------------------------+
+| message                 | None      | Add a custom message to the ``ValidateError`` exception         |
++-------------------------+-----------+-----------------------------------------------------------------+
 
 
 .. _in_ip:
