@@ -91,16 +91,16 @@ class ValidateRange(Validator):
         throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
-    range = []
+    range_valid = None
 
-    def __init__(self, field, range=[], allow_null=True, throw_exception=False, message=None):
-        self.range = range
+    def __init__(self, field, range_valid, allow_null=True, throw_exception=False, message=None):
+        self.range = range_valid
 
         Validator.__init__(self, field, allow_null, throw_exception, message)
 
     def check_value(self, value):
         try:
-            return value in self.range
+            return value in self.range_valid
         except TypeError:
             return False
 
