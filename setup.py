@@ -22,7 +22,7 @@ setup(
     test_suite='nose.collector',
     install_requires=[
         'SQLAlchemy>=1.0',
-        'email_validator==1.0',
+        'email_validator==1.0.1',
         'iso3166==0.7',
         'pytz==2015.7',
         'isbnlib==3.5.7',
