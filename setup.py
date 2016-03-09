@@ -25,7 +25,7 @@ setup(
         'email_validator==1.0.1',
         'iso3166==0.7',
         'pytz==2015.7',
-        'isbnlib==3.5.7',
+        'isbnlib==3.5.8',
         'py-moneyed==0.6.0'
     ],
     classifiers=[
