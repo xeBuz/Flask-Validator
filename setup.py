@@ -24,7 +24,7 @@ setup(
         'SQLAlchemy>=1.0',
         'email_validator==1.0.1',
         'iso3166==0.7',
-        'pytz==2015.7',
+        'pytz==2016.1',
         'isbnlib==3.5.8',
         'py-moneyed==0.6.0'
     ],
