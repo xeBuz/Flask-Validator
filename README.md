@@ -13,7 +13,7 @@
 ## Description
 
 Data validator for Flask using SQL-Alchemy, working at Model component with events, preventing invalid data in the columns.
-The extension works with event listeners form SQLAlchemy.
+The extension works with event listeners from SQLAlchemy.
 
 ## Instalation
 
@@ -29,7 +29,7 @@ For the online documentation, follow [this link](http://flask-validator.readthed
 
 ## Basic usage
 
-The most performant way to set up your validations is uring the SQLAlchemy special  directive_ ``__declare_last__``, it occurs after mappings are assumed to be completed and the ‘configure’ step has finished.
+The most performant way to set up your validations is uring the SQLAlchemy special  directive_ ``__declare_last__``, it occurs after mappings are assumed to be completed and the 'configure' step has finished.
 
 ```python
 from flask_validator import ValidateInteger, ValidateString, ValidateEmail
