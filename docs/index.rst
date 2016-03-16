@@ -6,6 +6,13 @@
 Welcome to Flask-Validator's documentation!
 ===========================================
 
+Data validator for Flask using SQL-Alchemy, working at Model component with events, preventing invalid data in the columns.
+The extension works with event listeners form SQLAlchemy.
+
+The code is available in this repository_
+
+.. _repository: https://github.com/xeBuz/Flask-Validator
+
 Contents:
 
 .. toctree::
