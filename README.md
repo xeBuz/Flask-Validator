@@ -91,7 +91,7 @@ The fourth parameter allow a custom message exception, with a few variables avai
   - ValidateString
   - ValidateBoolean
 - Numeric
-  - ValidateLenght
+  - Validatelength
 - Comparision
   - ValidateLessThan
   - ValidateLessThanOrEqual
