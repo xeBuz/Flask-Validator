@@ -13,7 +13,7 @@ At the moment, the library support this validations:
 
 * Numeric
 
-  * :ref:`in_lenght`
+  * :ref:`in_length`
 
 * Comparision
 
@@ -143,12 +143,12 @@ Parametes:
 
 
 
-.. _in_lenght:
+.. _in_length:
 
-ValidateLenght
+Validatelength
 --------------
 
-Check if the new value has a lenght with a maximun and a minimun
+Check if the new value has a length with a maximun and a minimun
 
 Parametes:
 
@@ -157,9 +157,9 @@ Parametes:
 +=========================+==========+=================================================================+
 | field                   |          | SQLAlchemy column to validate                                   |
 +-------------------------+----------+-----------------------------------------------------------------+
-| max_lenght              | None     | Maximum value lenght                                            |
+| max_length              | None     | Maximum value length                                            |
 +-------------------------+----------+-----------------------------------------------------------------+
-| min_lenght              | 0        | Minumum value lenght                                            |
+| min_length              | 0        | Minumum value length                                            |
 +-------------------------+----------+-----------------------------------------------------------------+
 | throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+
