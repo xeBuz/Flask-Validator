@@ -18,7 +18,7 @@ You must define your own method ``check_value()`` and if you are receiving any a
             Validator.__init__(self, field, allow_null, throw_exception, message):
 
         def check_value(self, value):
-            retunr if value in ['A', 'B']
+            return if value in ['A', 'B']
 
 
     validator = ValidateAorB(field, True, True, 'yadayada')

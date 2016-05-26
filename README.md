@@ -134,11 +134,11 @@ class ValidateAorB(Validator)
         Validator.__init__(self, field, allow_null, throw_exception, message):
 
     def check_value(self, value):
-        retunr if value in ['A', 'B']
+        return if value in ['A', 'B']
         
 class ValidateA(Validator)
     def check_value(self, value):
-        retunr if value == 'A'
+        return if value == 'A'
 ```            
            
             
