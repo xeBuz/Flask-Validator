@@ -5,7 +5,7 @@
 [![Documentation Status](https://readthedocs.org/projects/flask-validator/badge/?version=latest)](http://flask-validator.readthedocs.org/en/latest/?badge=latest)
 [![Requirements Status](https://requires.io/github/xeBuz/Flask-Validator/requirements.svg?branch=master)](https://requires.io/github/xeBuz/Flask-Validator/requirements/?branch=master)
 [![Coverage Status](https://coveralls.io/repos/xeBuz/Flask-Validator/badge.svg?branch=master&service=github)](https://coveralls.io/github/xeBuz/Flask-Validator?branch=master)
-[![Code Climate](https://codeclimate.com/github/xeBuz/Flask-Validator/badges/gpa.svg)](https://codeclimate.com/github/xeBuz/Flask-Validator) 
+[![Code Climate](https://codeclimate.com/github/xeBuz/Flask-Validator/badges/gpa.svg)](https://codeclimate.com/github/xeBuz/Flask-Validator)
 
 
 ------
@@ -50,11 +50,11 @@ class User(db.Model):
         ValidateString(User.name)
         ValidateInteger(User.code)
         ValidateEmail(User.email)
-        
+
 user = User('Arthur Dent', 42, 'arthur@babelfish.org')
 
 user.name = 666
-print user.name 
+print user.name
 # 'Arthur Dent'
 user.name = 'Zaphod Beeblebrox'
 print user.name
@@ -109,7 +109,7 @@ The fourth parameter allow a custom message exception, with a few variables avai
   - ValidateCreditCard
   - ValidateCurrency
   - ValidateIBAN
-- Others 
+- Others
   - ValidateUUID
   - ValidateISBN
   - ValidateRegex
@@ -135,16 +135,16 @@ class ValidateAorB(Validator)
 
     def check_value(self, value):
         return if value in ['A', 'B']
-        
+
 class ValidateA(Validator)
     def check_value(self, value):
         return if value == 'A'
 ```            
-           
-            
+
+
 ## Pause the validation
 
-The extension has two methods to stop and restart the listener. 
+The extension has two methods to stop and restart the listener.
 
 ```python
 class User(db.Model):
@@ -174,6 +174,3 @@ validate.start()
 # Re-enabled the listener
 
 ```
-
-
-
