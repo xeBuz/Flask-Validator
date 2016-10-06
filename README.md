@@ -8,6 +8,7 @@
 [![Code Climate](https://codeclimate.com/github/xeBuz/Flask-Validator/badges/gpa.svg)](https://codeclimate.com/github/xeBuz/Flask-Validator)
 
 
+
 ------
 
 ## Description
