@@ -24,8 +24,8 @@ setup(
         'SQLAlchemy>=1.0',
         'email_validator==1.0.1',
         'iso3166==0.7',
-        'pytz==2016.7',
-        'isbnlib==3.6.2',
+        'pytz==2016.10',
+        'isbnlib==3.6.5',
         'py-moneyed==0.6.0'
     ],
     classifiers=[
