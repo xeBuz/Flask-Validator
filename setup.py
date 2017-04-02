@@ -4,9 +4,12 @@ from setuptools import setup, find_packages
 
 try:
     import pypandoc
-    long_description = pypandoc.convert('README.md', 'rst')
+    LONG_DESCRIPTION = pypandoc.convert('README.md', 'rst')
 except (IOError, ImportError):
-    long_description = ''
+    LONG_DESCRIPTION = ''
+
+with open('requirements.txt') as f:
+    REQUIRED = f.read().splitlines()
 
 setup(
     name='Flask-Validator',
@@ -14,20 +17,13 @@ setup(
     license='Mozilla Public License',
     author='Jesus Roldan',
     author_email='jesus.roldan@gmail.com',
-    description="Data validator for Flask using SQL-Alchemy, working at Model component with events",
-    long_description=long_description,
+    description="Data validator for Flask and SQL-Alchemy, working at Model component with events",
+    long_description=LONG_DESCRIPTION,
     url='https://github.com/xeBuz/Flask-Validator',
     packages=find_packages(),
     platforms='any',
     test_suite='nose.collector',
-    install_requires=[
-        'SQLAlchemy>=1.0',
-        'email_validator==1.0.2',
-        'iso3166==0.7',
-        'pytz==2016.10',
-        'isbnlib==3.6.6',
-        'py-moneyed==0.6.0'
-    ],
+    install_requires=REQUIRED,
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Plugins',
