@@ -13,7 +13,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='Flask-Validator',
-    version='1.2.1',
+    version='1.2.2',
     license='Mozilla Public License',
     author='Jesus Roldan',
     author_email='jesus.roldan@gmail.com',
