@@ -4,4 +4,4 @@ email_validator==1.0.2
 iso3166==0.8
 pytz==2017.2
 isbnlib==3.6.8
-py-moneyed==0.6.0
+py-moneyed==0.7.0
