@@ -38,12 +38,12 @@ class FlaskValidator:
         if value == oldvalue:
             return value
 
+        if self.allow_null and value is None:
+            return value
+
         if self.check_value(value):
             return value
         else:
-            if self.allow_null and value is None:
-                return value
-
             if self.throw_exception:
                 if self.message:
                     self.message = self.message.format(
