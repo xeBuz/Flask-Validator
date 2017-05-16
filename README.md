@@ -106,7 +106,7 @@ The fourth parameter allow a custom message exception, with a few variables avai
   - ValidateCountry
   - ValidateTimezone
   - ValidateLocale
-- Finantial
+- Financial
   - ValidateCreditCard
   - ValidateCurrency
   - ValidateIBAN
