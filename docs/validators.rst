@@ -34,7 +34,7 @@ At the moment, the library support this validations:
   * :ref:`in_timezone`
   * :ref:`in_locale`
 
-* Finantial
+* Financial
 
   * :ref:`in_creditcard`
   * :ref:`in_currency`
