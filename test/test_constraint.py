@@ -1,7 +1,11 @@
-from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, ValidateLength, \
-    ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, ValidateUUID, ValidateLessThan, \
-    ValidateGreaterThan, ValidateLessThanOrEqual, ValidateGreaterThanOrEqual, ValidateCountry, ValidateTimezone, \
-    ValidateLocale, ValidateError, ValidateCreditCard, ValidateCurrency, ValidateIBAN, ValidateISBN, ValidateRange
+""" FlaskValidator tests """
+
+from flask_validator import ValidateInteger, ValidateString, ValidateInteger, ValidateBoolean, \
+    ValidateLength, ValidateNumeric, ValidateEmail, ValidateRegex, ValidateIP, ValidateURL, \
+    ValidateUUID, ValidateLessThan, ValidateGreaterThan, ValidateLessThanOrEqual, \
+    ValidateGreaterThanOrEqual, ValidateCountry, ValidateTimezone, ValidateLocale, ValidateError, \
+    ValidateCreditCard, ValidateCurrency, ValidateIBAN, ValidateISBN, ValidateRange, \
+    ValidateNumber
 import unittest
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -14,6 +18,8 @@ class ConstraintTest(unittest.TestCase):
         db = SQLAlchemy(app)
 
         class DummyModel(db.Model):
+            """ SQLAlchemy Dummy Object """
+
             id = db.Column(db.Integer, primary_key=True)
             integer = db.Column(db.Integer())
             large = db.Column(db.Integer())
@@ -39,6 +45,7 @@ class ConstraintTest(unittest.TestCase):
             null = db.Column(db.String(1))
             temporal = db.Column(db.String(5))
             rangefield = db.Column(db.Integer())
+            nan = db.Column(db.Float)
 
         db.create_all()
 
@@ -96,6 +103,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.null = 'A'
         self.dummy.temporal = 'abcd'
         self.dummy.rangefield = 12
+        self.dummy.nan = float(1.2)
 
     def define_validators(self):
         """
@@ -129,6 +137,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateString(self.DummyModel.null, True)
         self.rangevalues = [11, 12, 13]
         ValidateRange(self.DummyModel.rangefield, self.rangevalues)
+        ValidateNumber(self.DummyModel.nan)
 
     def test_integer(self):
         """
@@ -267,7 +276,7 @@ class ConstraintTest(unittest.TestCase):
 
         self.simple_validate('timezone', 'US/Pacific-New', "NotTZ")
 
-    def test_timezone(self):
+    def test_timezone_brit(self):
         """
         Testing Locale
         """
@@ -310,6 +319,9 @@ class ConstraintTest(unittest.TestCase):
         self.simple_validate('null', None, 1.1)
 
     def test_delete(self):
+        """
+        Testing Delete
+        """
         valid = ValidateString(self.DummyModel.temporal)
         self.simple_validate('temporal', 'bbb', 123)
 
@@ -333,9 +345,19 @@ class ConstraintTest(unittest.TestCase):
             self.assertEqual(self.dummy.str_exception, default_value)
 
     def test_range(self):
+        """
+        Test Range
+        """
         self.simple_validate('rangefield', 11, 1)
 
+    def test_isnan(self):
+        """
+        Test NaN
+        """
+        self.simple_validate('nan', float(0), float(False))
+
 def suite():
+    """ Test Suite """
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ConstraintTest))
     return suite

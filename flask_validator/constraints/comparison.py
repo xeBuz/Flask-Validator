@@ -1,3 +1,12 @@
+""" Comparision Validators 
+
+- ValidateLessThan
+- ValidateLessThanOrEqual
+- ValidateGreaterThan
+- ValidateGreaterThanOrEqual
+"""
+
+import abc
 from flask_validator import Validator
 
 
@@ -11,6 +20,14 @@ class BaseComparision(Validator):
 
         Validator.__init__(self, field, False, throw_exception, message)
 
+    @abc.abstractmethod
+    def check_value(self, value):
+        """
+        Validate the new value
+
+        :param value:
+        """
+        
 
 class ValidateLessThan(BaseComparision):
 

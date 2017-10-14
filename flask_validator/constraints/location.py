@@ -1,3 +1,10 @@
+""" Location Validators
+
+- ValidateLocale
+- ValidateCountry
+-ValidateTimezone
+"""
+
 import locale
 from iso3166 import countries
 from pytz import all_timezones
@@ -70,4 +77,3 @@ class ValidateTimezone(Validator):
 
     def check_value(self, value):
         return value in all_timezones
-

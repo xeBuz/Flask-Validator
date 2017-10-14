@@ -1,3 +1,8 @@
+- 1.3
+  Library changes
+  PEP Validations
+  Added ValidateNumber (NaN)
+
 - 1.2.3
   Release error
 

@@ -1,3 +1,11 @@
+""" Comparision Types 
+
+- ValidateInteger
+- ValidateNumeric
+- ValidateString
+- ValidateBoolean
+"""
+
 import sys
 from flask_validator import Validator
 

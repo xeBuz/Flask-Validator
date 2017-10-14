@@ -1,3 +1,10 @@
+""" Internet Validators 
+
+- ValidateEmail
+- ValidateIP
+- ValidateURL
+"""
+
 import socket
 import re
 from email_validator import validate_email, EmailNotValidError
@@ -40,8 +47,7 @@ class ValidateEmail(Validator):
             validate_email(value,
                            allow_smtputf8=self.allow_smtputf8,
                            check_deliverability=self.check_deliverability,
-                           allow_empty_local=self.allow_empty_local
-                           )
+                           allow_empty_local=self.allow_empty_local)
             return True
         except EmailNotValidError:
             return False
