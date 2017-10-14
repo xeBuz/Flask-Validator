@@ -1,12 +1,19 @@
+""" Validator and FlaskValidator classes """
+
 import weakref
 import abc
 from sqlalchemy import event
 from .exceptions import ValidateError
 
-__version__ = '1.2.1'
+__version__ = '1.3'
 
 
-class FlaskValidator:
+class FlaskValidator(object):
+    """ Main Flask Validator class
+
+    It contains the validation methods related to Flask
+    """
+
     field = None
     allow_null = True
     throw_exception = False
@@ -84,6 +91,8 @@ class FlaskValidator:
 
 
 class Validator(FlaskValidator):
+    """ Main validotr class """
+
     def __init__(self, field, allow_null=True, throw_exception=False, message=None):
         """
         Validator Interface initialization

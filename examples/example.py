@@ -1,3 +1,5 @@
+""" FlaskValidator example """
+
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 from flask_validator import ValidateInteger, ValidateString
@@ -8,8 +10,10 @@ db = SQLAlchemy(app)
 
 
 class User(db.Model):
+    """ User SQLAlchemy Model for example """
+
     __tablename__ = 'user'
-    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, primary_key=True)
     string = db.Column(db.String(80))
     integer = db.Column(db.Integer())
 

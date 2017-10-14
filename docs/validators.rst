@@ -14,6 +14,7 @@ At the moment, the library support this validations:
 * Numeric
 
   * :ref:`in_length`
+  * :ref:`in_nan`
 
 * Comparision
 
@@ -160,6 +161,26 @@ Parametes:
 | max_length              | None     | Maximum value length                                            |
 +-------------------------+----------+-----------------------------------------------------------------+
 | min_length              | 0        | Minumum value length                                            |
++-------------------------+----------+-----------------------------------------------------------------+
+| throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+----------+-----------------------------------------------------------------+
+| message                 | None     | Add a custom message to the ``ValidateError`` exception         |
++-------------------------+----------+-----------------------------------------------------------------+
+
+
+.. _in_nan:
+
+ValidateNumber
+--------------
+
+Check if the new value is a number or not (NaN)
+
+Parametes:
+
++-------------------------+----------+-----------------------------------------------------------------+
+| Parameter               | Default  | Description                                                     |
++=========================+==========+=================================================================+
+| field                   |          | SQLAlchemy column to validate                                   |
 +-------------------------+----------+-----------------------------------------------------------------+
 | throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+

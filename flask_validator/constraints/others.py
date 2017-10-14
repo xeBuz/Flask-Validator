@@ -1,3 +1,11 @@
+""" Comparision Others 
+
+- ValidateRegex
+- ValidateUUID
+- ValidateISBN
+- ValidateRange
+"""
+
 import re
 from uuid import UUID
 from isbnlib import is_isbn10, is_isbn13
@@ -103,4 +111,3 @@ class ValidateRange(Validator):
             return value in self.range_valid
         except TypeError:
             return False
-

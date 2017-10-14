@@ -1,3 +1,12 @@
+""" Numbers Validators 
+
+- ValidateLength
+- ValidateLessThanOrEqual
+- ValidateGreaterThan
+- ValidateGreaterThanOrEqual
+"""
+
+import math
 from flask_validator import Validator
 
 
@@ -29,3 +38,17 @@ class ValidateLength(Validator):
             raise Warning("Argument max_length should't be null")
 
         return int(self.max_length) >= len(value) >= int(self.min_length)
+
+
+class ValidateNumber(Validator):
+    """ Validate if is a Number
+
+    Check if the value is a number or not (NaN)
+
+    Args:
+        field: SQLAlchemy column to validate
+        throw_exception: (bool) Throw a ValidateError if the validation fails
+    """
+
+    def check_value(self, value):
+        return not math.isnan(value)
