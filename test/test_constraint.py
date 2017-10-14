@@ -352,7 +352,7 @@ class ConstraintTest(unittest.TestCase):
         """
         Test NaN
         """
-        self.simple_validate('numeric', 1.3, "Nope")
+        self.simple_validate('numeric', float(1.3), float('nan'))
 
 def suite():
     """ Test Suite """
