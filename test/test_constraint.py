@@ -45,6 +45,7 @@ class ConstraintTest(unittest.TestCase):
             null = db.Column(db.String(1))
             temporal = db.Column(db.String(5))
             rangefield = db.Column(db.Integer())
+            nan = db.Column(db.Float)
 
         db.create_all()
 
@@ -102,6 +103,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.null = 'A'
         self.dummy.temporal = 'abcd'
         self.dummy.rangefield = 12
+        self.dummy.nan = float(1.2)
 
     def define_validators(self):
         """
@@ -135,7 +137,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateString(self.DummyModel.null, True)
         self.rangevalues = [11, 12, 13]
         ValidateRange(self.DummyModel.rangefield, self.rangevalues)
-        ValidateNumber(self.DummyModel.numeric)
+        ValidateNumber(self.DummyModel.nan)
 
     def test_integer(self):
         """
@@ -352,7 +354,7 @@ class ConstraintTest(unittest.TestCase):
         """
         Test NaN
         """
-        self.simple_validate('numeric', float(1.3), float('nan'))
+        self.simple_validate('nan', float(0), float(False))
 
 def suite():
     """ Test Suite """
