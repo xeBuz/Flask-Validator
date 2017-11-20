@@ -6,6 +6,7 @@
 [![Requirements Status](https://requires.io/github/xeBuz/Flask-Validator/requirements.svg?branch=master)](https://requires.io/github/xeBuz/Flask-Validator/requirements/?branch=master)
 [![Coverage Status](https://coveralls.io/repos/xeBuz/Flask-Validator/badge.svg?branch=master&service=github)](https://coveralls.io/github/xeBuz/Flask-Validator?branch=master)
 [![Code Climate](https://codeclimate.com/github/xeBuz/Flask-Validator/badges/gpa.svg)](https://codeclimate.com/github/xeBuz/Flask-Validator)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e84331c3be9343de97c20c31a6b032e1)](https://www.codacy.com/app/jesus-roldan/Flask-Validator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xeBuz/Flask-Validator&amp;utm_campaign=Badge_Grade)
 
 
 
