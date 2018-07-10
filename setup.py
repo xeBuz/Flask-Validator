@@ -24,8 +24,8 @@ setup(
         'Flask-SQLAlchemy>=1.0',
         'email_validator==1.0.3',
         'iso3166==0.8',
-        'pytz==2017.2',
-        'isbnlib==3.7.2',
+        'pytz==2018.5',
+        'isbnlib==3.9.1',
         'py-moneyed==0.7.0'
     ],
     classifiers=[
