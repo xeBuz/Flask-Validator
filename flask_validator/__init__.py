@@ -6,4 +6,4 @@ from .constraints import ValidateInteger, ValidateNumeric, ValidateString, Valid
     ValidateLength, ValidateLessThan, ValidateLessThanOrEqual, ValidateGreaterThan, \
     ValidateGreaterThanOrEqual, ValidateEmail, ValidateIP, ValidateURL, ValidateRegex, \
     ValidateUUID, ValidateCountry, ValidateTimezone, ValidateLocale, ValidateCreditCard, \
-    ValidateCurrency, ValidateIBAN, ValidateISBN, ValidateRange, ValidateNumber
+    ValidateCurrency, ValidateIBAN, ValidateISBN, ValidateBIC, ValidateRange, ValidateNumber

@@ -5,7 +5,7 @@ from flask_validator import ValidateInteger, ValidateString, ValidateInteger, Va
     ValidateUUID, ValidateLessThan, ValidateGreaterThan, ValidateLessThanOrEqual, \
     ValidateGreaterThanOrEqual, ValidateCountry, ValidateTimezone, ValidateLocale, ValidateError, \
     ValidateCreditCard, ValidateCurrency, ValidateIBAN, ValidateISBN, ValidateRange, \
-    ValidateNumber
+    ValidateNumber, ValidateBIC
 import unittest
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -41,6 +41,7 @@ class ConstraintTest(unittest.TestCase):
             creditcard = db.Column(db.String(20))
             currency = db.Column(db.String(3))
             iban = db.Column(db.String(100))
+            bic = db.Column(db.String(100))
             isbn = db.Column(db.String(100))
             null = db.Column(db.String(1))
             temporal = db.Column(db.String(5))
@@ -99,6 +100,7 @@ class ConstraintTest(unittest.TestCase):
         self.dummy.creditcard = 378282246310005  # PayPal Example
         self.dummy.currency = 'USD'
         self.dummy.iban = 'GB82 WEST 1234 5698 7654 32'
+        self.dummy.bic = 'DABAIE2D'
         self.dummy.isbn = '1-56619-909-3'
         self.dummy.null = 'A'
         self.dummy.temporal = 'abcd'
@@ -134,6 +136,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateCurrency(self.DummyModel.currency)
         ValidateIBAN(self.DummyModel.iban)
         ValidateISBN(self.DummyModel.isbn)
+        ValidateBIC(self.DummyModel.bic)
         ValidateString(self.DummyModel.null, True)
         self.rangevalues = [11, 12, 13]
         ValidateRange(self.DummyModel.rangefield, self.rangevalues)
@@ -303,7 +306,7 @@ class ConstraintTest(unittest.TestCase):
         Testing IBAN
         """
 
-        self.simple_validate('iban', 'GB82WEST12345698765432', "GB82 WEST 1243 5698 7654 32")
+        self.simple_validate('iban', 'GB82WEST12345698765432', "DX89 3704 0044 0532 0130 00")
 
     def test_isbn(self):
         """
@@ -311,6 +314,13 @@ class ConstraintTest(unittest.TestCase):
         """
 
         self.simple_validate('isbn', '978-3-16-148410-0', "111112")
+
+    def test_bic(self):
+        """
+        Testing BIC
+        """
+
+        self.simple_validate('bic', 'PBNKDEFFXXX', "d")
 
     def test_null(self):
         """

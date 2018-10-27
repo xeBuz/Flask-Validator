@@ -40,6 +40,7 @@ At the moment, the library support this validations:
   * :ref:`in_creditcard`
   * :ref:`in_currency`
   * :ref:`in_iban`
+  * :ref:`in_bic`
 
 * Others
 
@@ -581,6 +582,33 @@ Parametes:
 +-------------------------+-----------+-----------------------------------------------------------------+
 | message                 | None      | Add a custom message to the ``ValidateError`` exception         |
 +-------------------------+-----------+-----------------------------------------------------------------+
+
+
+.. _in_iban:
+
+ValidateBIC
+------------
+
+Check if the new value is valid BIC (SO 9362 defined standard format of Bank Identifier Codes )
+
+More reference: https://en.wikipedia.org/wiki/ISO_9362
+
+
+
+Parametes:
+
++-------------------------+-----------+-----------------------------------------------------------------+
+| Parameter               | Default   | Description                                                     |
++=========================+===========+=================================================================+
+| field                   |           | SQLAlchemy column to validate                                   |
++-------------------------+-----------+-----------------------------------------------------------------+
+| allow_null              | True      | Allow ``null`` values                                           |
++-------------------------+-----------+-----------------------------------------------------------------+
+| throw_exception         | False     | Throw a ``ValidateError`` exception on validation fails         |
++-------------------------+-----------+-----------------------------------------------------------------+
+| message                 | None      | Add a custom message to the ``ValidateError`` exception         |
++-------------------------+-----------+-----------------------------------------------------------------+
+
 
 
 

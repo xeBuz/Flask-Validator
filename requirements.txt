@@ -5,3 +5,4 @@ iso3166==0.9
 pytz==2018.6
 isbnlib==3.9.3
 py-moneyed==0.7.0
+schwifty===2018.9.1

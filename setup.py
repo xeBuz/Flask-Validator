@@ -10,7 +10,7 @@ except (IOError, ImportError):
 
 setup(
     name='Flask-Validator',
-    version='1.3',
+    version='1.4',
     license='Mozilla Public License',
     author='Jesus Roldan',
     author_email='jesus.roldan@gmail.com',
@@ -26,7 +26,8 @@ setup(
         'iso3166==0.9',
         'pytz==2018.6',
         'isbnlib==3.9.3',
-        'py-moneyed==0.7.0'
+        'py-moneyed==0.7.0',
+        'schwifty===2018.9.1'
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
