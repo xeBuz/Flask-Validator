@@ -8,13 +8,13 @@ from flask_validator import ValidateInteger, ValidateString, ValidateInteger, Va
     ValidateNumber
 import unittest
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
-
+from flask_sqlalchemy import SQLAlchemy
 
 class ConstraintTest(unittest.TestCase):
     def setUp(self):
         app = Flask(__name__)
         app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
+        app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
         db = SQLAlchemy(app)
 
         class DummyModel(db.Model):
@@ -274,7 +274,7 @@ class ConstraintTest(unittest.TestCase):
         Testing Timezone
         """
 
-        self.simple_validate('timezone', 'US/Pacific-New', "NotTZ")
+        self.simple_validate('timezone', 'GMT', "NotTZ")
 
     def test_timezone_brit(self):
         """
@@ -289,6 +289,7 @@ class ConstraintTest(unittest.TestCase):
         """
 
         self.simple_validate('creditcard', '4111 1111 1111 1111', "202")
+        self.simple_validate('creditcard', '4111-1111-1111-1111', "11111")
 
     def test_currency(self):
         """
