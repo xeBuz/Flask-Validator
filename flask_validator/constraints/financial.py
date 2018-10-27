@@ -28,11 +28,7 @@ class ValidateCreditCard(Validator):
     """
 
     def check_value(self, value):
-        if sys.version_info >= (3, 0):
-            n = str(value).replace(' ', '').replace('-', '')
-        else:
-            n = str(value).translate(None, ' -')
-
+        n = re.sub(r'[\s-]', '', str(value))
         r = [int(ch) for ch in str(n)][::-1]
         return (sum(r[0::2]) + sum(sum(divmod(d*2,10)) for d in r[1::2])) % 10 == 0
 
