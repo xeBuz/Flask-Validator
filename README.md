@@ -94,6 +94,7 @@ The fourth parameter allow a custom message exception, with a few variables avai
   - ValidateBoolean
 - Numeric
   - Validatelength
+  - ValidateNaN
 - Comparision
   - ValidateLessThan
   - ValidateLessThanOrEqual
@@ -111,9 +112,10 @@ The fourth parameter allow a custom message exception, with a few variables avai
   - ValidateCreditCard
   - ValidateCurrency
   - ValidateIBAN
+  - ValidateBIC
 - Others
   - ValidateUUID
-  - ValidateISBN
+  - ValidateISBN'
   - ValidateRegex
   - ValidateRange
 
