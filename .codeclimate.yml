@@ -10,3 +10,4 @@ ratings:
   - "**.py"
 excluded_paths:
   - test/**/*
+  - examples/**/*
