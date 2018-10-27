@@ -27,7 +27,7 @@ setup(
         'pytz==2018.6',
         'isbnlib==3.9.3',
         'py-moneyed==0.7.0',
-        'schwifty===2018.9.1'
+        'schwifty==2018.9.1'
     ],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
