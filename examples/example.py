@@ -1,7 +1,7 @@
 """ FlaskValidator example """
 
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 from flask_validator import ValidateInteger, ValidateString
 
 app = Flask(__name__)
