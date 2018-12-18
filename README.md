@@ -7,6 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/xeBuz/Flask-Validator/badge.svg?branch=master&service=github)](https://coveralls.io/github/xeBuz/Flask-Validator?branch=master)
 [![Code Climate](https://codeclimate.com/github/xeBuz/Flask-Validator/badges/gpa.svg)](https://codeclimate.com/github/xeBuz/Flask-Validator)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e84331c3be9343de97c20c31a6b032e1)](https://www.codacy.com/app/jesus-roldan/Flask-Validator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xeBuz/Flask-Validator&amp;utm_campaign=Badge_Grade)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator?ref=badge_shield)
 
 
 
@@ -178,3 +179,7 @@ validate.start()
 # Re-enabled the listener
 
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator?ref=badge_large)
