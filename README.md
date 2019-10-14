@@ -2,7 +2,6 @@
 
 ![PyPi status](https://img.shields.io/pypi/status/Flask-Validator.svg)
 [![PyPI version](https://badge.fury.io/py/Flask-Validator.svg)](https://badge.fury.io/py/Flask-Validator)
-![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Flask-Validator)
 [![Travis](https://travis-ci.org/xeBuz/Flask-Validator.svg)](https://travis-ci.org/xeBuz/Flask-Validator)
 [![Documentation Status](https://readthedocs.org/projects/flask-validator/badge/?version=latest)](http://flask-validator.readthedocs.org/en/latest/?badge=latest)
 [![Requirements Status](https://requires.io/github/xeBuz/Flask-Validator/requirements.svg?branch=master)](https://requires.io/github/xeBuz/Flask-Validator/requirements/?branch=master)
@@ -11,6 +10,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e84331c3be9343de97c20c31a6b032e1)](https://www.codacy.com/app/jesus-roldan/Flask-Validator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xeBuz/Flask-Validator&amp;utm_campaign=Badge_Grade)
 ![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/xeBuz/Flask-Validator)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/Flask-Validator)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Flask-Validator?color=green)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator?ref=badge_shield)
 [![GitHub license](https://img.shields.io/github/license/xeBuz/Flask-Validator)](https://github.com/xeBuz/Flask-Validator/blob/master/LICENSE)
 
