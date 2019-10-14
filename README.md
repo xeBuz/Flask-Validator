@@ -7,9 +7,10 @@
 [![Coverage Status](https://coveralls.io/repos/xeBuz/Flask-Validator/badge.svg?branch=master&service=github)](https://coveralls.io/github/xeBuz/Flask-Validator?branch=master)
 [![Code Climate](https://codeclimate.com/github/xeBuz/Flask-Validator/badges/gpa.svg)](https://codeclimate.com/github/xeBuz/Flask-Validator)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e84331c3be9343de97c20c31a6b032e1)](https://www.codacy.com/app/jesus-roldan/Flask-Validator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=xeBuz/Flask-Validator&amp;utm_campaign=Badge_Grade)
+![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/xeBuz/Flask-Validator)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/Flask-Validator)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator?ref=badge_shield)
-
-
+[![GitHub license](https://img.shields.io/github/license/xeBuz/Flask-Validator)](https://github.com/xeBuz/Flask-Validator/blob/master/LICENSE)
 
 ------
 
@@ -18,17 +19,15 @@
 Data validator for Flask using SQL-Alchemy, working at Model component with events, preventing invalid data in the columns.
 The extension works with event listeners from SQLAlchemy.
 
-## Instalation
+## Installation
 
 ```bash
 pip install flask-validator
 ```
 
-
 ## Documentation
 
 For the online documentation, follow [this link](http://flask-validator.readthedocs.org/en/latest/)
-
 
 ## Basic usage
 
@@ -64,7 +63,6 @@ print user.name
 # 'Zaphod Beeblebrox'
 ```
 
-
 ## Exceptions
 
 Every Constraint has a parameter to throw an exception everytime the validation fails, for example:
@@ -75,7 +73,6 @@ ValidateNumeric(Table.field, False, True, "Message")
 
 The third parameter enables this feature and throw a `ValidateError` exception, otherwise it will fails silently.
 
-
 ## Message Exception
 
 The fourth parameter allow a custom message exception, with a few variables available
@@ -84,7 +81,6 @@ The fourth parameter allow a custom message exception, with a few variables avai
 - `new_value`: value provided (with the error)
 - `key`: the column name
 - `field`: object.column
-
 
 ## Available Constraints
 
@@ -120,14 +116,11 @@ The fourth parameter allow a custom message exception, with a few variables avai
   - ValidateRegex
   - ValidateRange
 
-
 ## Custom Validators
-
 
 You will be able to create customs validator implementing the class Validator.
 
 You must define your own method ``check_value()`` and if you are receiving any argument, you also must call the parent ``__init__()``
-
 
 ```python
 from flask_validator import Validator
@@ -144,8 +137,7 @@ class ValidateAorB(Validator)
 class ValidateA(Validator)
     def check_value(self, value):
         return if value == 'A'
-```            
-
+```
 
 ## Pause the validation
 
@@ -180,6 +172,6 @@ validate.start()
 
 ```
 
-
 ## License
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator?ref=badge_large)
