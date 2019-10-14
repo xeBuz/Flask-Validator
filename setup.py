@@ -22,11 +22,11 @@ setup(
     test_suite='nose.collector',
     install_requires=[
         'Flask-SQLAlchemy>=1.0',
-        'email_validator==1.0.3',
-        'iso3166==0.9',
-        'pytz==2018.6',
-        'isbnlib==3.9.3',
-        'py-moneyed==0.7.0',
+        'email_validator==1.0.4',
+        'iso3166==1.0',
+        'pytz==2019.3',
+        'isbnlib==3.9.8',
+        'py-moneyed==0.8.0',
         'schwifty==2018.9.1'
     ],
     classifiers=[
