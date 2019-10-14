@@ -22,11 +22,11 @@ setup(
     test_suite='nose.collector',
     install_requires=[
         'Flask-SQLAlchemy>=1.0',
-        'email_validator==1.0.3',
-        'iso3166==0.9',
-        'pytz==2018.6',
-        'isbnlib==3.9.3',
-        'py-moneyed==0.7.0',
+        'email_validator==1.0.4',
+        'iso3166==1.0',
+        'pytz==2019.3',
+        'isbnlib==3.9.8',
+        'py-moneyed==0.8.0',
         'schwifty==2018.9.1'
     ],
     classifiers=[
@@ -37,6 +37,11 @@ setup(
         'License :: OSI Approved :: Mozilla Public License 2.0 (MPL 2.0)',
         'Operating System :: OS Independent',
         'Programming Language :: Python',
+        'Programming Language :: Python :: 2.7',
+        'Programming Language :: Python :: 3.4',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Topic :: Database',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ]
