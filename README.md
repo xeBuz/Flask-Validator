@@ -11,7 +11,6 @@
 ![Code Climate technical debt](https://img.shields.io/codeclimate/tech-debt/xeBuz/Flask-Validator)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/Flask-Validator)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/Flask-Validator?color=green)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator?ref=badge_shield)
 [![GitHub license](https://img.shields.io/github/license/xeBuz/Flask-Validator)](https://github.com/xeBuz/Flask-Validator/blob/master/LICENSE)
 
 ------
@@ -173,7 +172,3 @@ validate.start()
 # Re-enabled the listener
 
 ```
-
-## License
-
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FxeBuz%2FFlask-Validator?ref=badge_large)
