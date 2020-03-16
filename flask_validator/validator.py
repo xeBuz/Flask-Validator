@@ -19,7 +19,8 @@ class FlaskValidator(object):
     throw_exception = False
     message = None
 
-    def __init__(self, field, allow_null, throw_exception, message, parent):
+    def __init__(self, field, allow_null, throw_exception, message,
+                 interpolate_message, parent):
         """ Initialize a Validator object.
 
         :type throw_exception: Throw a ValidateError exception
@@ -30,6 +31,7 @@ class FlaskValidator(object):
         self.allow_null = allow_null
         self.throw_exception = throw_exception
         self.message = message
+        self.interpolate_message = interpolate_message
         self.__create_event()
 
     def __validate(self, target, value, oldvalue, initiator):
@@ -93,14 +95,16 @@ class FlaskValidator(object):
 class Validator(FlaskValidator):
     """ Main validotr class """
 
-    def __init__(self, field, allow_null=True, throw_exception=False, message=None):
+    def __init__(self, field, allow_null=True, throw_exception=False,
+                 message=None, interpolate_message=True):
         """
         Validator Interface initialization
 
         :param field:  Flask Column to validate
         """
 
-        FlaskValidator.__init__(self, field, allow_null, throw_exception, message, self)
+        FlaskValidator.__init__(self, field, allow_null, throw_exception,
+                                message, interpolate_message, self)
 
     @abc.abstractmethod
     def check_value(self, value):
