@@ -127,10 +127,10 @@ You must define your own method ``check_value()`` and if you are receiving any a
 from flask_validator import Validator
 
 class ValidateAorB(Validator)
-    def __init__(self, field, useless, allow_null=True, throw_exception=False, message=None):
+    def __init__(self, field, useless, allow_null=True, throw_exception=False, message=None, interpolate_message):
         self.useless = useless
 
-        Validator.__init__(self, field, allow_null, throw_exception, message):
+        Validator.__init__(self, field, allow_null, throw_exception, message, interpolate_message):
 
     def check_value(self, value):
         return if value in ['A', 'B']
