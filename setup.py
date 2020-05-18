@@ -25,7 +25,7 @@ setup(
         'email_validator==1.0.5',
         'iso3166==1.0.1',
         'pytz==2019.3',
-        'isbnlib==3.10.0',
+        'isbnlib==3.10.1',
         'py-moneyed==0.8.0',
         'schwifty==2020.4.1'
     ],
