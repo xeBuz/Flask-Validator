@@ -10,7 +10,7 @@ except (IOError, ImportError):
 
 setup(
     name='Flask-Validator',
-    version='1.4.1',
+    version='1.4.2',
     license='Mozilla Public License',
     author='Jesus Roldan',
     author_email='jesus.roldan@gmail.com',
@@ -21,7 +21,7 @@ setup(
     platforms='any',
     test_suite='nose.collector',
     install_requires=[
-        'Flask-SQLAlchemy>=1.0',
+        'Flask-SQLAlchemy==2.4.4',
         'email_validator==1.1.1',
         'iso3166==1.0.1',
         'pytz==2020.1',
@@ -38,10 +38,10 @@ setup(
         'Operating System :: OS Independent',
         'Programming Language :: Python',
         'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Topic :: Database',
         'Topic :: Software Development :: Libraries :: Python Modules',
     ]
