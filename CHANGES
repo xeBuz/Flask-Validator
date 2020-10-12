@@ -1,3 +1,7 @@
+- 1.4.2
+  Libraries Updated
+  Python version updated
+
 - 1.4.1
   Library Updated
   Fix  custom message with format {} fails with Key error #47 - Thanks @rubber-side-down
