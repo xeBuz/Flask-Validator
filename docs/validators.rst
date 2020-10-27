@@ -1,8 +1,8 @@
-Validators availables
-=====================
+Validators available
+====================
 
 
-At the moment, the library support this validations:
+At the moment, the library supports these validations:
 
 * Types
 
@@ -16,7 +16,7 @@ At the moment, the library support this validations:
   * :ref:`in_length`
   * :ref:`in_nan`
 
-* Comparision
+* Comparison
 
   * :ref:`in_lesser`
   * :ref:`in_lesser_equal`
@@ -57,7 +57,7 @@ ValidateInteger
 
 Check if the new value is a valid ``int`` or ``long`` type
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -71,7 +71,7 @@ Parametes:
 | message                 | None      | Add a custom message to the ``ValidateError`` exception         |
 +-------------------------+-----------+-----------------------------------------------------------------+
 
-.. note:: ``long`` type is only available i  Python 2.7
+.. note:: ``long`` type is only available in Python 2.7
 
 
 .. _in_numeric:
@@ -82,7 +82,7 @@ ValidateNumeric
 Check if the new value is a valid ``int``, ``long``, ``float`` or ``complex`` type
 
 
-Parametes:
+Parameters:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
@@ -108,7 +108,7 @@ ValidateString
 
 Check if the new value is a valid ``string`` type.
 
-Parametes:
+Parameters:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
@@ -131,7 +131,7 @@ ValidateBoolean
 
 Check if the new value is a valid ``bool`` type.
 
-Parametes:
+Parameters:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
@@ -150,9 +150,9 @@ Parametes:
 Validatelength
 --------------
 
-Check if the new value has a length with a maximun and a minimun
+Check if the new value has a length with a maximum and a minimum
 
-Parametes:
+Parameters:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
@@ -161,7 +161,7 @@ Parametes:
 +-------------------------+----------+-----------------------------------------------------------------+
 | max_length              | None     | Maximum value length                                            |
 +-------------------------+----------+-----------------------------------------------------------------+
-| min_length              | 0        | Minumum value length                                            |
+| min_length              | 0        | Minimum value length                                            |
 +-------------------------+----------+-----------------------------------------------------------------+
 | throw_exception         | False    | Throw a ``ValidateError`` exception on validation fails         |
 +-------------------------+----------+-----------------------------------------------------------------+
@@ -176,7 +176,7 @@ ValidateNumber
 
 Check if the new value is a number or not (NaN)
 
-Parametes:
+Parameters:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
@@ -194,9 +194,9 @@ Parametes:
 ValidateLessThan
 ----------------
 
-Check if the new value is a lesser than X value
+Check if the new value is less than the value of X
 
-Parametes:
+Parameters:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
@@ -217,9 +217,9 @@ Parametes:
 ValidateLessThanOrEqual
 -----------------------
 
-Check if the new value is a lesser than X value or equal
+Check if the new value is less than or equal to the value of X
 
-Parametes:
+Parameters:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
@@ -239,9 +239,9 @@ Parametes:
 ValidateGreaterThan
 -------------------
 
-Check if the new value is a greater than X value
+Check if the new value is greater than the value of X
 
-Parametes:
+Parameters:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
@@ -262,9 +262,9 @@ Parametes:
 ValidateGreaterThanOrEqual
 --------------------------
 
-Check if the new value is a greater than X value or equal
+Check if the new value is greater than or equal to the value of X
 
-Parametes:
+Parameters:
 
 +-------------------------+----------+-----------------------------------------------------------------+
 | Parameter               | Default  | Description                                                     |
@@ -285,20 +285,20 @@ Parametes:
 ValidateEmail
 -------------
 
-Check if the new value is a valid e-mail, using email_validator_ library.
+Check if the new value is a valid e-mail, using the email_validator_ library.
 
-Parametes:
+Parameters:
 
 +-------------------------+----------+--------------------------------------------------------------------------------+
 | Parameter               | Default  | Description                                                                    |
 +=========================+==========+================================================================================+
 | field                   |          | SQLAlchemy column to validate                                                  |
 +-------------------------+----------+--------------------------------------------------------------------------------+
-| allow_smtputf8          | True     | Allow internationalized addresses that would require the SMTPUTF8_ extension.  |
+| allow_smtputf8          | True     | Allow internationalized addresses that would require the SMTPUTF8_ extension  |
 +-------------------------+----------+--------------------------------------------------------------------------------+
-| check_deliverability    | True     | Check domain name resolution.                                                  |
+| check_deliverability    | True     | Check domain name resolution                                                  |
 +-------------------------+----------+--------------------------------------------------------------------------------+
-| allow_empty_local       | False    | Allow an empty local part for validating Postfix aliases.                      |
+| allow_empty_local       | False    | Allow an empty local part for validating Postfix aliases                      |
 +-------------------------+----------+--------------------------------------------------------------------------------+
 | allow_null              | True     | Allow ``null`` values                                                          |
 +-------------------------+----------+--------------------------------------------------------------------------------+
@@ -315,9 +315,9 @@ Parametes:
 ValidateRegex
 -------------
 
-Compare a value against a regular expresion
+Compare a value against a regular expression
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -337,7 +337,7 @@ ValidateRange
 
 Check if the new value is in a range
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -361,7 +361,7 @@ ValidateIP
 
 Check if the value is a valid IP Address
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -385,7 +385,7 @@ ValidateURL
 
 Check if the value is a valid URL
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -408,7 +408,7 @@ ValidateUUID
 
 Check if the value is a valid UUUID
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -439,7 +439,7 @@ Check if the value is a valid Country. Validation provided by iso3166_. Allowed 
 * Numeric
 * Apolitic Name
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -462,7 +462,7 @@ ValidateTimezone
 Check if the value is a valid Timezone. Validation provided by pytz_
 
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -486,7 +486,7 @@ ValidateLocale
 Check if the value is a valid Locale.
 
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -516,7 +516,7 @@ Allowed formats:
 * "XXXX-YYYY-WWWW-ZZZ"
 
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -542,7 +542,7 @@ Check if the new value is a valid Currency
 Validation provided by: moneyed_
 
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -563,13 +563,13 @@ Parametes:
 ValidateIBAN
 ------------
 
-Check if the new value is valid IBAN (International Bank Account Number)
+Check if the new value is a valid IBAN (International Bank Account Number)
 
 More reference: https://en.wikipedia.org/wiki/International_Bank_Account_Number
 
 
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -589,13 +589,13 @@ Parametes:
 ValidateBIC
 ------------
 
-Check if the new value is valid BIC (SO 9362 defined standard format of Bank Identifier Codes )
+Check if the new value is a valid BIC (SO 9362 defined standard format of Bank Identifier Codes)
 
 More reference: https://en.wikipedia.org/wiki/ISO_9362
 
 
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
@@ -624,7 +624,7 @@ More reference: https://en.wikipedia.org/wiki/International_Standard_Book_Number
 
 
 
-Parametes:
+Parameters:
 
 +-------------------------+-----------+-----------------------------------------------------------------+
 | Parameter               | Default   | Description                                                     |
