@@ -26,7 +26,7 @@ setup(
         'iso3166==1.0.1',
         'pytz==2020.4',
         'isbnlib==3.10.4',
-        'py-moneyed==0.8.0',
+        'py-moneyed==1.2',
         'schwifty==2020.11.0'
     ],
     classifiers=[
