@@ -25,6 +25,7 @@ class ValidateEmail(Validator):
         allow_empty_local (bool) Set to True to allow an empty local part (i.e. @example.com),
             e.g. for validating Postfix aliases.
         allow_null: (bool) Allow null values
+        blacklist_domain: (list) Domains to be excluded to be used (i.e. [temp-email.org])
         throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
@@ -33,21 +34,28 @@ class ValidateEmail(Validator):
     check_deliverability = True
     allow_empty_local = False
 
-    def __init__(self, field, allow_smtputf8=True,check_deliverability=True, allow_empty_local=False,
-                 allow_null=True, throw_exception=False, message=None):
+    def __init__(self, field, allow_smtputf8=True, check_deliverability=True, allow_empty_local=False,
+                 allow_null=True, blacklist_domain=None, throw_exception=False, message=None):
 
         self.allow_smtputf8 = allow_smtputf8
         self.check_deliverability = check_deliverability
         self.allow_empty_local = allow_empty_local
+        self.blacklist_domain = blacklist_domain
 
         Validator.__init__(self, field, allow_null, throw_exception, message)
 
     def check_value(self, value):
         try:
-            validate_email(value,
-                           allow_smtputf8=self.allow_smtputf8,
-                           check_deliverability=self.check_deliverability,
-                           allow_empty_local=self.allow_empty_local)
+            mail_info = validate_email(value,
+                                       allow_smtputf8=self.allow_smtputf8,
+                                       check_deliverability=self.check_deliverability,
+                                       allow_empty_local=self.allow_empty_local)
+
+            if self.blacklist_domain is not None \
+                    and len(self.blacklist_domain) > 0 \
+                    and mail_info.ascii_domain in self.blacklist_domain:
+                return False
+
             return True
         except EmailNotValidError:
             return False

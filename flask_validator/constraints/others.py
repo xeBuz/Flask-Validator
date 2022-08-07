@@ -80,12 +80,23 @@ class ValidateISBN(Validator):
 
     Args:
         field: SQLAlchemy column to validate
+        isbn_type: ISBN_10, ISBN_13 or ANY
         allow_null: (bool) Allow null values
         throw_exception: (bool) Throw a ValidateError if the validation fails
 
     """
+    def __init__(self, field, isbn_type="ANY", allow_null=True, throw_exception=False, message=None):
+        self.isbn_type = isbn_type
+
+        Validator.__init__(self, field, allow_null, throw_exception, message)
+
     def check_value(self, value):
-        return is_isbn10(value) or is_isbn13(value)
+        if self.isbn_type is None or "ANY":
+            return is_isbn10(value) or is_isbn13(value)
+        elif self.isbn_type == "ISBN_10":
+            return is_isbn10(value)
+        elif self.isbn_type == "ISBN_13":
+            return is_isbn13(value)
 
 
 class ValidateRange(Validator):

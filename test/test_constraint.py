@@ -121,7 +121,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateString(self.DummyModel.string)
         ValidateBoolean(self.DummyModel.boolean)
         ValidateLength(self.DummyModel.string, 10, 2)
-        ValidateEmail(self.DummyModel.email)
+        self.validateEmail = ValidateEmail(self.DummyModel.email)
         ValidateRegex(self.DummyModel.regex, "[A-Z][a-z]+")
         ValidateIP(self.DummyModel.ip)
         ValidateIP(self.DummyModel.ipv6, True)
@@ -135,7 +135,7 @@ class ConstraintTest(unittest.TestCase):
         ValidateCreditCard(self.DummyModel.creditcard)
         ValidateCurrency(self.DummyModel.currency)
         ValidateIBAN(self.DummyModel.iban)
-        ValidateISBN(self.DummyModel.isbn)
+        self.validateIBSN = ValidateISBN(self.DummyModel.isbn)
         ValidateBIC(self.DummyModel.bic)
         ValidateString(self.DummyModel.null, True)
         self.rangevalues = [11, 12, 13]
@@ -231,6 +231,13 @@ class ConstraintTest(unittest.TestCase):
         """
         self.simple_validate('email', "test2@gmail.com", "not@")
 
+        self.validateEmail.throw_exception = True
+        self.validateEmail.blacklist_domain = ["fake.com"]
+        with self.assertRaises(ValidateError) as e:
+            self.dummy.email = "test@fake.com"
+
+        self.assertEqual(str(e.exception), "Value test@fake.com from column email is not valid")
+
     def test_regex(self):
         """
         Testing Regex Validator
@@ -315,6 +322,23 @@ class ConstraintTest(unittest.TestCase):
 
         self.simple_validate('isbn', '978-3-16-148410-0', "111112")
 
+        self.validateIBSN.throw_exception = True
+        self.validateIBSN.isbn_type = 'ISBN_10'
+        with self.assertRaises(ValidateError) as e1:
+            self.dummy.isbn = '0-940016-73-7'
+            self.assertEqual(self.dummy.isbn, '0-940016-73-7')
+            self.dummy.isbn = 'Bad10'
+
+        self.assertEqual(str(e1.exception), 'Value Bad10 from column isbn is not valid')
+
+        self.validateIBSN.isbn_type = 'ISBN_13'
+        with self.assertRaises(ValidateError) as e1:
+            self.dummy.isbn = '978-3-16-148410-0'
+            self.assertEqual(self.dummy.isbn, '978-3-16-148410-0')
+            self.dummy.isbn = 'Bad13'
+
+        self.assertEqual(str(e1.exception), 'Value Bad13 from column isbn is not valid')
+
     def test_bic(self):
         """
         Testing BIC
@@ -351,9 +375,11 @@ class ConstraintTest(unittest.TestCase):
         """
 
         default_value = self.dummy.str_exception
-        with self.assertRaises(ValidateError):
+        with self.assertRaises(ValidateError) as e:
             self.dummy.str_exception = 42
             self.assertEqual(self.dummy.str_exception, default_value)
+
+        self.assertEqual(str(e.exception), "Test Message")
 
     def test_range(self):
         """
