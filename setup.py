@@ -21,7 +21,7 @@ setup(
     platforms='any',
     test_suite='nose.collector',
     install_requires=[
-        'Flask-SQLAlchemy==2.4.4',
+        'Flask-SQLAlchemy==3.0.0',
         'email_validator==1.1.2',
         'iso3166==1.0.1',
         'pytz==2020.4',
